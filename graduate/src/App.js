@@ -1,12 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react'
+import { Reset } from 'styled-reset'
 
-function App() {
-  return (
-    <div>
-      hi
-    </div>
-  );
-}
-
+const App = () => (
+  <React.Fragment>
+    <Reset />
+    <div>Hi, I'm an app!</div>
+  </React.Fragment>
+)
 export default App;

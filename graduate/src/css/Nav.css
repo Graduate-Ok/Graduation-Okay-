@@ -1,0 +1,15 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 60px;
+    padding : 3px;
+}
+
+.nav-logo{
+    display: flex;
+    height: 100%;
+    text-align: center;
+    align-items: center;
+}

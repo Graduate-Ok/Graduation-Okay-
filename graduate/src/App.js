@@ -2,25 +2,21 @@ import * as React from 'react'
 import { Reset } from 'styled-reset'
 import './css/App.css';
 import Header from './components/Header';
-import Nav from './components/Nav';
+import MainPage from './pages/MainPage';
+import Footer from './components/Footer';
+import Graduate from './pages/Graduate';
+import KyRecommend from './pages/KyRecommend';
 
-// const App = () => (
-//   <React.Fragment>
-//     <Reset />
-//     <div>Hi, I'm an app!</div>
-//   </React.Fragment>
-// )
 
 function App(){
   return (
     <React.Fragment>
-      <Reset/>
-      <Header/>
-      <Nav/>
-     
+          <Reset/>
+          <Header/>
+         
+          <MainPage/>
+          <Footer/>
     </React.Fragment>
-    
     );
 }
- 
 export default App;

@@ -1,9 +1,4 @@
 @font-face {
-    font-family: "yg-jalnan";
-    src: url("../fonts/Jalnan.ttf");
-  }
-  
-  @font-face {
     font-family: 'JejuGothic';
     font-weight: normal;
     font-style: normal;
@@ -15,28 +10,12 @@
     font-display: swap;
 }
 
-.navbar{
+footer{
     font-family: 'JejuGothic';
     font-weight: lighter;
     display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    width: 35%;
-    height: 60px;
-    margin: auto;
-    margin-top: 10px;
-}
-
-.navbar__graduate,
-.navbar__recommend,
-.navbar__board{
-    margin: auto;
-}
-
-.nav-navbar{
-    display: flex;
-    height: 100%;
-    text-align: center;
-    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    margin-top: auto;
+    background-color: beige;
 }

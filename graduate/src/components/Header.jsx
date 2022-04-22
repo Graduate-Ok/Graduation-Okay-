@@ -1,10 +1,10 @@
-import react from 'react';
+import react, { Fragment } from 'react';
 import '../css/Header.css';
 
 // 웹사이트 상단 바
 function Header() {
     return (
-        <> 
+        <>
             <header className = "Header">
                 <div>
                     <a href="/">
@@ -15,5 +15,6 @@ function Header() {
         </>
     );
 }
+
 
 export default Header;

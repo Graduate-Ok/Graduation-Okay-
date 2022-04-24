@@ -1,4 +1,4 @@
-# 졸업 가능?
+# <img width = "100%" src = "https://user-images.githubusercontent.com/75983289/164976416-004d3626-3a5c-4eb5-95d6-e94d1833a392.png"/>
 한신대학교 재학생 누구나 본인의 졸업요건을 조회할 수 있는 웹사이트
 ## TEAM MEMBER 👨‍👨‍👧‍👧
 | 팀원 | 역할 | Github | 

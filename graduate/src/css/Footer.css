@@ -1,4 +1,4 @@
-@font-face {
+  @font-face {
     font-family: 'JejuGothic';
     font-weight: normal;
     font-style: normal;
@@ -10,12 +10,36 @@
     font-display: swap;
 }
 
-footer{
+#wrap{
+    min-height: 80vh;
+    position: relative;
+    width: 100%;
+}
+
+.footer{
     font-family: 'JejuGothic';
     font-weight: lighter;
     display: flex;
-    flex-direction: row;
     width: 100%;
-    margin-top: auto;
-    background-color: beige;
+    height: 100px;
+    bottom: 0px;
+    position: absolute;
+    background-color: #8F8DE7;
 }
+
+.footer__section{
+    display: flex;
+    padding: 20px;
+    width: 100%;
+}
+
+.section-content{
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: small;   
+}
+

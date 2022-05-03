@@ -1,5 +1,6 @@
 import react from 'react';
 import '../css/Graduate.css';
+import '../css/MainPage.css';
 
 // 설명페이지
 function Graduate(){

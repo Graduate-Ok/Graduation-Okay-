@@ -11,7 +11,7 @@ import '../css/MainPage.css';
     KyRecommend : <KyRecommend/>
  }
 
- let nowUI = '';
+ let nowUI = 'Graduate';
 
 function handleClick(){
 
@@ -42,6 +42,9 @@ function MainPage(){
         <div className='main__background'>
             <div className = "main__contentbox">
                 <img className = "main__contentbox-img" src = "imgs/background.jpg" alt = "background"></img>
+            </div>
+            <div>
+                <p> dfd</p>
             </div>
         </div>
        

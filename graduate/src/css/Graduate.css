@@ -20,7 +20,7 @@
     margin: auto;
     margin-top: 50px;
     margin-bottom: 20px;
-    border: dashed;
+    border: dashed; /* 보더 수정 예정 */
 }
 
 .section__button{

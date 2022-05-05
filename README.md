@@ -20,3 +20,4 @@
 ## 사용 기술 🛠️
 ## 기능 💪🏽
 ## E-R 다이어그램
+<img width = "100%" src = "https://user-images.githubusercontent.com/75983289/166412003-34550a47-d7ca-4f81-8399-6a4f8d90847b.png"/>

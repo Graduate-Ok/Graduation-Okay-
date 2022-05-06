@@ -24,10 +24,10 @@
 .main__contentbox{
     display: flex;
     justify-content: center;
+    height:100%;
 }
 
 .main__contentbox-img{
     display: flex;
     width: 100%;
-    max-width: 1400px;
 }

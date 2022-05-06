@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org///DTO Mapper 3.0//EN" "http://mybatis.org//dtd//mybatis-3-mapper.dtd">
+
+<mapper namespace="com.graduate_ok.graduate_ok.mapper.KyRequiredConfirm">
+    <!-- 기독교 과목 조회 -->
+    <select id="selectChristian" resultType="KyCourseDto">
+        SELECT ky_name1
+        FROM ky_course
+        WHERE ky_name1 LIKE '%기독교%'
+        <!--SELECT ky_name1 FROM ky_course WHERE ky_name1 LIKE '%기독교%';-->
+    </select>
+</mapper>

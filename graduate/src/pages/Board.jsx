@@ -4,9 +4,11 @@ import react from 'react';
 function Board(){
     return (
         <> 
-            <div>
-                <p>게시판 페이지</p>
-            </div>
+            <main>
+                <div>
+                    <p>게시판 페이지</p>
+                </div>
+            </main>
         </>
     );
 }

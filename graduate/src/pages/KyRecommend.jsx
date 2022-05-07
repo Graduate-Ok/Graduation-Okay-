@@ -4,9 +4,11 @@ import react from 'react';
 function KyRecommend() {
     return (
         <> 
-            <div>
-                <p>교양추천받기</p>
-            </div>
+            <main>
+                <div>
+                    <p>교양추천받기</p>
+                </div>
+            </main>
         </>
     );
 }

@@ -1,17 +1,19 @@
 import react from 'react';
 import '../css/ContentsPage.css';
 
-// 공지사항(디폴트)
+// 공지사항
 function Notice() {
     return (
-            <div className='main__background'>
-                <div className = "main__contentbox">
-                    <img className = "main__contentbox-img" src = "imgs/background.jpg" alt = "background"></img>
+        <>
+            <main>
+                <div className = "contentsPage__textbox">
+                    <div className = "contentsPage__textbox-text">
+                        <p> 텍스트 영역</p>
+                    </div>
                 </div>
-                <div>
-                    <p> dfd</p>
-                </div>
-            </div>
+            </main>
+            
+        </>
     );
 }
 

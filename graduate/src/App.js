@@ -2,10 +2,8 @@ import * as React from 'react'
 import { Reset } from 'styled-reset'
 import './css/App.css';
 import Header from './components/Header';
-import MainPage from './pages/MainPage';
+import ContentsPage from './pages/ContentsPage';
 import Footer from './components/Footer';
-import Graduate from './pages/Graduate';
-import KyRecommend from './pages/KyRecommend';
 
 
 function App(){
@@ -14,7 +12,7 @@ function App(){
           <Reset/>
           <Header/>
          
-          <MainPage/>
+          <ContentsPage/>
           <Footer/>
     </React.Fragment>
     );

@@ -1,5 +1,5 @@
 import react from 'react';
-import '../css/MainPage.css';
+import '../css/ContentsPage.css';
 
 // 공지사항(디폴트)
 function Notice() {

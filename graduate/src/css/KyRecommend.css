@@ -1,0 +1,70 @@
+
+.main{
+    text-align: center;
+}
+
+.title {
+   font-size: large;
+}
+
+/*교양 테이블*/
+.KyTable{
+    width: 90%;
+    text-align: center;
+    margin:0 auto;
+    margin-top:1rem;
+    margin-bottom:1rem;  
+}
+
+.menu{
+    text-align: center;
+    font-size: 1rem;
+    height: 2.5rem;
+    background-color: #d6d6f5;
+}
+
+/*교양 테이블 th*/
+.grade_table_th{
+    vertical-align:middle;
+    border-right :1px solid #a79d9d;
+    border-bottom: 1px solid #a79d9d;
+}
+
+/*교양 테이블 td*/
+.grade_table_td{
+    vertical-align:middle;
+    font-size: 0.9rem;
+    height: 2rem;
+    border-right :1px solid #a79d9d;
+    border-bottom: 1px solid #a79d9d;
+}
+
+/*학수번호*/
+.code_width{
+    width: 12%;
+}
+
+/*과목명*/
+.name_width{
+    width: 35%;
+}
+
+/*이수구분*/
+.esu_width{
+    width: 16%;
+}
+
+/*교양 인재상*/
+.ky_width{
+    width: 16%;
+}
+
+/*학점*/
+.gradenum_width{
+    width: 8%;
+}
+
+/*수강횟수*/
+.num_width{
+    width:12%
+}

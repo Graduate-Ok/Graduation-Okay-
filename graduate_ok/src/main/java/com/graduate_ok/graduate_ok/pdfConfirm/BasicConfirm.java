@@ -34,6 +34,7 @@ public class BasicConfirm {
      *   2) 편입생
     */
 
+
     public static void main(String[] args) throws IOException {
 
         int studentId = 0; // 학번
@@ -94,6 +95,7 @@ public class BasicConfirm {
             if (line.contains("마일리지")) {
                 mileage = Integer.parseInt(line.substring(22, line.length() - 1));
             }
+
         }
         // test
         System.out.println("학번 : " + studentId);

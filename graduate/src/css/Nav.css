@@ -29,10 +29,21 @@
     margin-bottom: 30px;
 }
 
-.navbar > div:hover{
+/* .navbar > div:hover{
     border-bottom: 2px solid #000;
     transition: all 250ms ease-in-out;
 
+} */
+
+.navbar > div:after{
+    display: block;
+    content: '';
+    border-bottom: solid 2px #000;
+    transform: scaleX(0);
+    transition: transform 200ms ease-in-out;
+}
+.navbar > div:hover::after{
+    transform: scaleX(1);
 }
 
 .navbar__nav{

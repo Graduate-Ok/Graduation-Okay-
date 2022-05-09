@@ -28,10 +28,10 @@ function ContentsPage(){
                     졸업요건확인
                 </div>
                 <div className="navbar__nav" onClick={() =>handleClick("KyRecommend")}>
-                    교양추천받기
+                    인기교양추천
                 </div>
                 <div className="navbar__nav" onClick={() =>handleClick("Board")} >
-                    게시판
+                    정보공유게시판
                 </div>
                 
         </nav> 

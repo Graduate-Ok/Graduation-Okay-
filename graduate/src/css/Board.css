@@ -9,3 +9,140 @@
         url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.ttf') format("truetype");
     font-display: swap;
 }
+
+.Board{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.BoardSize{
+    font-family: 'JejuGothic';
+    display: flex;
+    width : 85%;
+    flex-direction: column;
+    height: 700px;
+}
+
+.Board__header,
+.Board__navbar,
+.Board__content--title,
+.Board__content--content,
+.Board__footer,
+.Board__page{
+    display: flex;
+    width: 100%;
+}
+
+.Board__header{
+    font-size: large;
+}
+
+.Board__navbar{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.Board__search{
+    display: flex;
+    flex-direction: row;
+}
+
+.Board__search--button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 28px;
+    background-color: #8F8DE7;   
+}
+
+.Board__search--button:hover,
+.Board__footer--button:hover{
+    opacity: 80%;
+}
+
+.Board__content--title{
+    display: flex;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #b2bec3;
+}
+
+.Board__content--content{
+    display: flex;
+    border-bottom: 1px solid #b2bec3;
+}
+
+
+.Board__content--number,
+.Board__content--name,
+.Board__content--writer,
+.Board__content--date,
+.Board__content--hits{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+
+
+.Board__content--number{
+    width: 8%;
+}
+
+.Board__content--name{
+    width : 60%;
+}
+
+.Board__content--writer{
+    width: 14%;
+}
+
+.Board__content--date{
+    width: 10%;
+}
+
+.Board__content--hits{
+    width: 8%;
+}
+
+.Board__footer{
+    display: flex;
+    height: 28px;
+    justify-content: flex-end;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+.Board__footer--button{
+    display: flex;
+    background-color: #8F8DE7;   
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 80px;
+}
+
+.Board__page{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.Board__page--button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 35px;
+    height: 30px;
+    font-size: small;
+    border-radius: 3px;
+}
+
+.Board__page--button:hover{
+    background-color: #b2bec3;
+}

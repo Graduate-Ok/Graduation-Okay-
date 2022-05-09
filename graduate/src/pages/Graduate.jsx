@@ -2,6 +2,15 @@ import react from 'react';
 import '../css/Graduate.css';
 import '../css/ContentsPage.css';
 
+
+// input type 커스터 마이징 -> https://helloinyong.tistory.com/275
+/* 
+투두
+    방법 및 링크 다시 넣어주기. 
+    
+
+*/
+
 // 설명페이지
 function Graduate(){
     return (
@@ -14,6 +23,7 @@ function Graduate(){
                     <div className="section__button">
                         <button> pdf로 학업성적확인서 제출하기</button>
                     </div>
+                    
                 </section>
             </main>
         </>

@@ -2,6 +2,10 @@ import react from 'react';
 import '../css/ContentsPage.css';
 
 // 공지사항
+/* 
+  추가할 사항들 
+  공지내용을 올림. 
+*/
 function Notice() {
     return (
         <>

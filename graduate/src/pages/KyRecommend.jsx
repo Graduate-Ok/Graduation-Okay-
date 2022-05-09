@@ -34,7 +34,7 @@ function KyRecommend() {
                                 <td className="grade_table_td name_width">감정수업:침묵과말</td>
                                 <td className="grade_table_td ky_width">도전하는 창의인</td>
                                 <td className="grade_table_td core_width">창의융합</td>
-                                <td className="grade_table_th gradenum_width" >2</td>
+                                <td className="grade_table_th gradenum_width" >3</td>
                                 <td className="grade_table_td num_width">1000</td>
                             </tr>
 

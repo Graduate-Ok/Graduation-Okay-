@@ -1,4 +1,4 @@
-package com.graduate_ok.graduate_ok.pdfConfirm;
+package com.graduate_ok.graduate_ok.pdfCheck;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -56,7 +56,6 @@ function KyRecommend() {
                                 <td className="grade_table_td num_width">800</td>
                             </tr>
 
-
                         </table>
                     </div>
 

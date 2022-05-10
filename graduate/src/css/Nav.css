@@ -22,11 +22,12 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    width: 35%;
+    width: 55%;
     height: 60px;
     margin: auto;
     margin-top: 30px;
     margin-bottom: 30px;
+    font-size: 23px;
 }
 
 /* .navbar > div:hover{

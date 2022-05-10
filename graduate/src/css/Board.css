@@ -64,6 +64,7 @@
 .Board__search--button:hover,
 .Board__footer--button:hover{
     opacity: 80%;
+    cursor : pointer;
 }
 
 .Board__content--title{
@@ -140,9 +141,10 @@
     width: 35px;
     height: 30px;
     font-size: small;
-    border-radius: 3px;
+    border-radius: 3px;  
 }
 
 .Board__page--button:hover{
     background-color: #b2bec3;
+    cursor : pointer;
 }

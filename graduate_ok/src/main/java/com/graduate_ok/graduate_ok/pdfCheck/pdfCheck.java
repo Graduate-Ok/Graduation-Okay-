@@ -83,7 +83,7 @@ public class pdfCheck {
             // 학과 추출
             if (line.contains("부전공Ⅰ")) {
                 String[] strings = list[i-1].split(" ");
-                studentMajor = strings[2];
+                studentMajor = strings[2].substring(0, strings[2].length() - 1);
             }
 
 
@@ -205,20 +205,28 @@ public class pdfCheck {
     private static StringBuffer checkCredit(int studentId, String studentMajor, int totalCredit, int kyCredit, int majorCredit) {
         StringBuffer failure = new StringBuffer();
 
+        //TEST
+//        System.out.println("\n=== checkCredit 파라미터 체크 ===");
+//        System.out.println("학번 : " + studentId);
+//        System.out.println("전공 : " + studentMajor);
+//        System.out.println("총 취득학점 : " + totalCredit);
+//        System.out.println("교양학점 : " + kyCredit);
+//        System.out.println("전공학점 : " + majorCredit);
+
         // 1. 졸업학점 검사
         if (totalCredit < 130) {
             failure.append("졸업학점 " + (130 - totalCredit) + " 미달\n");
         }
 
         // 2. 교양 학점 검사
-        if (studentId > 2016) {
-            // 17학번 이후 : 35~49학점
-            if (!(kyCredit >= 35 && kyCredit <= 49)) {
+        if (studentId <= 2016) {
+            // 16학번 이전 : 35~45학점
+            if (!(kyCredit >= 35 && kyCredit <= 45)) {
                 failure.append("교양학점 미달\n");
             }
         } else {
-            // 16학번 : 35~45학점
-            if (!(kyCredit >= 35 && kyCredit <= 45)) {
+            // 17학번 이후 : 35~49학점
+            if (!(kyCredit >= 35 && kyCredit <= 49)) {
                 failure.append("교양학점 미달\n");
             }
         }
@@ -227,8 +235,8 @@ public class pdfCheck {
         // 해당 학과 전공최소학점 가져오기
         int majorMinCredit = DBConnection.getMajorMinCredit(studentMajor);
         // test
-        System.out.println(studentMajor + " 전공 최소이수학점 : " + majorMinCredit);
-        if (majorCredit >= majorMinCredit) {
+        //System.out.println("전공 '" + studentMajor + "' 최소이수학점 : " + majorMinCredit);
+        if (majorMinCredit > majorCredit) {
             failure.append("전공학점 " + (majorMinCredit - majorCredit) + " 미달\n");
         }
 

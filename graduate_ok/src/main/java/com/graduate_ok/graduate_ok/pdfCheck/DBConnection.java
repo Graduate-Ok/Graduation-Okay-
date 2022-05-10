@@ -33,14 +33,14 @@ public class DBConnection {
         return getListDataFromTable(sql);
     }
 
-    // 해당 학과 전공필수 과목 (from 전공, 전공필수 테이블)
+    // 해당 학과 전공필수 과목 (from 학과, 전공필수 테이블)
     public static List<String> getRequiredMajor(String major) {
         String sql = "SELECT mrq_name FROM major_required_course r, major m"
-                + " WHERE r.major_no = m.major_no and m.major_name = '" + major + "';";
+                + " WHERE r.major_code = m.major_code and m.major_name = '" + major + "';";
         return getListDataFromTable(sql);
     }
 
-    // 해당 학과 전공 최소이수학점 (from 전공 테이블)
+    // 해당 학과 전공 최소이수학점 (from 학과 테이블)
     public static int getMajorMinCredit(String major) {
         String sql = "SELECT major_min_credit FROM major WHERE major_name = '" + major + "';";
         return getIntDataFromTable(sql);
@@ -77,15 +77,15 @@ public class DBConnection {
 
         try {
             Connection con = getCon();
-            PreparedStatement pstmt = con.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
                 data = rs.getInt("major_min_credit");
             }
 
             rs.close();
-            pstmt.close();
+            stmt.close();
             con.close();
 
         } catch (SQLException e) {

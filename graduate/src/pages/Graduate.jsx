@@ -12,18 +12,29 @@ import '../css/ContentsPage.css';
 */
 
 // 설명페이지
-function Graduate(){
+function Graduate() {
     return (
-        <> 
+        <>
             <main>
-            <section className = "section">
-                    <div className = "section__text">
-                        아래 버튼누르면 졸업 확인 즉$시$가$능
+                <section className="section">
+                    <div className="section__text">
+                        당신은 졸업이 가능한가요 ?
                     </div>
                     <div className="section__button">
-                        <button> pdf로 학업성적확인서 제출하기</button>
+                    <label className="upload__button" for="input-file">학업성적확인서 PDF 업로드 </label>
+                    <br/> <input type="file" id='input-file' style={{display:"none"}}/>
+                
                     </div>
-                    
+                    <br/><br/><br/><br/>
+
+                    <div className='pdf__position'> ❓ 학업성적확인서 PDF ❓ <br/><br/>
+                    👉한신대학교 종합정보시스템<br/> 
+                    👉인트라넷<br/> 
+                    👉학부생서비스<br/> 
+                    👉성적<br/> 
+                    👉학업성적확인서<br/> 
+                    👉Save<br/> 
+                    </div>
                 </section>
             </main>
         </>

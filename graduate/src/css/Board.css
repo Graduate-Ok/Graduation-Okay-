@@ -71,6 +71,7 @@
     display: flex;
     border-top: 1px solid #000;
     border-bottom: 1px solid #b2bec3;
+    background-color : #d6d6f5;
 }
 
 .Board__content--content{
@@ -142,6 +143,7 @@
     height: 30px;
     font-size: small;
     border-radius: 3px;  
+    text-decoration-line: none;
 }
 
 .Board__page--button:hover{

@@ -21,18 +21,6 @@ public class DBConnection {
         return con;
     }
 
-    // 기독교 과목 (from 교양 테이블)
-    public static List<String> getChristian() {
-        String sql = "SELECT ky_name1 FROM ky_course WHERE ky_name1 LIKE '%기독교%';";
-        return getListDataFromTable(sql);
-    }
-
-    // 성서 과목 (from 교양 테이블)
-    public static List<String> getBible() {
-        String sql = "SELECT ky_name1 FROM ky_course WHERE ky_name1 LIKE '%성서%';";
-        return getListDataFromTable(sql);
-    }
-
     // 해당 학과 전공필수 과목 (from 학과, 전공필수 테이블)
     public static List<String> getRequiredMajor(String major) {
         String sql = "SELECT mrq_name FROM major_required_course r, major m"
@@ -40,10 +28,16 @@ public class DBConnection {
         return getListDataFromTable(sql);
     }
 
+    // 해당 학과 졸업학점 (from 학과 테이블)
+    public static int getGraduateCredit(String major) {
+        String sql = "SELECT graduate_credit FROM major WHERE major_name = '" + major + "';";
+        return getIntDataFromTable(sql, "graduate_credit");
+    }
+
     // 해당 학과 전공 최소이수학점 (from 학과 테이블)
     public static int getMajorMinCredit(String major) {
         String sql = "SELECT major_min_credit FROM major WHERE major_name = '" + major + "';";
-        return getIntDataFromTable(sql);
+        return getIntDataFromTable(sql, "major_min_credit");
     }
 
 
@@ -72,7 +66,7 @@ public class DBConnection {
     }
 
     // DB에서 정수 데이터 가져오기
-    private static int getIntDataFromTable(String sql) {
+    private static int getIntDataFromTable(String sql, String column) {
         int data = 0;
 
         try {
@@ -81,7 +75,7 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
-                data = rs.getInt("major_min_credit");
+                data = rs.getInt(column);
             }
 
             rs.close();

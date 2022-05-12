@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {  Route, Routes, Link } from 'react-router-dom';
+import {  Route, Routes} from 'react-router-dom';
 import { Reset } from 'styled-reset';
 import './css/App.css';
 import Header from './components/Header';

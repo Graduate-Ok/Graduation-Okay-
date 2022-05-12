@@ -22,7 +22,7 @@
     display: flex;
     width : 85%;
     flex-direction: column;
-    height: 700px;
+    height: 900px;
 }
 
 .Board__header,
@@ -151,4 +151,33 @@
 .Board__page--button:hover{
     background-color: #b2bec3;
     cursor : pointer;
+}
+
+.Board__writecontainer{
+    display: flex;
+    margin-top: 5%;
+    background-color: #E5E7EB;
+    width: 100%;
+    height: 70%;
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+.Board__write--title,
+.Board__write--content{
+    display: flex;
+    width: 95%;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.Board__write--title{
+    margin-top: 2%;
+    height: 5%;
+    
+}
+
+.Board__write--content{
+    margin-top: 3%;
+    height: 70%;
 }

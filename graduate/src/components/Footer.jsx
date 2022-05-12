@@ -4,7 +4,6 @@ import '../css/Footer.css';
 
 function Footer(){
     return(
-        <div id = "wrap">
         <footer className='footer'>
             <div className = "footer__section">
                 <div className = 'section-content'>
@@ -19,7 +18,7 @@ function Footer(){
                 </div>
             </div>
         </footer>
-        </div>
+       
     );
 }
 

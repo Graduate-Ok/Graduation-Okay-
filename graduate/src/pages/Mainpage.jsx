@@ -1,4 +1,3 @@
-import react from 'react';
 import '../css/ContentsPage.css';
 
 // 디폴트페이지

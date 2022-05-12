@@ -1,4 +1,3 @@
-import react from 'react';
 import '../css/Graduate.css';
 import '../css/ContentsPage.css';
 

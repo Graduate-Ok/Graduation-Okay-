@@ -1,4 +1,3 @@
-import react from 'react';
 import '../css/ContentsPage.css';
 import '../css/Board.css';
 

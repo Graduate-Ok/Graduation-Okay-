@@ -1,5 +1,5 @@
 
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import '../css/Board.css';
 
 // 게시판 페이지

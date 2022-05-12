@@ -1,13 +1,10 @@
-import react, { useState } from 'react';
-import { Link } from 'react-router-dom';
+
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import '../css/Board.css';
-import EditBoard from './EditBoard';
 
 // 게시판 페이지
 
-//https://sir.kr/g5_skin/1450   <--- 참고해서 만듦
 function Board(){
-   
 
     return (
         <> 
@@ -58,7 +55,8 @@ function Board(){
                             <div className = "Board__content--hits">7</div>
                         </div>
                         <div className= "Board__footer">
-                            <Link to = "/EditBoard" className = "Board__footer--button">글쓰기</Link>
+                            <Link to ="EditBoard" className = "Board__footer--button">글쓰기</Link> 
+                              
                         </div>
                         <div className= "Board__page">
                             <div className = "Board__page--button">이전</div>

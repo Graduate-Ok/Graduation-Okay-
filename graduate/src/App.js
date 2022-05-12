@@ -1,19 +1,23 @@
-import * as React from 'react'
-import { Reset } from 'styled-reset'
+import * as React from 'react';
+import {  Route, Routes, Link } from 'react-router-dom';
+import { Reset } from 'styled-reset';
 import './css/App.css';
 import Header from './components/Header';
 import ContentsPage from './pages/ContentsPage';
 import Footer from './components/Footer';
+import EditBoard from './pages/EditBoard';
 
 
-function App(){
+const App = () => {
   return (
     <React.Fragment>
-          <Reset/>
-          <Header/>
-         
-          <ContentsPage/>
-          <Footer/>
+            <Reset/>
+            <Header/>
+            <Routes>
+              <Route path = "" exact element = {<ContentsPage/>}/>
+              <Route path = "EditBoard" exact element = {<EditBoard/>}/>
+            </Routes>
+            <Footer/>
     </React.Fragment>
     );
 }

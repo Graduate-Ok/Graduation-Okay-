@@ -1,10 +1,9 @@
-import react from 'react';
+
 import '../css/Board.css';
 import '../css/Notice.css';
 
-// 게시판 페이지
+// 글쓰기 페이지 
 
-//https://sir.kr/g5_skin/1450   <--- 참고해서 만듦
 function EditBoard(){
     return (
         <> 
@@ -40,36 +39,8 @@ function EditBoard(){
                             <div className = "Board__content--date">2022-12-31</div>
                             <div className = "Board__content--hits">18</div>
                         </div>
-                        <div className = "Board__content--content">
-                            <div className = "Board__content--number">2</div>
-                            <div className = "Board__content--name">두번째 글입니다</div>
-                            <div className = "Board__content--writer">배성규</div>
-                            <div className = "Board__content--date">2022-12-31</div>
-                            <div className = "Board__content--hits">1</div>
-                        </div>
-                        <div className = "Board__content--content">
-                            <div className = "Board__content--number">1</div>
-                            <div className = "Board__content--name">첫번째 글입니다</div>
-                            <div className = "Board__content--writer">배성규</div>
-                            <div className = "Board__content--date">2022-12-31</div>
-                            <div className = "Board__content--hits">7</div>
-                        </div>
-                        <div className= "Board__footer">
-                            <div className = "Board__footer--button">글쓰기</div>
-                        </div>
-                        <div className= "Board__page" >
-                            <div className = "Board__page--button">이전</div>
-                            <div className = "Board__page--button">1</div>
-                            <div className = "Board__page--button">2</div>
-                            <div className = "Board__page--button">3</div>
-                            <div className = "Board__page--button">4</div>
-                            <div className = "Board__page--button">5</div>
-                            <div className = "Board__page--button">6</div>
-                            <div className = "Board__page--button">7</div>
-                            <div className = "Board__page--button">8</div>
-                            <div className = "Board__page--button">9</div>
-                            <div className = "Board__page--button">다음</div>
-                        </div>      
+                       
+                 
                     </div>
                 </div>
             </main>

@@ -40,3 +40,6 @@
     font-size: small;   
 }
 
+.section-content > a:hover {
+    color: green;
+}

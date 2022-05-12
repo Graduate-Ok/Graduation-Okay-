@@ -5,10 +5,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class pdfCheck {
     /**
@@ -24,19 +21,20 @@ public class pdfCheck {
      * [전공필수 검사] 해당 학과의 전공필수 다 들었는지 검사
      *
      * [교양필수 & 비교과 검사]
-     *   ㄴ19학번부터 비교과 3개 학기 이상 || 비교과 마일리지 300점 이상 (아노덴 제외)
-     *   ㄴ20학번부터 마일리지 300점 이상
-     *   ㄴ19학번 이후 "글쓰기의기초"는 "소프트웨어기초"로 대체 가능
-     *   ㄴ19학번 이후 영어인증자는 "영어1,2" 면제
-     *   ㄴ아노덴 "대학생활길잡이","사회생활길잡이","영어1,2"는 각각 "캠퍼스라이프","인문강단","Speaking English 1,2"로 대체 가능
+     * ㄴ17학번부터 비교과 3개 학기 이상 || 비교과 마일리지 300점 이상 (아노덴 제외)
+     * ㄴ20학번부터 마일리지 300점 이상
+     * ㄴ19학번 이후 "글쓰기의기초"는 소프트웨어교과목으로 대체 가능
+     * ㄴ19학번 이후 영어인증자는 "영어1,2" 면제
+     * ㄴ아노덴 "대학생활길잡이","사회생활길잡이","영어1,2"는 각각 "캠퍼스라이프","인문강단","Speaking English 1,2"로 대체 가능
      *
      * [기타 교양 검사]
-     *   ㄴ19학번 교양 인재상별 5학점 이상
-     *   ㄴ20학번 이후 교양 핵심역량별 1과목 이상
+     * ㄴ19학번 교양 인재상별 5학점 이상
+     * ㄴ20학번 이후 교양 핵심역량별 1과목 이상
      *
      * ! 고려 안 한 대상 !
-     *   1) 복수전공
-     *   2) 편입생
+     * 1) 복수전공
+     * 2) 부전공
+     * 3) 편입생
      */
 
     public static void main(String[] args) throws IOException {
@@ -48,11 +46,12 @@ public class pdfCheck {
         int kyCredit = 0; // 교양 학점
         int majorCredit = 0; // 전공 학점
 
+        List<String> requiredMajor = new ArrayList<>(); // 전필 담는 List
+        List<String> requiredKy = new ArrayList<>(); // 교필 담는 List
+
         int nonSubject = 0; // 비교과 이수 학기
         int mileage = 0; // 비교과 마일리지
-
-        Map<String, Integer> requiredMajor = new HashMap<>(); // 전필 담는 Map
-        Map<String, Integer> requiredKy = new HashMap<>(); // 교필 담는 Map
+        boolean engCertification = false; // 영어인증자 (19학번 이후 영어인증자는 "영어1,2" 면제)
 
         // 부족한 요건 담는 StringBuilder
         StringBuilder failure = new StringBuilder();
@@ -63,9 +62,9 @@ public class pdfCheck {
          */
         String[] list = PdfRead("C:/Users/수빈/Desktop/um72_0272003_r01.pdf");
         // test
-//        for (String str : list) {
-//            System.out.println(str);
-//        }
+        for (String str : list) {
+            System.out.println(str);
+        }
         System.out.println("한신대 학업성적확인서 확인 : " + checkPDF(list));
 
 
@@ -82,7 +81,7 @@ public class pdfCheck {
 
             // 학과 추출
             if (line.contains("부전공Ⅰ")) {
-                String[] strings = list[i-1].split(" ");
+                String[] strings = list[i - 1].split(" ");
                 studentMajor = strings[2].substring(0, strings[2].length() - 1);
             }
 
@@ -98,6 +97,19 @@ public class pdfCheck {
                 majorCredit = Integer.parseInt(line.substring(11, 13));
             }
 
+            // 수강한 전필 과목 추출
+            if (line.startsWith("전필") && !line.contains("F") && !line.contains("NP")) {
+                String[] strings = line.split(" ");
+                requiredMajor.add(strings[2]);
+            }
+
+            // 수강한 교필 과목 추출
+            if (line.startsWith("교필") && !line.contains("NP")) {
+                String[] strings = line.split("\\s+");
+                if (!(strings[4].contains("F"))) {
+                    requiredKy.add(strings[2]);
+                }
+            }
 
             // 비교과 이수 학기 카운트
             if (line.contains("학기 인정")) {
@@ -109,11 +121,10 @@ public class pdfCheck {
                 mileage = Integer.parseInt(line.substring(22, line.length() - 1));
             }
 
-            // 수강한 전필 과목 추출
-            requiredMajor = extractRequired(line, "전필");
-
-            // 수강한 교필 과목 추출
-            requiredKy = extractRequired(line, "교필");
+            // 영어인증자 추출
+            if (line.contains("영어인증")) {
+                engCertification = true;
+            }
 
         }
         // test
@@ -124,49 +135,37 @@ public class pdfCheck {
         System.out.println("전공학점 : " + majorCredit);
         System.out.println("비교과 이수 학기 : " + nonSubject);
         System.out.println("마일리지 : " + mileage);
+        System.out.println("\n===수강한 전필 과목===");
+        for (String str : requiredMajor) {
+            System.out.println(str);
+        }
+        System.out.println("\n===수강한 교필 과목===");
+        for (String str : requiredKy) {
+            System.out.println(str);
+        }
 
 
         /**
          * [학점 검사]
          */
         failure.append(checkCredit(studentId, studentMajor, totalCredit, kyCredit, majorCredit));
-        // test
-        System.out.println("\n부족한 요건 출력\n" + failure.toString());
 
 
         /**
          * [전공필수 검사]
-         * xxxxx 공사 중 xxxxx
          */
-        failure.append(checkRequiredMajor(studentMajor));
+        failure.append(checkRequiredMajor(studentMajor, requiredMajor));
 
         /**
          * [교양필수 검사]
-         * xxxxx 공사 예정 xxxxx
          */
-        //boolean check = checkEssential(SubEssential, studentId, Integer.parseInt(mileage), nonSubject);
+        failure.append(checkRequiredKy(studentId, studentMajor, nonSubject, mileage, engCertification, requiredKy));
 
+
+        // test
+        System.out.println("\n===부족한 요건 출력===\n" + failure.toString());
     }
 
-    /**
-     * 전필,교필 과목 추출
-     */
-    private static Map<String, Integer> extractRequired(String line, String type) {
-        Map<String, Integer> SubEssential = new HashMap<>();
-
-        if (line.startsWith(type) && !line.endsWith("F") && !line.endsWith("NP")) {
-            line = line.replaceAll("[\r]", "");
-            line = line.replaceAll("  .5", " .5");
-            line = line.replaceAll("  ", "");
-            line = line.replaceAll("\\( ", "\\(");
-            System.out.println(line);
-
-            String[] arr = line.split(" ");
-            SubEssential.put(arr[2], SubEssential.getOrDefault(arr[2], 0) + 1);
-        }
-
-        return SubEssential;
-    }
 
     /**
      * pdf 읽어오기
@@ -189,55 +188,47 @@ public class pdfCheck {
         String text = Arrays.toString(list);
 
         if (text.contains("포털>한신종합정보>성적")) {
-            return "통과";
+            return "통과\n";
         } else {
-            return "한신대학교 학업성적확인서가 아님!";
+            return "한신대학교 학업성적확인서가 아님!\n";
         }
     }
 
 
     /**
      * [학점 검사]
-     * 1. 총 취득학점 검사
-     * 2. 교양 학점 검사
-     * 3. 전공 최소이수학점 검사
      */
     private static StringBuffer checkCredit(int studentId, String studentMajor, int totalCredit, int kyCredit, int majorCredit) {
         StringBuffer failure = new StringBuffer();
 
-        //TEST
-//        System.out.println("\n=== checkCredit 파라미터 체크 ===");
-//        System.out.println("학번 : " + studentId);
-//        System.out.println("전공 : " + studentMajor);
-//        System.out.println("총 취득학점 : " + totalCredit);
-//        System.out.println("교양학점 : " + kyCredit);
-//        System.out.println("전공학점 : " + majorCredit);
-
         // 1. 졸업학점 검사
-        if (totalCredit < 130) {
-            failure.append("졸업학점 " + (130 - totalCredit) + " 미달\n");
+        // 해당 학과 졸업학점 가져오기
+        int graduateCredit = DBConnection.getGraduateCredit(studentMajor);
+        if (graduateCredit > totalCredit) {
+            failure.append("졸업학점 " + (graduateCredit - totalCredit) + "학점 미달\n");
         }
 
+        /**
+         * xxxxx 공사 예정 xxxxx
+         */
         // 2. 교양 학점 검사
         if (studentId <= 2016) {
             // 16학번 이전 : 35~45학점
             if (!(kyCredit >= 35 && kyCredit <= 45)) {
-                failure.append("교양학점 미달\n");
+                failure.append("교양학점 미달 또는 초과\n");
             }
         } else {
             // 17학번 이후 : 35~49학점
             if (!(kyCredit >= 35 && kyCredit <= 49)) {
-                failure.append("교양학점 미달\n");
+                failure.append("교양학점 미달 또는 초과\n");
             }
         }
 
         // 3. 전공 최소이수학점 검사
         // 해당 학과 전공최소학점 가져오기
         int majorMinCredit = DBConnection.getMajorMinCredit(studentMajor);
-        // test
-        //System.out.println("전공 '" + studentMajor + "' 최소이수학점 : " + majorMinCredit);
         if (majorMinCredit > majorCredit) {
-            failure.append("전공학점 " + (majorMinCredit - majorCredit) + " 미달\n");
+            failure.append("전공학점 " + (majorMinCredit - majorCredit) + "학점 미달\n");
         }
 
         return failure;
@@ -246,17 +237,20 @@ public class pdfCheck {
 
     /**
      * [전공필수 검사]
-     * xxxxx 공사 중 xxxxx
      */
-    private static StringBuffer checkRequiredMajor(String studentMajor) {
+    private static StringBuffer checkRequiredMajor(String studentMajor, List<String> requiredMajor) {
         StringBuffer failure = new StringBuffer();
 
         // 해당 학과에서 전공필수 과목 가져오기
-        //List<String> requiredMajors = DBConnection.getRequiredMajor(studentMajor);
+        List<String> requiredMajors = DBConnection.getRequiredMajor(studentMajor);
 
-        // pdf 파일과 비교
+        // 들어야 할 전필과 학생이 들은 전필 비교
+        Collection<String> std = requiredMajor;
+        requiredMajors.removeAll(std);
 
-        // 안 들은 과목 failure에 추가 "[전공필수]ㅇㅇㅇ 미수강\n"
+        for (String str : requiredMajors) {
+            failure.append("전공필수 '" + str + "' 미수강\n");
+        }
 
         return failure;
     }
@@ -264,47 +258,131 @@ public class pdfCheck {
 
     /**
      * [교양필수 검사]
-     * xxxxx 공사 예정 xxxxx
      */
-//    private static boolean checkEssential(Map<String, Integer> subject, int studentId, int mileage, int numExtra) {
-//        // 채플 이수
-//        if (subject.getOrDefault("채플", 0) >= 4) isCompleted[0] = "채플 : true";
-//        // 성서관련 과목중 1개이수 , 기독교관련 과목중 1개이수
-//        for (String key : subject.keySet()) {
-//            if (christian.contains(key) && subject.get(key) >= 1) isCompleted[1] = "기독교 : true";
-//            if (bible.contains(key) && subject.get(key) >= 1) isCompleted[2] = "성서 : true";
-//        }
-//
-//        // 대생길 or 인증상담1 이수
-//        if (subject.getOrDefault("대학생활길잡이", 0) >= 1 || subject.getOrDefault("인증상담1", 0) >= 1)
-//            isCompleted[3] = "대생길 : true";
-//        // 사생길 or 인증상담2 이수
-//        if (subject.getOrDefault("사회생활길잡이", 0) >= 1 || subject.getOrDefault("인증상담2", 0) >= 1)
-//            isCompleted[4] = "사생길 : true";
-//        // 독서와토론 & 글쓰기와기초 & 영어1 & 영어2 이수 , 2013 학번부터
-//        if (studentId < 2013) {
-//            isCompleted[5] = "NoApplicable";
-//        } else {
-//            if (subject.getOrDefault("독서와토론", 0) >= 1 && subject.getOrDefault("글쓰기의기초", 0) >= 1
-//                    && subject.getOrDefault("영어Ⅰ", 0) >= 1 && subject.getOrDefault("영어Ⅱ", 0) >= 1) {
-//                isCompleted[5] = "독토, 글쓰기, 영어1 2 : true";
-//            }
-//        }
-//
-//        // 2016학번부터 진로와상담 이수
-//        if (studentId < 2016) {
-//            isCompleted[6] = "NoApplicable";
-//        } else {
-//            if (subject.getOrDefault("진로와상담", 0) >= 4) isCompleted[6] = "진로와상담 : true";
-//        }
-//
-//        // 2017학번부터 비교과프로그램 3개 학기 이상 이수 or 마일리지 300이상
-//        if (studentId < 2017) {
-//            isCompleted[7] = "NoApplicable";
-//        } else {
-//            if (numExtra >= 3 || mileage >= 300) isCompleted[7] = "비교과 : true";
-//        }
-//
-//        return false;
-//    }
+    private static StringBuffer checkRequiredKy(int studentId, String studentMajor, int nonSubject, int mileage, boolean engCertification, List<String> requiredKy) {
+        StringBuffer failure = new StringBuffer();
+
+        int countCP = 0; // 채플 카운트
+        int christian = 0; // 기독교 카운트
+        int bible = 0; // 성서 카운트
+        int collegeGuide = 0; // 대생길 카운트
+        int socialGuide = 0; // 사생길 카운트
+        int readDebate = 0; // 독토 카운트
+        int writing = 0; // 글기 카운트
+        int eng1 = 0; // 영어1
+        int eng2 = 0; // 영어2
+        int counseling = 0; // 진로와상담 카운트
+
+        for (int i = 0; i < requiredKy.size(); i++) {
+            String line = requiredKy.get(i);
+
+            // 채플 검사
+            if (line.equals("채플")) countCP++;
+
+            // 기독교 과목 검사
+            if (line.contains("기독교")) christian++;
+
+            // 성서 과목 검사
+            if (line.contains("성서")) bible++;
+
+            // 대학생활길잡이 검사 (아노덴 '캠퍼스라이프' 대체)
+            if (line.equals("대학생활길잡이") || line.equals("캠퍼스라이프")) collegeGuide++;
+
+            // 사회생활길잡이 검사 (아노덴 '인문강단' 대체)
+            if (line.equals("사회생활길잡이") || line.equals("인문강단")) socialGuide++;
+
+            // 독서와토론 검사
+            if (line.equals("독서와토론")) readDebate++;
+
+            // 글쓰기의기초 검사 (19학번 이후 소프트웨어교과목으로 대체 가능)
+            if (line.equals("글쓰기의기초") || line.contains("소프트웨어")) writing++;
+
+            // 영어Ⅰ,Ⅱ 검사 (아노덴 'Speaking EnglishⅠ,Ⅱ' 대체 / 19학번 이후 영어인증자 면제)
+            if (line.equals("영어Ⅰ") || line.equals("EnglishⅠ") || engCertification) eng1++;
+            if (line.equals("영어Ⅱ") || line.equals("EnglishⅡ") || engCertification) eng2++;
+
+            // 진로와상담 검사
+            if (line.equals("진로와상담")) counseling++;
+        }
+
+        // 채플 검사
+        if (countCP < 4) failure.append("교양필수 '채플' " + (4 - countCP) + "회 미수강\n");
+
+        // 기독교 과목 검사
+        if (christian < 1) failure.append("교양필수 '기독교 관련 과목' 미수강\n");
+
+        // 성서 과목 검사
+        if (bible < 1) failure.append("교양필수 '성서 관련 과목' 미수강\n");
+
+        // 대학생활길잡이 검사 (아노덴 '캠퍼스라이프' 대체)
+        if (collegeGuide < 1) {
+            if (studentMajor.contains("아노덴")) {
+                failure.append("교양필수 '캠퍼스라이프' 미수강\n");
+            } else {
+                failure.append("교양필수 '대학생활길잡이' 미수강\n");
+            }
+        }
+
+        // 사회생활길잡이 검사 (아노덴 '인문강단' 대체)
+        if (socialGuide < 1) {
+            if (studentMajor.contains("아노덴")) {
+                failure.append("교양필수 '인문강단' 미수강\n");
+            } else {
+                failure.append("교양필수 '사회생활길잡이' 미수강\n");
+            }
+        }
+
+        // 독서와토론 검사
+        if (readDebate < 1) failure.append("교양필수 '독서와토론' 미수강\n");
+
+        // 글쓰기의기초 검사 (19학번 이후 소프트웨어 과목으로 대체 가능)
+        if (writing < 1) {
+            if (studentId >= 2019) failure.append("교양필수 '글쓰기의기초' 또는 '소프트웨어교과목' 미수강\n");
+            else failure.append("교양필수 '글쓰기의기초' 미수강\n");
+        }
+
+        // 영어Ⅰ,Ⅱ 검사 (아노덴 'Speaking EnglishⅠ,Ⅱ' 대체 / 19학번 이후 영어인증자 면제)
+        if (eng1 < 1) {
+            if (studentMajor.contains("아노덴")) {
+                failure.append("교양필수 'Speaking EnglishⅠ' 미수강");
+            } else {
+                failure.append("교양필수 '영어Ⅰ' 미수강");
+            }
+            if (studentId >= 2019) {
+                failure.append(" 또는 영어인증 미인증\n");
+            } else {
+                failure.append("\n");
+            }
+        }
+        if (eng2 < 1) {
+            if (studentMajor.contains("아노덴")) {
+                failure.append("교양필수 'Speaking EnglishⅡ' 미수강");
+            } else {
+                failure.append("교양필수 '영어Ⅱ' 미수강");
+            }
+            if (studentId >= 2019) {
+                failure.append(" 또는 영어인증 미인증\n");
+            } else {
+                failure.append("\n");
+            }
+        }
+
+        // 진로와상담 검사
+        if (counseling < 4) failure.append("교양필수 '진로와상담' " + (4 - countCP) + "회 미수강\n");
+
+        // 비교과 검사
+        if (studentId >= 2020) {
+            // 20학번 이후 마일리지 300점 이상
+            if (mileage < 300) {
+                failure.append("비교과 마일리지 " + (300 - mileage) + "점 미달\n");
+            }
+        } else if (studentId >= 2017) {
+            // 17학번 이후 비교과 이수 학기 3학기 이상 또는 마일리지 300점 이상
+            if (!(mileage >= 300 || nonSubject >= 3)) {
+                failure.append("비교과 이수 학기 " + (3 - nonSubject) + "학기 미이수 또는 비교과 마일리지 " + (300 - mileage) + "점 미달\n");
+            }
+        }
+
+        return failure;
+    }
 }

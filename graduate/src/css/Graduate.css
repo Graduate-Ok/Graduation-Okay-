@@ -36,3 +36,25 @@
     justify-content: center;
     text-align: center;
 }
+
+.upload__button{
+    padding: 6px 25px;
+    background-color:#c8c8f8;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    cursor : pointer;
+  }
+
+  .pdf__position
+{
+    background-color: #e5e5fdba;
+    width: 250px;
+    margin: auto;   
+    color: #2c2c2cdf;
+    padding: 10px 25px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    
+}

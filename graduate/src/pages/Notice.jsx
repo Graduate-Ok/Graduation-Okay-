@@ -56,10 +56,7 @@ function Notice() {
                             <div className = "Board__content--date">2022-11-11</div>
                             <div className = "Board__content--hits">7</div>
                         </div>
-                        <div className= "Board__footer">
-                            <div to = "/EditBoard" className = "Board__footer--button">글쓰기</div>
-                        </div>
-                        <div className= "Board__page">
+                        <div className= "Board__page" id = "page-button">
                             <div className = "Board__page--button">이전</div>
                             <div className = "Board__page--button">1</div>
                             <div className = "Board__page--button">2</div>

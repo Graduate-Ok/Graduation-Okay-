@@ -1,5 +1,6 @@
 import react from 'react';
 import '../css/Board.css';
+import '../css/Notice.css';
 
 // 게시판 페이지
 
@@ -56,7 +57,7 @@ function EditBoard(){
                         <div className= "Board__footer">
                             <div className = "Board__footer--button">글쓰기</div>
                         </div>
-                        <div className= "Board__page">
+                        <div className= "Board__page" >
                             <div className = "Board__page--button">이전</div>
                             <div className = "Board__page--button">1</div>
                             <div className = "Board__page--button">2</div>

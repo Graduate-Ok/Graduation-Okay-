@@ -132,6 +132,7 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    margin-top: 10%;
 }
 
 .Board__page--button{

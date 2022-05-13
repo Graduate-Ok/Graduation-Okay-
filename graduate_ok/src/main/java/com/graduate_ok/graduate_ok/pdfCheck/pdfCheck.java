@@ -502,7 +502,7 @@ public class pdfCheck {
         return failure;
     }
 
-    // 도전하는 창의인 검사
+    // [도전하는 창의인] 검사
     private static StringBuffer checkCreator(int studentId, List<String>allKy){
         StringBuffer failure = new StringBuffer();
         int creator = 0; //소통하는지성인 카운트

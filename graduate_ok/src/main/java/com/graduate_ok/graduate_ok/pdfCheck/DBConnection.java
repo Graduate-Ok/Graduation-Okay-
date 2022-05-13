@@ -45,7 +45,7 @@ public class DBConnection {
         String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '인문';";
         return getListDataFromTable(sql);
     }
-    // 핵심역량 '창의융합' 가져오기
+    // 핵심역량 창의융합 가져오기
     public static List<String> getCreativeFusion() {
         String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '창의융합';";
         return getListDataFromTable(sql);

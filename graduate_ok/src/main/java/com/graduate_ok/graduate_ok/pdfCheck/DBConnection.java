@@ -50,12 +50,12 @@ public class DBConnection {
         String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '창의융합';";
         return getListDataFromTable(sql);
     }
-    //핵심역량 '글로벌' 가져오기
+    //핵심역량 글로벌 가져오기
     public static List<String> getGlobal() {
         String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '글로벌';";
         return getListDataFromTable(sql);
     }
-    // 핵심역량 '리더쉽' 가져오기
+    // 핵심역량 리더쉽 가져오기
     public static List<String> getReadership() {
         String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '리더쉽';";
         return getListDataFromTable(sql);

@@ -481,7 +481,7 @@ public class pdfCheck {
         return failure;
     }
 
-    // 실천하는 평화인 검사
+    // [실천하는 평화인] 검사
     private static StringBuffer checkPeacemaker(int studentId, List<String>allKy){
         StringBuffer failure = new StringBuffer();
         int peacemaker = 0; //실천하는평화인 카운트

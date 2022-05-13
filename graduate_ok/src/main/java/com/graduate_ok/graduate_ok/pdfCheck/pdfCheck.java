@@ -6,6 +6,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class pdfCheck {
     /**
@@ -48,6 +49,7 @@ public class pdfCheck {
 
         List<String> requiredMajor = new ArrayList<>(); // 전필 담는 List
         List<String> requiredKy = new ArrayList<>(); // 교필 담는 List
+        List<String> allKy = new ArrayList<>(); // 모든 교양 담는 List
 
         int nonSubject = 0; // 비교과 이수 학기
         int mileage = 0; // 비교과 마일리지
@@ -60,7 +62,7 @@ public class pdfCheck {
         /**
          * 파일 읽어오기 + [파일 검사]
          */
-        String[] list = PdfRead("C:/Users/수빈/Desktop/um72_0272003_r01.pdf");
+        String[] list = PdfRead("C:\\springboot\\um72_0272003_r01.pdf");
         // test
         for (String str : list) {
             System.out.println(str);
@@ -110,6 +112,10 @@ public class pdfCheck {
                     requiredKy.add(strings[2]);
                 }
             }
+            if (line.startsWith("교선") || line.startsWith("교필") && !line.contains("F") && !line.contains("NP")) {
+                String[] strings = line.split(" ");
+                allKy.add(strings[2]);
+            }
 
             // 비교과 이수 학기 카운트
             if (line.contains("학기 인정")) {
@@ -143,6 +149,10 @@ public class pdfCheck {
         for (String str : requiredKy) {
             System.out.println(str);
         }
+        System.out.println("\n===수강한 모든 교양===");
+        for (String str : allKy) {
+            System.out.println(str);
+        }
 
 
         /**
@@ -161,11 +171,30 @@ public class pdfCheck {
          */
         failure.append(checkRequiredKy(studentId, studentMajor, nonSubject, mileage, engCertification, requiredKy));
 
+        /**
+         * [핵심역량] 검사
+         */
+        failure.append(checkCoreKy(studentId, allKy));
+
+        /**
+         * [소통하는지성인] 검사
+         */
+        failure.append(checkIntelligent(studentId,allKy));
+        /**
+         * [실천하는평화인] 검사
+         */
+        failure.append(checkPeacemaker(studentId,allKy));
+        /**
+         * [도전하는창의인] 검사
+         */
+        failure.append(checkCreator(studentId,allKy));
 
         // test
         System.out.println("\n===부족한 요건 출력===\n" + failure.toString());
-    }
 
+
+
+    }
 
     /**
      * pdf 읽어오기
@@ -382,6 +411,115 @@ public class pdfCheck {
                 failure.append("비교과 이수 학기 " + (3 - nonSubject) + "학기 미이수 또는 비교과 마일리지 " + (300 - mileage) + "점 미달\n");
             }
         }
+
+        return failure;
+    }
+
+    /**
+     * [핵심역량 검사](2020 학번 이상)
+     */
+    private static StringBuffer checkCoreKy(int studentId, List<String> selectKy) {
+        StringBuffer failure = new StringBuffer();
+        int humanities = 0; // '인문' 카운트
+        int creativefusions= 0; // '창의융합' 카운트
+        int globals = 0; // '글로벌' 카운트
+        int readerships = 0; // '리더쉽' 카운트
+        int communications = 0; // '소통' 카운트
+        // 핵심역량 '인문' 과목 가져오기
+        List<String> getHumanities = DBConnection.getHumanities();
+        // 핵심역량 '창의융합' 과목 가져오기
+        List<String> getCreativeFusions = DBConnection.getCreativeFusion();
+        // 핵심역량 '글로벌' 과목 가져오기
+        List<String> getGlobals = DBConnection.getGlobal();
+        // 핵심역량 '리더쉽' 과목 가져오기
+        List<String> getReaderships = DBConnection.getReadership();
+        // 핵심역량 '소통' 과목 가져오기
+        List<String> getCommunications = DBConnection.getCommunication();
+
+        if (studentId >=2020) {
+            for (int i = 0; i <selectKy.size(); i++) {
+                String line = selectKy.get(i);
+                if (getHumanities.contains(line)) humanities++;
+                if (getCreativeFusions.contains(line)) creativefusions++;
+                if (getGlobals.contains(line)) globals++;
+                if (getReaderships.contains(line)) readerships++;
+                if (getCommunications.contains(line)) communications++;
+
+            }
+            if (humanities < 1) failure.append("핵심역량 '인문' 미수강\n");
+            if (creativefusions < 1) failure.append("핵심역량 '창의융합' 미수강\n");
+            if (globals < 1) failure.append("핵심역량 '글로벌' 미수강\n");
+            if (readerships < 1) failure.append("핵심역량 '리더쉽' 미수강\n");
+            if (communications < 1) failure.append("핵심역량 '소통' 미수강\n");
+        }
+        return failure;
+    }
+
+    /**
+     * [인재상 검사] (2019 학번만)
+     */
+
+    // 소통하는지성인 검사
+    private static StringBuffer checkIntelligent(int studentId, List<String>allKy){
+        StringBuffer failure = new StringBuffer();
+        int intelligent = 0; //소통하는지성인 카운트
+        int[] ky = new int[10];
+        List<String> getIntelligent = DBConnection.getIntelligent(); //소통하는지성인 과목 가져오기
+        if (studentId == 2019) {
+            allKy.retainAll(getIntelligent);
+            for(String str : allKy){
+                int ky1 = DBConnection.getKyCredit(str);
+                for (int i : ky) {
+                    ky[i] = ky1;
+                }
+            if(IntStream.of(ky).sum() >= 5) intelligent++;
+            }
+        if (intelligent < 1) failure.append("소통하는지성인 미달성\n");
+        }
+
+
+        return failure;
+    }
+
+    // 실천하는 평화인 검사
+    private static StringBuffer checkPeacemaker(int studentId, List<String>allKy){
+        StringBuffer failure = new StringBuffer();
+        int peacemaker = 0; //실천하는평화인 카운트
+        int[] ky = new int[10];
+        List<String> getPeacemaker = DBConnection.getPeacemaker(); //실천하는평화인 과목 가져오기
+        if (studentId == 2019) {
+            allKy.retainAll(getPeacemaker);
+            for(String str : allKy){
+                int ky1 = DBConnection.getKyCredit(str);
+                for (int i : ky) {
+                    ky[i] = ky1;
+                }
+            if(IntStream.of(ky).sum() >= 5) peacemaker++;
+            }
+        if ( peacemaker< 1) failure.append("실천하는평화인 미달성\n");
+        }
+
+        return failure;
+    }
+
+    // 도전하는 창의인 검사
+    private static StringBuffer checkCreator(int studentId, List<String>allKy){
+        StringBuffer failure = new StringBuffer();
+        int creator = 0; //소통하는지성인 카운트
+        int[] ky = new int[10];
+        List<String> getCreator = DBConnection.getCreator(); //소통하는지성인 과목 가져오기
+        if (studentId == 2019) {
+            allKy.retainAll(getCreator);
+            for(String str : allKy){
+                int ky1 = DBConnection.getKyCredit(str);
+                for (int i : ky) {
+                    ky[i] = ky1;
+                }
+            if(IntStream.of(ky).sum() >= 5) creator++;
+            }
+        if (creator < 1) failure.append("도전하는창의인 미달성\n");
+        }
+
 
         return failure;
     }

@@ -8,7 +8,7 @@ public class DBConnection {
     private static final String DB_DRIVER_CLASS = "org.mariadb.jdbc.Driver";
     private static final String DB_URL = "jdbc:mariadb://localhost:3306/graduate_ok";
     private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "0320";
+    private static final String DB_PASSWORD = "alstjr0236";
 
     private static Connection getCon() {
         Connection con = null;
@@ -39,6 +39,57 @@ public class DBConnection {
         String sql = "SELECT major_min_credit FROM major WHERE major_name = '" + major + "';";
         return getIntDataFromTable(sql, "major_min_credit");
     }
+
+    // 핵심역량 '인문' 가져오기
+    public static List<String> getHumanities() {
+        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '인문';";
+        return getListDataFromTable(sql);
+    }
+    // 핵심역량 창의융합 가져오기
+    public static List<String> getCreativeFusion() {
+        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '창의융합';";
+        return getListDataFromTable(sql);
+    }
+    //핵심역량 '글로벌' 가져오기
+    public static List<String> getGlobal() {
+        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '글로벌';";
+        return getListDataFromTable(sql);
+    }
+    // 핵심역량 '리더쉽' 가져오기
+    public static List<String> getReadership() {
+        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '리더쉽';";
+        return getListDataFromTable(sql);
+    }
+    // 핵심역량 '소통' 가져오기
+    public static List<String> getCommunication() {
+        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '소통';";
+        return getListDataFromTable(sql);
+    }
+    // 인재상 '소통하는 지성인' 가져오기
+    public static List<String> getIntelligent() {
+        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_type = '소통하는지성인';";
+        return getListDataFromTable(sql);
+    }
+
+    // 인재상 '실천하는평화인' 가져오기
+    public static List<String> getPeacemaker() {
+        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_type = '실천하는평화인';";
+        return getListDataFromTable(sql);
+    }
+
+    // 인재상 '도전하는창의인' 가져오기
+    public static List<String> getCreator() {
+        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_type = '도전하는창의인';";
+        return getListDataFromTable(sql);
+    }
+
+    //교선 학점 가져오기
+    public static int getKyCredit(String ky_name1) {
+        String sql = "SELECT ky_credit FROM ky_course WHERE ky_name1 = '" + ky_name1 + "';";
+        return getIntDataFromTable(sql, "ky_credit");
+
+    }
+
 
 
     // DB에서 리스트 데이터 가져오기

@@ -8,7 +8,7 @@ public class DBConnection {
     private static final String DB_DRIVER_CLASS = "org.mariadb.jdbc.Driver";
     private static final String DB_URL = "jdbc:mariadb://localhost:3306/graduate_ok";
     private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "alstjr0236";
+    private static final String DB_PASSWORD = "0320";
 
     private static Connection getCon() {
         Connection con = null;
@@ -65,29 +65,21 @@ public class DBConnection {
         String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '소통';";
         return getListDataFromTable(sql);
     }
-    // 인재상 '소통하는 지성인' 가져오기
-    public static List<String> getIntelligent() {
-        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_type = '소통하는지성인';";
+
+    // 인재상에 해당하는 교양 (from 교양 테이블)
+    public static List<String> getTalent1(String type) {
+        String sql = "SELECT ky_name1 FROM ky_course WHERE ky_type = '" + type + "';";
+        return getListDataFromTable(sql);
+    }
+    public static List<String> getTalent2(String type) {
+        String sql = "SELECT ky_name2 FROM ky_course WHERE ky_type = '" + type + "';";
         return getListDataFromTable(sql);
     }
 
-    // 인재상 '실천하는평화인' 가져오기
-    public static List<String> getPeacemaker() {
-        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_type = '실천하는평화인';";
-        return getListDataFromTable(sql);
-    }
-
-    // 인재상 '도전하는창의인' 가져오기
-    public static List<String> getCreator() {
-        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_type = '도전하는창의인';";
-        return getListDataFromTable(sql);
-    }
-
-    //교선 학점 가져오기
-    public static int getKyCredit(String ky_name1) {
-        String sql = "SELECT ky_credit FROM ky_course WHERE ky_name1 = '" + ky_name1 + "';";
+    // 교양 학점 가져오기 (from 교양 테이블)
+    public static int getKyCredit(String ky_name) {
+        String sql = "SELECT ky_credit FROM ky_course WHERE ky_name1 = '" + ky_name + "' or ky_name2 = '" + ky_name + "';";
         return getIntDataFromTable(sql, "ky_credit");
-
     }
 
 

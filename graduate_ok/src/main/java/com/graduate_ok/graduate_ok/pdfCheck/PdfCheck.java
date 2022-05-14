@@ -4,11 +4,9 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
-import java.util.stream.IntStream;
 
-public class pdfCheck {
+public class PdfCheck {
     /**
      * 검사 순서
      *
@@ -38,7 +36,11 @@ public class pdfCheck {
      * 3) 편입생
      */
 
-    public static void main(String[] args) throws IOException {
+//    public static void main(String[] args) throws Exception {
+//        int a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
+//    }
+
+    public static Integer execute(String fileName) throws Exception {
 
         int studentId = 0; // 학번
         String studentMajor = ""; // 학과
@@ -58,16 +60,19 @@ public class pdfCheck {
         // 부족한 요건 담는 StringBuilder
         StringBuilder failure = new StringBuilder();
 
-
         /**
          * 파일 읽어오기 + [파일 검사]
          */
-        String[] list = PdfRead("C:\\springboot\\um72_0272003_r01.pdf");
-        // test
-        for (String str : list) {
-            System.out.println(str);
+        String[] list = PdfRead(fileName);
+        // 한신대 학업성적확인서 확인
+        if (checkPDF(list) == 0) {
+            return 0;
         }
-        System.out.println("한신대 학업성적확인서 확인 : " + checkPDF(list));
+
+        // test (pdf 전체 출력)
+//        for (String str : list) {
+//            System.out.println(str);
+//        }
 
 
         /**
@@ -112,10 +117,6 @@ public class pdfCheck {
                     requiredKy.add(strings[2]);
                 }
             }
-            if (line.startsWith("교선") || line.startsWith("교필") && !line.contains("F") && !line.contains("NP")) {
-                String[] strings = line.split(" ");
-                allKy.add(strings[2]);
-            }
 
             // 비교과 이수 학기 카운트
             if (line.contains("학기 인정")) {
@@ -132,6 +133,15 @@ public class pdfCheck {
                 engCertification = true;
             }
 
+            // 모든 교양 과목 추출 (for 인재상, 핵심역량 검사)
+            if ((line.startsWith("교선") || line.startsWith("교필")) && !line.contains("NP")) {
+                String[] strings = line.split("\\s+");
+                if (strings.length < 5) {
+                    allKy.add(strings[2]);
+                } else if (!(strings[4].contains("F"))) {
+                    allKy.add(strings[2]);
+                }
+            }
         }
         // test
         System.out.println("학번 : " + studentId);
@@ -171,35 +181,33 @@ public class pdfCheck {
          */
         failure.append(checkRequiredKy(studentId, studentMajor, nonSubject, mileage, engCertification, requiredKy));
 
+
         /**
-         * [핵심역량] 검사
+         * [핵심역량 검사]
          */
         failure.append(checkCoreKy(studentId, allKy));
 
         /**
-         * [소통하는지성인] 검사
+         * [인재상 검사]
+         * 1. 소통하는지성인
+         * 2. 실천하는평화인
+         * 3. 도전하는창의인
          */
-        failure.append(checkIntelligent(studentId,allKy));
-        /**
-         * [실천하는평화인] 검사
-         */
-        failure.append(checkPeacemaker(studentId,allKy));
-        /**
-         * [도전하는창의인] 검사
-         */
-        failure.append(checkCreator(studentId,allKy));
+        failure.append(checkTalent(studentId, allKy, "소통하는지성인"));
+        failure.append(checkTalent(studentId, allKy, "실천하는평화인"));
+        failure.append(checkTalent(studentId, allKy, "도전하는창의인"));
+
 
         // test
         System.out.println("\n===부족한 요건 출력===\n" + failure.toString());
 
-
-
+        return 1;
     }
 
     /**
      * pdf 읽어오기
      */
-    private static String[] PdfRead(String fileName) throws IOException {
+    private static String[] PdfRead(String fileName) throws Exception {
 
         File source = new File(fileName);
         PDDocument pdfDoc = PDDocument.load(source);
@@ -213,14 +221,14 @@ public class pdfCheck {
     /**
      * [파일 검사] 한신대학교 학업성적확인서 pdf 파일이 맞는지 검사
      */
-    private static String checkPDF(String[] list) {
+    private static Integer checkPDF(String[] list) {
         String text = Arrays.toString(list);
 
         if (text.contains("포털>한신종합정보>성적")) {
-            return "통과\n";
-        } else {
-            return "한신대학교 학업성적확인서가 아님!\n";
+            return 1;
         }
+
+        return 0;
     }
 
 
@@ -302,9 +310,7 @@ public class pdfCheck {
         int eng2 = 0; // 영어2
         int counseling = 0; // 진로와상담 카운트
 
-        for (int i = 0; i < requiredKy.size(); i++) {
-            String line = requiredKy.get(i);
-
+        for (String line : requiredKy) {
             // 채플 검사
             if (line.equals("채플")) countCP++;
 
@@ -458,68 +464,36 @@ public class pdfCheck {
     /**
      * [인재상 검사] (2019 학번만)
      */
-
-    // 소통하는지성인 검사
-    private static StringBuffer checkIntelligent(int studentId, List<String>allKy){
+    private static StringBuffer checkTalent(int studentId, List<String> allKy, String type) {
         StringBuffer failure = new StringBuffer();
-        int intelligent = 0; //소통하는지성인 카운트
-        int[] ky = new int[10];
-        List<String> getIntelligent = DBConnection.getIntelligent(); //소통하는지성인 과목 가져오기
-        if (studentId == 2019) {
-            allKy.retainAll(getIntelligent);
-            for(String str : allKy){
-                int ky1 = DBConnection.getKyCredit(str);
-                for (int i : ky) {
-                    ky[i] = ky1;
-                }
-            if(IntStream.of(ky).sum() >= 5) intelligent++;
-            }
-        if (intelligent < 1) failure.append("소통하는지성인 미달성\n");
+
+        /**
+         * 테스트해보고 싶으면 아래 if문 주석 처리하고 돌리기!!!
+         */
+        if (studentId != 2019) return failure;
+
+        int creditSum = 0;
+
+        // 교양이름1+2
+        List<String> talents = new ArrayList<>();
+        talents.addAll(DBConnection.getTalent1(type));
+        talents.addAll(DBConnection.getTalent2(type));
+
+        // test
+        System.out.println("\n===[" + type + "] 인재상 과목===");
+
+        talents.retainAll(allKy);
+        for (String str : talents) {
+            int kyCredit = DBConnection.getKyCredit(str);
+
+            // test
+            System.out.println(str + " (" + kyCredit + "학점)");
+
+            creditSum += kyCredit;
         }
-
-
-        return failure;
-    }
-
-    // 실천하는 평화인 검사
-    private static StringBuffer checkPeacemaker(int studentId, List<String>allKy){
-        StringBuffer failure = new StringBuffer();
-        int peacemaker = 0; //실천하는평화인 카운트
-        int[] ky = new int[10];
-        List<String> getPeacemaker = DBConnection.getPeacemaker(); //실천하는평화인 과목 가져오기
-        if (studentId == 2019) {
-            allKy.retainAll(getPeacemaker);
-            for(String str : allKy){
-                int ky1 = DBConnection.getKyCredit(str);
-                for (int i : ky) {
-                    ky[i] = ky1;
-                }
-            if(IntStream.of(ky).sum() >= 5) peacemaker++;
-            }
-        if ( peacemaker< 1) failure.append("실천하는평화인 미달성\n");
+        if (creditSum < 5) {
+            failure.append("교양 인재상 '" + type + "' " + (5 - creditSum) + "학점 미이수\n");
         }
-
-        return failure;
-    }
-
-    // [도전하는 창의인] 검사
-    private static StringBuffer checkCreator(int studentId, List<String>allKy){
-        StringBuffer failure = new StringBuffer();
-        int creator = 0; //소통하는지성인 카운트
-        int[] ky = new int[10];
-        List<String> getCreator = DBConnection.getCreator(); //소통하는지성인 과목 가져오기
-        if (studentId == 2019) {
-            allKy.retainAll(getCreator);
-            for(String str : allKy){
-                int ky1 = DBConnection.getKyCredit(str);
-                for (int i : ky) {
-                    ky[i] = ky1;
-                }
-            if(IntStream.of(ky).sum() >= 5) creator++;
-            }
-        if (creator < 1) failure.append("도전하는창의인 미달성\n");
-        }
-
 
         return failure;
     }

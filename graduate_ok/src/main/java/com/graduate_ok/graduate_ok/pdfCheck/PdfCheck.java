@@ -36,9 +36,12 @@ public class PdfCheck {
      * 3) 편입생
      */
 
-//    public static void main(String[] args) throws Exception {
-//        int a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
-//    }
+    public static void main(String[] args) throws Exception {
+        int a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
+
+        // test 교양 카운트 초기화
+        //DBConnection.settingKyCount0();
+    }
 
     public static Integer execute(String fileName) throws Exception {
 
@@ -63,11 +66,11 @@ public class PdfCheck {
         /**
          * 파일 읽어오기 + [파일 검사]
          */
+        // 파일 읽어오기
         String[] list = PdfRead(fileName);
+
         // 한신대 학업성적확인서 확인
-        if (checkPDF(list) == 0) {
-            return 0;
-        }
+        if (checkPDF(list) == 0) return 0;
 
         // test (pdf 전체 출력)
 //        for (String str : list) {
@@ -133,7 +136,7 @@ public class PdfCheck {
                 engCertification = true;
             }
 
-            // 모든 교양 과목 추출 (for 인재상, 핵심역량 검사)
+            // 모든 교양 과목 추출 (for 인재상 & 핵심역량 검사, 교양 카운트 증가)
             if ((line.startsWith("교선") || line.startsWith("교필")) && !line.contains("NP")) {
                 String[] strings = line.split("\\s+");
                 if (strings.length < 5) {
@@ -189,13 +192,13 @@ public class PdfCheck {
 
         /**
          * [인재상 검사]
-         * 1. 소통하는지성인
-         * 2. 실천하는평화인
-         * 3. 도전하는창의인
          */
-        failure.append(checkTalent(studentId, allKy, "소통하는지성인"));
-        failure.append(checkTalent(studentId, allKy, "실천하는평화인"));
-        failure.append(checkTalent(studentId, allKy, "도전하는창의인"));
+        failure.append(checkTalent(studentId, allKy));
+
+        /**
+         * 교양 카운트 증가
+         */
+        failure.append(updateKyCount(allKy));
 
 
         // test
@@ -203,6 +206,7 @@ public class PdfCheck {
 
         return 1;
     }
+
 
     /**
      * pdf 읽어오기
@@ -238,32 +242,37 @@ public class PdfCheck {
     private static StringBuffer checkCredit(int studentId, String studentMajor, int totalCredit, int kyCredit, int majorCredit) {
         StringBuffer failure = new StringBuffer();
 
-        // 1. 졸업학점 검사
         // 해당 학과 졸업학점 가져오기
         int graduateCredit = DBConnection.getGraduateCredit(studentMajor);
+        // 해당 학과 전공최소학점 가져오기
+        int majorMinCredit = DBConnection.getMajorMinCredit(studentMajor);
+
+        // (총 취득학점 - 초과한 교양 학점)
+        if (studentId <= 2016) {
+            // 16학번 이전 교양 학점 : 35~45학점
+            if (kyCredit > 45) {
+                totalCredit -= (kyCredit - 45);
+                failure.append("교양학점 " + (kyCredit - 45) + "학점 초과되어 총 취득학점에서 " + (kyCredit - 45) + "학점 제외 (총 취득학점 : " + totalCredit + "학점)\n");
+            }
+        } else {
+            // 17학번 이후 교양 학점 : 35~49학점
+            if (kyCredit > 49) {
+                totalCredit -= (kyCredit - 49);
+                failure.append("교양학점 " + (kyCredit - 49) + "학점 초과되어 총 취득학점에서 " + (kyCredit - 49) + "학점 제외 (총 취득학점 : " + totalCredit + "학점)\n");
+            }
+        }
+
+        // 1. 졸업학점 검사
         if (graduateCredit > totalCredit) {
             failure.append("졸업학점 " + (graduateCredit - totalCredit) + "학점 미달\n");
         }
 
-        /**
-         * xxxxx 공사 예정 xxxxx
-         */
-        // 2. 교양 학점 검사
-        if (studentId <= 2016) {
-            // 16학번 이전 : 35~45학점
-            if (!(kyCredit >= 35 && kyCredit <= 45)) {
-                failure.append("교양학점 미달 또는 초과\n");
-            }
-        } else {
-            // 17학번 이후 : 35~49학점
-            if (!(kyCredit >= 35 && kyCredit <= 49)) {
-                failure.append("교양학점 미달 또는 초과\n");
-            }
+        // 2. 교양학점 검사
+        if (kyCredit < 35) {
+            failure.append("교양학점 " + (35 - kyCredit) + "학점 미달\n");
         }
 
         // 3. 전공 최소이수학점 검사
-        // 해당 학과 전공최소학점 가져오기
-        int majorMinCredit = DBConnection.getMajorMinCredit(studentMajor);
         if (majorMinCredit > majorCredit) {
             failure.append("전공학점 " + (majorMinCredit - majorCredit) + "학점 미달\n");
         }
@@ -421,78 +430,98 @@ public class PdfCheck {
         return failure;
     }
 
-    /**
-     * [핵심역량 검사](2020 학번 이상)
-     */
-    private static StringBuffer checkCoreKy(int studentId, List<String> selectKy) {
-        StringBuffer failure = new StringBuffer();
-        int humanities = 0; // '인문' 카운트
-        int creativefusions= 0; // '창의융합' 카운트
-        int globals = 0; // '글로벌' 카운트
-        int readerships = 0; // '리더쉽' 카운트
-        int communications = 0; // '소통' 카운트
-        // 핵심역량 '인문' 과목 가져오기
-        List<String> getHumanities = DBConnection.getHumanities();
-        // 핵심역량 '창의융합' 과목 가져오기
-        List<String> getCreativeFusions = DBConnection.getCreativeFusion();
-        // 핵심역량 '글로벌' 과목 가져오기
-        List<String> getGlobals = DBConnection.getGlobal();
-        // 핵심역량 '리더쉽' 과목 가져오기
-        List<String> getReaderships = DBConnection.getReadership();
-        // 핵심역량 '소통' 과목 가져오기
-        List<String> getCommunications = DBConnection.getCommunication();
-
-        if (studentId >=2020) {
-            for (int i = 0; i <selectKy.size(); i++) {
-                String line = selectKy.get(i);
-                if (getHumanities.contains(line)) humanities++;
-                if (getCreativeFusions.contains(line)) creativefusions++;
-                if (getGlobals.contains(line)) globals++;
-                if (getReaderships.contains(line)) readerships++;
-                if (getCommunications.contains(line)) communications++;
-
-            }
-            if (humanities < 1) failure.append("핵심역량 '인문' 미수강\n");
-            if (creativefusions < 1) failure.append("핵심역량 '창의융합' 미수강\n");
-            if (globals < 1) failure.append("핵심역량 '글로벌' 미수강\n");
-            if (readerships < 1) failure.append("핵심역량 '리더쉽' 미수강\n");
-            if (communications < 1) failure.append("핵심역량 '소통' 미수강\n");
-        }
-        return failure;
-    }
 
     /**
-     * [인재상 검사] (2019 학번만)
+     * [핵심역량 검사] (2020 학번 이상)
      */
-    private static StringBuffer checkTalent(int studentId, List<String> allKy, String type) {
+    private static StringBuffer checkCoreKy(int studentId, List<String> allKy) {
         StringBuffer failure = new StringBuffer();
 
         /**
          * 테스트해보고 싶으면 아래 if문 주석 처리하고 돌리기!!!
          */
-        if (studentId != 2019) return failure;
+        // 2020 미만 학번이면 검사 필요없이 비어 있는 스트링버퍼 return
+        if (studentId < 2020) return failure;
 
-        int creditSum = 0;
+        String[] coreType = {"인문", "소통", "지식정보", "창의융합", "리더십", "글로벌"};
 
-        // 교양이름1+2
-        List<String> talents = new ArrayList<>();
-        talents.addAll(DBConnection.getTalent1(type));
-        talents.addAll(DBConnection.getTalent2(type));
+        for (String type : coreType) {
+            List<String> cores = new ArrayList<>();
+            cores.addAll(DBConnection.getCore1(type));
+            cores.addAll(DBConnection.getCore2(type));
 
-        // test
-        System.out.println("\n===[" + type + "] 인재상 과목===");
-
-        talents.retainAll(allKy);
-        for (String str : talents) {
-            int kyCredit = DBConnection.getKyCredit(str);
+            cores.retainAll(allKy);
 
             // test
-            System.out.println(str + " (" + kyCredit + "학점)");
+            System.out.println("\n===핵심역량 [" + type + "] 과목===");
+            for (String str : cores) {
+                System.out.println(str);
+            }
 
-            creditSum += kyCredit;
+            if (cores.size() < 1) {
+                failure.append("교양 핵심역량 '" + type + "' 미수강\n");
+            }
         }
-        if (creditSum < 5) {
-            failure.append("교양 인재상 '" + type + "' " + (5 - creditSum) + "학점 미이수\n");
+
+        return failure;
+    }
+
+
+    /**
+     * [인재상 검사] (2019 학번만)
+     */
+    private static StringBuffer checkTalent(int studentId, List<String> allKy) {
+        StringBuffer failure = new StringBuffer();
+
+        /**
+         * 테스트해보고 싶으면 아래 if문 주석 처리하고 돌리기!!!
+         */
+        // 2019 학번 아니면 검사 필요없이 비어 있는 스트링버퍼 return
+        if (studentId != 2019) return failure;
+
+        String[] talentType = {"소통하는지성인", "실천하는평화인", "도전하는창의인"};
+        int creditSum = 0;
+
+        for (String type : talentType) {
+            creditSum = 0;
+
+            List<String> talents = new ArrayList<>();
+            talents.addAll(DBConnection.getTalent1(type));
+            talents.addAll(DBConnection.getTalent2(type));
+
+            talents.retainAll(allKy);
+
+            // test
+            System.out.println("\n===인재상 [" + type + "] 과목===");
+
+            for (String str : talents) {
+                int kyCredit = DBConnection.getKyCredit(str);
+
+                // test
+                System.out.println(str + " (" + kyCredit + "학점)");
+
+                creditSum += kyCredit;
+            }
+
+            if (creditSum < 5) {
+                failure.append("교양 인재상 '" + type + "' " + (5 - creditSum) + "학점 미이수\n");
+            }
+        }
+
+        return failure;
+    }
+
+
+    /**
+     * 교양 카운트 증가
+     */
+    private static StringBuffer updateKyCount(List<String> allKy) {
+        StringBuffer failure = new StringBuffer();
+
+        for (String name : allKy) {
+            if (DBConnection.updateKyCount(name) == 0) {
+                failure.append("** 교양 [" + name + "] 카운트 실패!");
+            }
         }
 
         return failure;

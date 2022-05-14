@@ -1,6 +1,6 @@
 import '../css/Graduate.css';
 import '../css/ContentsPage.css';
-
+import { Link} from 'react-router-dom';
 
 // input type 커스터 마이징 -> https://helloinyong.tistory.com/275
 /* 
@@ -34,6 +34,11 @@ function Graduate() {
                     👉학업성적확인서<br/> 
                     👉Save<br/> 
                     </div>
+
+                    <div className= "GraduateOk__footer">
+                            <Link to ="GraduateOk" className = "graduation__check--button">임시이동 버튼</Link> 
+                              <br/><br/>
+                        </div>
                 </section>
             </main>
         </>

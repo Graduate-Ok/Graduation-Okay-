@@ -40,29 +40,13 @@ public class DBConnection {
         return getIntDataFromTable(sql, "major_min_credit");
     }
 
-    // 핵심역량 '인문' 가져오기
-    public static List<String> getHumanities() {
-        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '인문';";
+    // 핵심역량에 해당하는 교양 (from 교양 테이블)
+    public static List<String> getCore1(String type) {
+        String sql = "SELECT ky_name1 FROM ky_course WHERE ky_core = '" + type + "';";
         return getListDataFromTable(sql);
     }
-    // 핵심역량 창의융합 가져오기
-    public static List<String> getCreativeFusion() {
-        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '창의융합';";
-        return getListDataFromTable(sql);
-    }
-    //핵심역량 '글로벌' 가져오기
-    public static List<String> getGlobal() {
-        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '글로벌';";
-        return getListDataFromTable(sql);
-    }
-    // 핵심역량 '리더쉽' 가져오기
-    public static List<String> getReadership() {
-        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '리더쉽';";
-        return getListDataFromTable(sql);
-    }
-    // 핵심역량 '소통' 가져오기
-    public static List<String> getCommunication() {
-        String sql = "SELECT ky_name1, ky_name2 FROM ky_course WHERE ky_core = '소통';";
+    public static List<String> getCore2(String type) {
+        String sql = "SELECT ky_name2 FROM ky_course WHERE ky_core = '" + type + "';";
         return getListDataFromTable(sql);
     }
 
@@ -130,5 +114,42 @@ public class DBConnection {
         }
 
         return data;
+    }
+
+    // 교양 카운트 증가
+    public static int updateKyCount(String ky_name) {
+        String sql = "UPDATE ky_course SET ky_count = ky_count + 1 WHERE ky_name1 = '" + ky_name + "' or ky_name2 = '" + ky_name + "';";
+        int result = 0;
+
+        try {
+            Connection con = getCon();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            result = pstmt.executeUpdate();
+
+            pstmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    // test
+    // 교양 카운트 초기화
+    public static void settingKyCount0() {
+        String sql = "UPDATE ky_course SET ky_count = 0;";
+        try {
+            Connection con = getCon();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.executeUpdate();
+
+            pstmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

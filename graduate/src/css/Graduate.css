@@ -58,3 +58,14 @@
     justify-content: center;
     
 }
+
+.graduation__check--button{
+    background-color: #c8c8f8;
+    width: 250px;
+    margin: auto;   
+    color: #2c2c2cdf;
+    padding: 10px 25px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}

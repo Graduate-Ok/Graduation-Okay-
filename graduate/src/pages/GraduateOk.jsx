@@ -8,6 +8,11 @@ function GraduateOk() {
             <main>
                 <section className="section">
                     <div className='Graduate__check'>
+
+                        <div className='Graduate_Possible'>
+                            졸업 가능 <br/><br/>
+                        </div>
+
                         <div className='Lack__Graduate__Credit'>
                             졸업 학점 20 미달
                         </div>

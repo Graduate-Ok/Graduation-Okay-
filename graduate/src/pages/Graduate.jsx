@@ -1,6 +1,6 @@
 import '../css/Graduate.css';
 import '../css/ContentsPage.css';
-import { Link} from 'react-router-dom';
+import { Link, useLinkClickHandler } from 'react-router-dom';
 
 // input type 커스터 마이징 -> https://helloinyong.tistory.com/275
 /* 
@@ -9,6 +9,8 @@ import { Link} from 'react-router-dom';
     
 
 */
+
+
 
 // 설명페이지
 function Graduate() {
@@ -20,25 +22,26 @@ function Graduate() {
                         당신은 졸업이 가능한가요 ?
                     </div>
                     <div className="section__button">
-                    <label className="upload__button" for="input-file">학업성적확인서 PDF 업로드 </label>
-                    <br/> <input type="file" id='input-file' style={{display:"none"}}/>
-                
-                    </div>
-                    <br/><br/><br/><br/>
-
-                    <div className='pdf__position'> ❓ 학업성적확인서 PDF ❓ <br/><br/>
-                    👉한신대학교 종합정보시스템<br/> 
-                    👉인트라넷<br/> 
-                    👉학부생서비스<br/> 
-                    👉성적<br/> 
-                    👉학업성적확인서<br/> 
-                    👉Save<br/> 
+                        <label className="upload__button" for="input-file">학업성적확인서 PDF 업로드 </label>
+                        <br /> <input type="file" accept='.pdf' id='input-file' style={{ display: "none" }} />
                     </div>
 
-                    <div className= "GraduateOk__footer">
-                            <Link to ="GraduateOk" className = "graduation__check--button">임시이동 버튼</Link> 
-                              <br/><br/>
-                        </div>
+                    <br /><br /><br /><br />
+
+                    <div className='pdf__position'> ❓ 학업성적확인서 PDF ❓ <br /><br />
+                        👉한신대학교 종합정보시스템<br />
+                        👉인트라넷<br />
+                        👉학부생서비스<br />
+                        👉성적<br />
+                        👉학업성적확인서<br />
+                        👉Save<br />
+                    </div>
+                    <br />
+                    <div className="GraduateOk__footer">
+                        <Link to="GraduateOk" className="graduation__check--button">결과 조회</Link>
+                        <br /><br />
+                    </div>
+
                 </section>
             </main>
         </>

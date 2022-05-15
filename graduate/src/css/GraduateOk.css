@@ -12,8 +12,15 @@
 
 .Graduate__check{
     font-family: 'JejuGothic';
+    text-align: center;
 }
 
+.Graduate_Possible{
+    color: rgb(14, 58, 255);
+    font-size:x-large;
+    font-weight: 300;
+    text-align: center;
+}
 /* .Lack__Graduate__Credit{
 
 }

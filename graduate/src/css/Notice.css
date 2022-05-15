@@ -1,3 +1,188 @@
+@font-face {
+    font-family: 'JejuGothic';
+    font-weight: normal;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.ttf') format("truetype");
+    font-display: swap;
+}
+
 #page-button{
     margin-top: 20%;
+}
+
+.Notice{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.NoticeSize{
+    font-family: 'JejuGothic';
+    display: flex;
+    width : 85%;
+    flex-direction: column;
+    height: 900px;
+}
+
+.Notice__header,
+.Notice__navbar,
+.Notice__content--title,
+.Notice__content--content,
+.Notice__footer,
+.Notice__page{
+    display: flex;
+    width: 100%;
+}
+
+.Notice__header{
+    font-size: large;
+}
+
+.Notice__navbar{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.Notice__search{
+    display: flex;
+    flex-direction: row;
+}
+
+.Notice__search--button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 28px;
+    background-color: #8F8DE7;   
+}
+
+.Notice__search--button:hover,
+.Notice__footer--button:hover{
+    opacity: 80%;
+    cursor : pointer;
+}
+
+.Notice__content--title{
+    display: flex;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #b2bec3;
+    background-color : #d6d6f5;
+}
+
+.Notice__content--content{
+    display: flex;
+    border-bottom: 1px solid #b2bec3;
+}
+
+
+.Notice__content--number,
+.Notice__content--name,
+.Notice__content--date{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+
+
+.Notice__content--number{
+    width: 10%;
+}
+
+.Notice__content--name{
+    cursor : pointer;
+    width : 75%;
+}
+
+.Notice__content--date{
+    width: 10%;
+}
+
+
+.Notice__content--detail{
+    background-color: #b2bec335;
+    letter-spacing: 0px;
+    line-height:150%;
+}
+
+
+
+
+
+.Notice__footer{
+    display: flex;
+    height: 28px;
+    justify-content: flex-end;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+.Notice__footer--button{
+    display: flex;
+    background-color: #8F8DE7;   
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 80px;
+}
+
+.Notice__page{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.Notice__page--button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 35px;
+    height: 30px;
+    font-size: small;
+    border-radius: 3px;  
+    text-decoration-line: none;
+}
+
+.Notice__page--button:hover{
+    background-color: #b2bec3;
+    cursor : pointer;
+}
+
+.Notice__writecontainer{
+    display: flex;
+    margin-top: 5%;
+    background-color: #E5E7EB;
+    width: 100%;
+    height: 70%;
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+.Notice__write--title,
+.Notice__write--content{
+    display: flex;
+    width: 95%;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.Notice__write--title{
+    margin-top: 2%;
+    height: 5%;
+    
+}
+
+.Notice__write--content{
+    margin-top: 3%;
+    height: 70%;
 }

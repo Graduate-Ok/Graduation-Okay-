@@ -16,20 +16,39 @@
 }
 
 .Graduate_Possible{
-    color: rgb(14, 58, 255);
+    color: rgb(56, 172, 255);
     font-size:x-large;
     font-weight: 300;
     text-align: center;
 }
-/* .Lack__Graduate__Credit{
 
+/*졸업요건 확인 테이블*/
+.OkTable{
+    width: 90%;
+    text-align: center;
+    margin:auto;
+    margin-top:1rem;
+    margin-bottom:1rem;  
+    line-height:30px;
+    
 }
-                    
-.Lack__MajorCredit{
 
+
+
+/*th*/
+.Ok__menu{
+    background-color: #bfdefc96;
 }
-                
-                
- .Lack__KyCredit{
 
- } */
+/*td*/
+.Lack__Graduate__Credit,
+.Lack__MajorCredit,
+.Lack__KyCredit,
+.Lack__NonSub{
+    vertical-align:middle;
+    border:1px solid #a79d9d;
+    width: 20%;
+}
+
+
+

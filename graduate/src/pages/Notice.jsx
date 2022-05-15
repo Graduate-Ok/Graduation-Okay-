@@ -57,9 +57,9 @@ function Notice() {
                         <div className="Notice__content--content">
                             <div className="Notice__content--number">2</div>
                             <div className="Notice__content--name"><details className='detail'>
-                                    <summary>국어국문학과 졸업 대체 요건</summary>
+                                    <summary>글로벌 비지니스 학부 졸업 대체 요건</summary>
                                     <p className='context'><br />
-                                    <div className='Notice__content--detail'><br/> 나는 사실 잘 몰라 <br/><br/></div></p>
+                                    <div className='Notice__content--detail'><br/> 졸업대체 : 토익 750 이상 <br/><br/></div></p>
                                 </details> </div>
                             <div className="Notice__content--date">2022-11-30</div>
                         </div>

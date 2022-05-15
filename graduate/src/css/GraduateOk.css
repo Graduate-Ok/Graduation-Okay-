@@ -16,7 +16,7 @@
 }
 
 .Graduate_Possible{
-    color: rgb(56, 172, 255);
+    color: rgba(255, 13, 13, 0.815);
     font-size:x-large;
     font-weight: 300;
     text-align: center;
@@ -51,4 +51,9 @@
 }
 
 
-
+.Graduate_lack{
+    color: rgb(0, 0, 0);
+    font-size:large;
+    font-weight: 300;
+    text-align: center;
+}

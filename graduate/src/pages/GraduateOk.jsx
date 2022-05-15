@@ -36,10 +36,10 @@ function GraduateOk() {
                         </div>
 
                         <div className='Graduate_lack'>
-                            <br /> 부족한 요건 출력 <br /><br />
+                            <br /> ===부족한 요건 출력=== <br /><br />
                             졸업학점 20 미달<br /><br />
-                            전공학점 7 미달
-                            <br /><br />
+                            전공학점 9 미달<br /><br />
+                            전공필수 '졸업논문' 미수강<br/><br/>
                         </div>
 
                         {/* <div className='Lack__Graduate__Credit'>

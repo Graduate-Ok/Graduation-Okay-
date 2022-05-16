@@ -9,49 +9,51 @@ import java.util.*;
 public class PdfCheck {
     /**
      * 검사 순서
-     *
+     * <p>
      * [파일 검사] 한신대학교 학업성적확인서 pdf 파일이 맞는지 검사
-     *
+     * <p>
      * [학점 검사]
      * 1. 총 취득학점 검사
      * 2. 교양 학점 검사
      * 3. 전공 최소이수학점 검사
-     *
+     * <p>
      * [전공필수 검사] 해당 학과의 전공필수 다 들었는지 검사
-     *
+     * <p>
      * [교양필수 & 비교과 검사]
      * ㄴ17학번부터 비교과 3개 학기 이상 || 비교과 마일리지 300점 이상 (아노덴 제외)
      * ㄴ20학번부터 마일리지 300점 이상
      * ㄴ19학번 이후 "글쓰기의기초"는 소프트웨어교과목으로 대체 가능
      * ㄴ19학번 이후 영어인증자는 "영어1,2" 면제
      * ㄴ아노덴 "대학생활길잡이","사회생활길잡이","영어1,2"는 각각 "캠퍼스라이프","인문강단","Speaking English 1,2"로 대체 가능
-     *
+     * <p>
      * [기타 교양 검사]
      * ㄴ19학번 교양 인재상별 5학점 이상
      * ㄴ20학번 이후 교양 핵심역량별 1과목 이상
-     *
+     * <p>
      * ! 고려 안 한 대상 !
      * 1) 복수전공
      * 2) 부전공
      * 3) 편입생
      */
 
-//    public static void main(String[] args) throws Exception {
-//        int a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
-//
-//        // test 교양 카운트 초기화
-//        //DBConnection.settingKyCount0();
-//    }
+    public static void main(String[] args) throws Exception {
+        HashMap<String, Object> a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
+
+        // test 교양 카운트 초기화
+        //DBConnection.settingKyCount0();
+    }
 
     public static HashMap<String, Object> execute(String fileName) throws Exception {
         HashMap<String, Object> result = new HashMap<>();
 
         int studentId = 0; // 학번
-        String studentMajor = ""; // 학과
+        String studentMajor = ""; // 학과 (주전공)
+        String studentSubMajor = ""; // 부전공
 
         int totalCredit = 0; // 총 취득학점
         int kyCredit = 0; // 교양 학점
         int majorCredit = 0; // 전공 학점
+        int subMajorCredit = 0; // 부전공 학점
 
         List<String> requiredMajor = new ArrayList<>(); // 전필 담는 List
         List<String> requiredKy = new ArrayList<>(); // 교필 담는 List
@@ -63,6 +65,7 @@ public class PdfCheck {
 
         // 부족한 요건 담는 StringBuilder
         StringBuilder failure = new StringBuilder();
+
 
         /**
          * 파일 읽어오기 + [파일 검사]
@@ -90,22 +93,34 @@ public class PdfCheck {
                 studentId = Integer.parseInt(line.substring(4, 8));
             }
 
-            // 학과 추출
+            // 학과 추출 (주전공, 부전공)
             if (line.contains("부전공Ⅰ")) {
+                // 주전공
                 String[] strings = list[i - 1].split(" ");
                 studentMajor = strings[2].substring(0, strings[2].length() - 1);
+
+                // 부전공
+                String[] strings2 = line.split(" ");
+                if (strings2.length > 1 && !(strings2[1].equals("") || strings2[1].equals(" "))) {
+                    studentSubMajor = strings2[1];
+                }
             }
 
 
             // 총 취득학점 추출
             if (line.contains("총 취득학점")) {
-                totalCredit = Integer.parseInt(line.substring(7, line.length() - 1));
+                totalCredit = Integer.parseInt(line.substring(7, line.length() - 1).trim());
             }
 
-            // 교양, 전공 이수학점 확인
+            // 교양, 전공 이수학점 추출
             if (line.contains("교양: ") && line.contains("전공: ")) {
-                kyCredit = Integer.parseInt(line.substring(4, 6));
-                majorCredit = Integer.parseInt(line.substring(11, 13));
+                kyCredit = Integer.parseInt(line.substring(4, 6).trim());
+                majorCredit = Integer.parseInt(line.substring(11, 13).trim());
+            }
+
+            // 부전공 이수학점 추출
+            if (line.contains("부전공:")) {
+                subMajorCredit = Integer.parseInt(line.substring(5, 7).trim());
             }
 
             // 수강한 전필 과목 추출
@@ -150,9 +165,11 @@ public class PdfCheck {
         // test
         System.out.println("학번 : " + studentId);
         System.out.println("학과 : " + studentMajor);
+        System.out.println("부전공 : " + studentSubMajor);
         System.out.println("총 취득학점 : " + totalCredit);
         System.out.println("교양학점 : " + kyCredit);
         System.out.println("전공학점 : " + majorCredit);
+        System.out.println("부전공 학점 : " + subMajorCredit);
         System.out.println("비교과 이수 학기 : " + nonSubject);
         System.out.println("마일리지 : " + mileage);
         System.out.println("\n===수강한 전필 과목===");
@@ -202,18 +219,25 @@ public class PdfCheck {
         failure.append(updateKyCount(allKy));
 
 
+        /**
+         * [부전공 검사]
+         */
+        if (!studentSubMajor.equals("")) {
+            failure.append(checkSubMajor(subMajorCredit));
+        }
+
+
         // test
         System.out.println("\n===부족한 요건 출력===\n" + failure.toString());
 
 
-        result.put("totalCredit", totalCredit);
-        result.put("kyCredit", kyCredit);
-        result.put("majorCredit", majorCredit);
-        result.put("nonSubject", nonSubject);
-        result.put("mileage", mileage);
-        result.put("failure", failure);
-
-        System.out.println(result);
+        // 반환할 데이터 담기
+        result.put("totalCredit", totalCredit); // 총 취득학점
+        result.put("kyCredit", kyCredit); // 교양학점
+        result.put("majorCredit", majorCredit); // 전공학점
+        result.put("nonSubject", nonSubject); // 비교과 이수학기
+        result.put("mileage", mileage); // 마일리지
+        result.put("failure", failure); // 부족한 졸업요건
 
         return result;
     }
@@ -531,8 +555,22 @@ public class PdfCheck {
 
         for (String name : allKy) {
             if (DBConnection.updateKyCount(name) == 0) {
-                failure.append("** 교양 [" + name + "] 카운트 실패!");
+                failure.append("** 교양 [" + name + "] 카운트 실패!\n");
             }
+        }
+
+        return failure;
+    }
+
+
+    /**
+     * [부전공 검사]
+     */
+    private static StringBuffer checkSubMajor(int credit) {
+        StringBuffer failure = new StringBuffer();
+
+        if (credit < 21) {
+            failure.append("부전공 " + (21 - credit) + "학점 미달\n");
         }
 
         return failure;

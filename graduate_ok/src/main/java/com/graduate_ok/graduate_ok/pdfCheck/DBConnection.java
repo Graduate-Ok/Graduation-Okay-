@@ -21,10 +21,11 @@ public class DBConnection {
         return con;
     }
 
-    // 해당 학과 전공필수 과목 (from 학과, 전공필수 테이블)
-    public static List<String> getRequiredMajor(String major) {
+    // 해당 학번/학과 전공필수 과목 (from 학과, 전공필수 테이블)
+    public static List<String> getRequiredMajor(int stdId, String major) {
         String sql = "SELECT mrq_name FROM major_required_course r, major m"
-                + " WHERE r.major_code = m.major_code and m.major_name = '" + major + "';";
+                + " WHERE r.major_code = m.major_code"
+                + " and r.mrq_std_id = " + stdId + " and m.major_name = '" + major + "';";
         return getListDataFromTable(sql);
     }
 

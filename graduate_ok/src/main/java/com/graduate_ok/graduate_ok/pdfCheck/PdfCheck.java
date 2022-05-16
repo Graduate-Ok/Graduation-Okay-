@@ -36,14 +36,15 @@ public class PdfCheck {
      * 3) 편입생
      */
 
-    public static void main(String[] args) throws Exception {
-        int a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
+//    public static void main(String[] args) throws Exception {
+//        int a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
+//
+//        // test 교양 카운트 초기화
+//        //DBConnection.settingKyCount0();
+//    }
 
-        // test 교양 카운트 초기화
-        //DBConnection.settingKyCount0();
-    }
-
-    public static Integer execute(String fileName) throws Exception {
+    public static HashMap<String, Object> execute(String fileName) throws Exception {
+        HashMap<String, Object> result = new HashMap<>();
 
         int studentId = 0; // 학번
         String studentMajor = ""; // 학과
@@ -70,7 +71,7 @@ public class PdfCheck {
         String[] list = PdfRead(fileName);
 
         // 한신대 학업성적확인서 확인
-        if (checkPDF(list) == 0) return 0;
+        if (checkPDF(list) == 0) throw new Exception();
 
         // test (pdf 전체 출력)
 //        for (String str : list) {
@@ -204,7 +205,17 @@ public class PdfCheck {
         // test
         System.out.println("\n===부족한 요건 출력===\n" + failure.toString());
 
-        return 1;
+
+        result.put("totalCredit", totalCredit);
+        result.put("kyCredit", kyCredit);
+        result.put("majorCredit", majorCredit);
+        result.put("nonSubject", nonSubject);
+        result.put("mileage", mileage);
+        result.put("failure", failure);
+
+        System.out.println(result);
+
+        return result;
     }
 
 

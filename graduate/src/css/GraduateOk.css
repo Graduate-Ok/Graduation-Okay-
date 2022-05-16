@@ -16,7 +16,7 @@
 }
 
 .Graduate_Possible{
-    color: rgb(56, 172, 255);
+    color: rgba(255, 13, 13, 0.815);
     font-size:x-large;
     font-weight: 300;
     text-align: center;
@@ -50,5 +50,10 @@
     width: 20%;
 }
 
-
-
+/*부족한 졸업 요건*/
+.Graduate_lack{
+    color: rgb(0, 0, 0);
+    font-size:medium;
+    font-weight: 300;
+    text-align: center;
+}

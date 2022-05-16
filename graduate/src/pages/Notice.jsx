@@ -51,17 +51,17 @@ function Notice() {
                                     <div className='Notice__content--detail'><br/> 컴퓨터공학부 학생들은 졸업논문을 대체로 작성한다. <br/> 
                                     논문을 대체하기 위해서는 ipp,일학습병행제가 이루어지고 있다. <br/><br/></div></p>
                                 </details> </div>
-                            <div className="Notice__content--date">2022-11-31</div>
+                            <div className="Notice__content--date">2022-02-01 12:31</div>
                         </div>
 
                         <div className="Notice__content--content">
                             <div className="Notice__content--number">2</div>
                             <div className="Notice__content--name"><details className='detail'>
-                                    <summary>국어국문학과 졸업 대체 요건</summary>
+                                    <summary>글로벌 비지니스 학부 졸업 대체 요건</summary>
                                     <p className='context'><br />
-                                    <div className='Notice__content--detail'><br/> 나는 사실 잘 몰라 <br/><br/></div></p>
+                                    <div className='Notice__content--detail'><br/> 졸업대체 : 토익 750 이상 <br/><br/></div></p>
                                 </details> </div>
-                            <div className="Notice__content--date">2022-11-30</div>
+                            <div className="Notice__content--date">2022-04-01 02:31</div>
                         </div>
                         <div className="Notice__content--content">
                             <div className="Notice__content--number">1</div>
@@ -70,7 +70,7 @@ function Notice() {
                                     <p className='context'><br />
                                     <div className='Notice__content--detail'><br/> 생긴지 얼마 안된 신설 학과랍니다 <br/><br/></div></p>
                                 </details> </div>
-                            <div className="Notice__content--date">2022-11-11</div>
+                            <div className="Notice__content--date">2022-05-14 10:24</div>
                         </div>
 
 

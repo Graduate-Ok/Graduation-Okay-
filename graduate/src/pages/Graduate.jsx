@@ -11,7 +11,6 @@ import { Link, useLinkClickHandler } from 'react-router-dom';
 */
 
 
-
 // 설명페이지
 function Graduate() {
     return (

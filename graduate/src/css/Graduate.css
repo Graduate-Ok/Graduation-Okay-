@@ -21,6 +21,8 @@
     margin-top: 50px;
     margin-bottom: 20px;
     border: dashed; /* 보더 수정 예정 */
+    max-width: 100%;
+    height: auto !important;
 }
 
 .section__button{
@@ -43,7 +45,6 @@
     border-radius: 4px;
     color: white;
     cursor: pointer;
-    cursor : pointer;
   }
 
   .pdf__position

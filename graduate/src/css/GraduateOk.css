@@ -15,7 +15,16 @@
     text-align: center;
 }
 
+/*졸업 가능시*/
 .Graduate_Possible{
+    color: rgba(8, 0, 255, 0.815);
+    font-size:x-large;
+    font-weight: 300;
+    text-align: center;
+}
+
+/*졸업 불가능시*/
+.Graduate_imPossible{
     color: rgba(255, 13, 13, 0.815);
     font-size:x-large;
     font-weight: 300;
@@ -44,7 +53,8 @@
 .Lack__Graduate__Credit,
 .Lack__MajorCredit,
 .Lack__KyCredit,
-.Lack__NonSub{
+.Lack__NonSub,
+.Lack__mileage{
     vertical-align:middle;
     border:1px solid #a79d9d;
     width: 20%;

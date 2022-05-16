@@ -13,7 +13,7 @@ function GraduateOk() {
                             <br />졸업 가능 <br /><br />
                         </div> */}
 
-                        <div className='Graduate_Possible'>
+                        <div className='Graduate_imPossible'>
                             <br /> [ 졸업 불가능 ] <br /><br />
                         </div>
 
@@ -23,14 +23,16 @@ function GraduateOk() {
                                 <th className='Lack__Graduate__Credit'> 졸업 학점</th>
                                 <th className='Lack__MajorCredit'>전공 학점 </th>
                                 <th className='Lack__KyCredit'> 교양 학점 </th>
-                                <th className='Lack__NonSub'> 비교과 이수 여부 </th>
+                                <th className='Lack__NonSub'> 비교과 이수 학기 </th>
+                                <th className='Lack__mileage'> 마일리지 </th>
                             </tr>
                             
                             <tr>
                                 <td className='Lack__Graduate__Credit'> 130 </td>
                                 <td className='Lack__MajorCredit'> 80 </td>
                                 <td className='Lack__KyCredit'> 50 </td>
-                                <td className='Lack__NonSub'> pass </td>
+                                <td className='Lack__NonSub'> 4 </td>
+                                <td className='Lack__mileage'> 1430 </td>
                             </tr>
                         </table> 
                         </div>

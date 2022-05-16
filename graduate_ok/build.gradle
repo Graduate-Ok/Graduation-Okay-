@@ -30,6 +30,9 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.9'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0' // swagger (api 명세서)
+	implementation 'org.apache.tika:tika-core:2.4.0' // 파일 확장자 검사 (MIME-Type 검사)
+	implementation 'org.apache.tika:tika-parsers:2.4.0' // 파일 확장자 검사 (MIME-Type 검사)
 }
 
 tasks.named('test') {

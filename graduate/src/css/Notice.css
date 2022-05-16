@@ -86,7 +86,8 @@
 
 .Notice__content--number,
 .Notice__content--name,
-.Notice__content--date{
+.Notice__content--date,
+.Notice__content--category{
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -99,7 +100,7 @@
 
 .Notice__content--name{
     cursor : pointer;
-    width : 75%;
+    width : 73%;
 }
 
 .Notice__content--date{
@@ -113,7 +114,9 @@
     line-height:150%;
 }
 
-
+.Notice__content--category{
+    width : 8%;
+}
 
 
 

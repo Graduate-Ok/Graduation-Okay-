@@ -38,6 +38,7 @@ function Notice() {
                         </div>
                         <div className="Notice__content--title">
                             <div className="Notice__content--number">번호</div>
+                            <div className = "Notice__content--category">카테고리</div>
                             <div className="Notice__content--name">제목</div>
                             <div className="Notice__content--date">날짜</div>
                         </div>
@@ -45,6 +46,7 @@ function Notice() {
 
                         <div className="Notice__content--content">
                             <div className="Notice__content--number">3</div>
+                            <div className = "Notice__content--category">공지</div>
                             <div className="Notice__content--name"><details className='detail'>
                                     <summary>컴퓨터공학부 졸업 대체 요건</summary>
                                     <p className='context'><br />
@@ -56,6 +58,7 @@ function Notice() {
 
                         <div className="Notice__content--content">
                             <div className="Notice__content--number">2</div>
+                            <div className = "Notice__content--category">안내</div>
                             <div className="Notice__content--name"><details className='detail'>
                                     <summary>글로벌 비지니스 학부 졸업 대체 요건</summary>
                                     <p className='context'><br />
@@ -65,6 +68,7 @@ function Notice() {
                         </div>
                         <div className="Notice__content--content">
                             <div className="Notice__content--number">1</div>
+                            <div className = "Notice__content--category">공지</div>
                             <div className="Notice__content--name"><details className='detail'>
                                     <summary>공공인재학부 졸업 대체 요건</summary>
                                     <p className='context'><br />

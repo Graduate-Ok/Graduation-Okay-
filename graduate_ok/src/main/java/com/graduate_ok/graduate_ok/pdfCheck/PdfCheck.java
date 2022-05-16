@@ -9,39 +9,40 @@ import java.util.*;
 public class PdfCheck {
     /**
      * 검사 순서
-     * <p>
+     *
      * [파일 검사] 한신대학교 학업성적확인서 pdf 파일이 맞는지 검사
-     * <p>
+     *
      * [학점 검사]
      * 1. 총 취득학점 검사
      * 2. 교양 학점 검사
      * 3. 전공 최소이수학점 검사
-     * <p>
+     *
      * [전공필수 검사] 해당 학과의 전공필수 다 들었는지 검사
-     * <p>
+     *
      * [교양필수 & 비교과 검사]
      * ㄴ17학번부터 비교과 3개 학기 이상 || 비교과 마일리지 300점 이상 (아노덴 제외)
      * ㄴ20학번부터 마일리지 300점 이상
      * ㄴ19학번 이후 "글쓰기의기초"는 소프트웨어교과목으로 대체 가능
      * ㄴ19학번 이후 영어인증자는 "영어1,2" 면제
      * ㄴ아노덴 "대학생활길잡이","사회생활길잡이","영어1,2"는 각각 "캠퍼스라이프","인문강단","Speaking English 1,2"로 대체 가능
-     * <p>
+     *
      * [기타 교양 검사]
      * ㄴ19학번 교양 인재상별 5학점 이상
      * ㄴ20학번 이후 교양 핵심역량별 1과목 이상
-     * <p>
+     *
+     * [부전공 검사] 부전공 21학점 이상 들었는지 검사
+     *
      * ! 고려 안 한 대상 !
      * 1) 복수전공
-     * 2) 부전공
-     * 3) 편입생
+     * 2) 편입생
      */
 
-    public static void main(String[] args) throws Exception {
-        HashMap<String, Object> a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
-
-        // test 교양 카운트 초기화
-        //DBConnection.settingKyCount0();
-    }
+//    public static void main(String[] args) throws Exception {
+//        HashMap<String, Object> a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
+//
+//        // test 교양 카운트 초기화
+//        //DBConnection.settingKyCount0();
+//    }
 
     public static HashMap<String, Object> execute(String fileName) throws Exception {
         HashMap<String, Object> result = new HashMap<>();
@@ -195,7 +196,7 @@ public class PdfCheck {
         /**
          * [전공필수 검사]
          */
-        failure.append(checkRequiredMajor(studentMajor, requiredMajor));
+        failure.append(checkRequiredMajor(studentId, studentMajor, requiredMajor));
 
         /**
          * [교양필수 검사]
@@ -319,11 +320,11 @@ public class PdfCheck {
     /**
      * [전공필수 검사]
      */
-    private static StringBuffer checkRequiredMajor(String studentMajor, List<String> requiredMajor) {
+    private static StringBuffer checkRequiredMajor(int studentId, String studentMajor, List<String> requiredMajor) {
         StringBuffer failure = new StringBuffer();
 
         // 해당 학과에서 전공필수 과목 가져오기
-        List<String> requiredMajors = DBConnection.getRequiredMajor(studentMajor);
+        List<String> requiredMajors = DBConnection.getRequiredMajor(studentId, studentMajor);
 
         // 들어야 할 전필과 학생이 들은 전필 비교
         Collection<String> std = requiredMajor;

@@ -5,6 +5,9 @@ import com.graduate_ok.graduate_ok.dto.BoardInsertDto;
 import com.graduate_ok.graduate_ok.dto.BoardListDto;
 import com.graduate_ok.graduate_ok.dto.BoardUpdateDto;
 import com.graduate_ok.graduate_ok.service.BoardService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +16,11 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/board")
+@ApiResponses({
+        @ApiResponse(code=200, message="ok"),
+        @ApiResponse(code=500, message="server error"),
+        @ApiResponse(code=404, message="not found")
+})
 public class BoardRestController {
     private final BoardService boardService;
 
@@ -21,6 +29,7 @@ public class BoardRestController {
      * @return
      */
     @GetMapping
+    @ApiOperation(value = "게시판 목록 조회 API")
     public List<BoardListDto> selectBoardList() {
         return boardService.selectBoardList();
     }
@@ -31,6 +40,7 @@ public class BoardRestController {
      * @return
      */
     @GetMapping("/{key}")
+    @ApiOperation(value = "게시글 조회 API")
     public List<BoardDto> selectBardByKey(@PathVariable("key") Integer key) {
         boardService.updateLookup(key);
         return boardService.selectBoardByKey(key);
@@ -41,6 +51,7 @@ public class BoardRestController {
      * @param boardInsertDto
      */
     @PostMapping
+    @ApiOperation(value = "게시판 작성 API")
     public void insertBoard(BoardInsertDto boardInsertDto) {
         boardService.insertBoard(boardInsertDto);
     }
@@ -51,6 +62,7 @@ public class BoardRestController {
      * @param boardUpdateDto
      */
     @PutMapping("/{key}")
+    @ApiOperation(value = "게시글 수정 API")
     public void updateBoard(@PathVariable("key") Integer key, BoardUpdateDto boardUpdateDto) {
         boardUpdateDto.setBrdKey(key);
         boardService.updateBoard(boardUpdateDto);
@@ -61,6 +73,7 @@ public class BoardRestController {
      * @param key
      */
     @DeleteMapping("/{key}")
+    @ApiOperation(value = "게시글 삭제 API")
     public void deleteBoard(@PathVariable("key") Integer key) {
         boardService.deleteBoard(key);
     }

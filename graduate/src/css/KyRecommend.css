@@ -55,14 +55,17 @@
     border-bottom: 1px solid #a79d9d;
 }
 
-/*학수번호*/
-.code_width{
-    width: 12%;
+
+
+/*순위*/
+.rank_width{
+    width: 8%;
 }
+
 
 /*과목명*/
 .name_width{
-    width: 35%;
+    width: 30%;
 }
 
 /*교양 인재상*/

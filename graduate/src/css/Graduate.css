@@ -35,7 +35,7 @@
 
 /*'당신은 졸업이 가능한가요?'*/
 .section__text{
-    margin-top: 180px;
+    margin-top: 80px;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
@@ -65,6 +65,12 @@
     
 }
 
+/* '결과조회' 영역 */
+.GraduateOk__footer{
+    margin-bottom: 80px;
+}
+
+
 /* '결과조회' 버튼 */
 .graduation__check--button{
     background-color: #c8c8f8;
@@ -76,3 +82,4 @@
     display: flex;
     justify-content: center;
 }
+

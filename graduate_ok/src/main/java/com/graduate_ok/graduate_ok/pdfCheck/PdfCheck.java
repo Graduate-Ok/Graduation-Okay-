@@ -37,12 +37,12 @@ public class PdfCheck {
      * 2) 편입생
      */
 
-//    public static void main(String[] args) throws Exception {
-//        HashMap<String, Object> a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
-//
-//        // test 교양 카운트 초기화
-//        //DBConnection.settingKyCount0();
-//    }
+    public static void main(String[] args) throws Exception {
+        HashMap<String, Object> a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
+
+        // test 교양 카운트 초기화
+        //DBConnection.settingKyCount0();
+    }
 
     public static HashMap<String, Object> execute(String fileName) throws Exception {
         HashMap<String, Object> result = new HashMap<>();

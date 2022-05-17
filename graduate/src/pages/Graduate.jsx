@@ -38,7 +38,6 @@ function Graduate() {
                     <br />
                     <div className="GraduateOk__footer">
                         <Link to="GraduateOk" className="graduation__check--button" >결과 조회</Link>
-                        <br /><br />
                     </div>
 
                 </section>

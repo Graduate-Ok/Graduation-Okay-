@@ -8,7 +8,7 @@ public class DBConnection {
     private static final String DB_DRIVER_CLASS = "org.mariadb.jdbc.Driver";
     private static final String DB_URL = "jdbc:mariadb://localhost:3306/graduate_ok";
     private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "0320";
+    private static final String DB_PASSWORD = "alstjr0236";
 
     private static Connection getCon() {
         Connection con = null;

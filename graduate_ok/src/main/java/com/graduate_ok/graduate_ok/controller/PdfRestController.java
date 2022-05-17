@@ -20,7 +20,7 @@ import java.util.Objects;
 @RestController
 public class PdfRestController {
 
-    @PostMapping("/fileUpload")
+    @PostMapping("/Graduate")
     @ApiOperation(value = "PDF 관련 로직 API", notes = "관련 PDF 검사 관련 로직")
     @ApiParam("관련 PDF (중요)")
     @ApiResponses({
@@ -42,6 +42,7 @@ public class PdfRestController {
 
             File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + file.getOriginalFilename());
             file.transferTo(convFile);
+
 
             return PdfCheck.execute(convFile.getAbsolutePath());
 

@@ -56,4 +56,11 @@
         WHERE brd_key = #{key}
     </update>
 
+    <!-- 게시글 검색 -->
+    <select id="selectBoardByKeyword" parameterType="String" resultType="BoardListDto">
+        SELECT brd_key, brd_title, brd_writer, brd_wt_time, brd_lookup
+        FROM board
+        WHERE del_flag = 0 and brd_title = #{keyword} or brd_content = #{keyword}
+    </select>
+
 </mapper>

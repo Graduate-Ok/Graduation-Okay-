@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/board")
+@RequestMapping("/Board")
 @ApiResponses({
         @ApiResponse(code=200, message="ok"),
         @ApiResponse(code=500, message="server error"),
@@ -41,7 +41,7 @@ public class BoardRestController {
      */
     @GetMapping("/{key}")
     @ApiOperation(value = "게시글 조회 API")
-    public List<BoardDto> selectBardByKey(@PathVariable("key") Integer key) {
+    public List<BoardDto> selectBoardByKey(@PathVariable("key") Integer key) {
         boardService.updateLookup(key);
         return boardService.selectBoardByKey(key);
     }
@@ -76,5 +76,13 @@ public class BoardRestController {
     @ApiOperation(value = "게시글 삭제 API")
     public void deleteBoard(@PathVariable("key") Integer key) {
         boardService.deleteBoard(key);
+    }
+
+    /**
+     * 게시글 검색
+     */
+    @GetMapping("/search")
+    public List<BoardListDto> search(@RequestParam("keyword") String keyword) {
+        return boardService.selectBoardByKeyword(keyword);
     }
 }

@@ -59,6 +59,10 @@
     flex-direction: row;
 }
 
+select{
+    cursor: pointer;
+}
+
 /*검색 버튼*/
 .Notice__search--button{
     display: flex;
@@ -215,3 +219,7 @@ ul,li {list-style:none;}
 .tabnav li a:hover,
 .tabnav li a.active{background:#fff; color:#8b2cff; }
 .tabcontent{padding: 20px; height:auto; border:1px solid #ddd; border-top:none;}
+
+.Notice__searach{
+    float:right
+}

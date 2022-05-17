@@ -40,6 +40,7 @@
 /*교양 테이블 th*/
 .grade_table_th{
     vertical-align:middle;
+    border-left: 1px solid #a79d9d;
     border-right :1px solid #a79d9d;
     border-bottom: 1px solid #a79d9d;
 }
@@ -49,6 +50,7 @@
     vertical-align:middle;
     font-size: 0.9rem;
     height: 2rem;
+    border-left: 1px solid #a79d9d;
     border-right :1px solid #a79d9d;
     border-bottom: 1px solid #a79d9d;
 }

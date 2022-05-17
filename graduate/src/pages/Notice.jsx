@@ -48,8 +48,8 @@ function Notice() {
                         {/*TAB*/}
                         <div class="tab">
                             <ul class="tabnav">
-                                <li><a href="#tab01"> 졸업 대체 요건 </a></li>
-                                <li><a href="#tab02"> 졸업가능 이용 방법 </a></li>
+                                <li><a href="#tab01"> 공지 </a></li>
+                                <li><a href="#tab02"> 안내 </a></li>
                             </ul>
 
                             <div class="tabcontent">

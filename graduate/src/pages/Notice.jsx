@@ -35,14 +35,7 @@ function Notice() {
 
                         <div className="Notice__navbar">
                             <div></div>
-                            <div className="Notice__search">
-                                <select>
-                                    <option value="title">제목</option>
-                                    <option value="content">내용</option>
-                                </select>
-                                <input type="text" placeholder="검색어를 입력하세요"></input>
-                                <div className="Notice__search--button">검 색</div>
-                            </div>
+
                         </div>
 
                         {/*TAB*/}
@@ -51,6 +44,14 @@ function Notice() {
                                 <li><a href="#tab01"> 공지 </a></li>
                                 <li><a href="#tab02"> 안내 </a></li>
                             </ul>
+                            <div className="Notice__search">
+                                    <select>
+                                        <option value="title">제목</option>
+                                        <option value="content">내용</option>
+                                    </select>
+                                    <input type="text" placeholder="검색어를 입력하세요"></input>
+                                    <div className="Notice__search--button">검 색</div>
+                                </div>
 
                             <div class="tabcontent">
                                 {/*tab 1*/}
@@ -98,32 +99,32 @@ function Notice() {
 
 
 
-                    
+
                                 </div></div>
                             <div id="tab02">{/*tab 2 내용*/}</div>
 
 
 
-                            
+
                             <div className="Notice__page" id="page-button">
-                                        <div className="Notice__page--button">이전</div>
-                                        <div className="Notice__page--button">1</div>
-                                        <div className="Notice__page--button">2</div>
-                                        <div className="Notice__page--button">3</div>
-                                        <div className="Notice__page--button">4</div>
-                                        <div className="Notice__page--button">5</div>
-                                        <div className="Notice__page--button">6</div>
-                                        <div className="Notice__page--button">7</div>
-                                        <div className="Notice__page--button">8</div>
-                                        <div className="Notice__page--button">9</div>
-                                        <div className="Notice__page--button">다음</div>
-                                    </div>
+                                <div className="Notice__page--button">이전</div>
+                                <div className="Notice__page--button">1</div>
+                                <div className="Notice__page--button">2</div>
+                                <div className="Notice__page--button">3</div>
+                                <div className="Notice__page--button">4</div>
+                                <div className="Notice__page--button">5</div>
+                                <div className="Notice__page--button">6</div>
+                                <div className="Notice__page--button">7</div>
+                                <div className="Notice__page--button">8</div>
+                                <div className="Notice__page--button">9</div>
+                                <div className="Notice__page--button">다음</div>
+                            </div>
+                        </div>
                     </div>
+
+
                 </div>
-
-
-            </div>
-        </main>
+            </main>
         </>
     );
 }

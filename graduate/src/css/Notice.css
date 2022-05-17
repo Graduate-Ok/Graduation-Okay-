@@ -39,10 +39,12 @@
     width: 100%;
 }
 
+/*공지사항*/
 .Notice__header{
     font-size: large;
 }
 
+/*검색 줄*/
 .Notice__navbar{
     margin-top: 15px;
     margin-bottom: 15px;
@@ -51,11 +53,13 @@
     justify-content: space-between;
 }
 
+/*검색*/
 .Notice__search{
     display: flex;
     flex-direction: row;
 }
 
+/*검색 버튼*/
 .Notice__search--button{
     display: flex;
     align-items: center;
@@ -65,12 +69,14 @@
     background-color: #8F8DE7;   
 }
 
+/*검색 버튼 클릭 시 효과*/
 .Notice__search--button:hover,
 .Notice__footer--button:hover{
     opacity: 80%;
     cursor : pointer;
 }
 
+/* 항목 */
 .Notice__content--title{
     display: flex;
     border-top: 1px solid #000;
@@ -78,13 +84,15 @@
     background-color : #d6d6f5;
 }
 
+/* 내용 입력 부분(표 2번째 줄 부터) */
 .Notice__content--content{
     display: flex;
     border-bottom: 1px solid #b2bec3;
 }
 
-
+/*번호, 카테고리, 제목, 날짜*/
 .Notice__content--number,
+.Notice__content--category,
 .Notice__content--name,
 .Notice__content--date{
     margin-top: 15px;
@@ -92,21 +100,28 @@
 }
 
 
-
+/*번호*/
 .Notice__content--number{
     width: 8%;
 }
 
-.Notice__content--name{
-    cursor : pointer;
-    width : 75%;
+/*카테고리*/
+.Notice__content--category{
+    width: 8%;
 }
 
+/*제목*/
+.Notice__content--name{
+    cursor : pointer;
+    width : 73%;
+}
+
+/*날짜*/
 .Notice__content--date{
     width: 13%;
 }
 
-
+/* 제목 click시 나타나는 내용 부분 */
 .Notice__content--detail{
     background-color: #b2bec335;
     letter-spacing: 0px;
@@ -115,9 +130,7 @@
 
 
 
-
-
-.Notice__footer{
+/* .Notice__footer{
     display: flex;
     height: 28px;
     justify-content: flex-end;
@@ -132,8 +145,9 @@
     align-items: center;
     border-radius: 10px;
     width: 80px;
-}
+} */
 
+/*페이지 수 버튼 페이지*/
 .Notice__page{
     display: flex;
     width: 100%;
@@ -141,6 +155,7 @@
     margin-top: 10%;
 }
 
+/*페이지 수 버튼*/
 .Notice__page--button{
     display: flex;
     justify-content: center;
@@ -186,3 +201,17 @@
     margin-top: 3%;
     height: 70%;
 }
+
+/*tab*/
+ul,li {list-style:none;}
+
+.tab{float:left;}
+.tabnav{font-size:0; border:1px solid #ddd; float:left }
+.tabnav li{display: inline-block;  height:46px; text-align:center; border-right:1px solid rgb(221, 221, 221);}
+.tabnav li a:before{content:""; position:absolute; left:0; top:0px; width:100%; height:3px; }
+.tabnav li a.active:before{background:#8b2cff;}
+.tabnav li a.active{border-bottom:1px solid #fff;}
+.tabnav li a{ position:relative; display:block; background: #f8f8f8; color: #000; padding:0 30px; line-height:46px; text-decoration:none; font-size:16px;}
+.tabnav li a:hover,
+.tabnav li a.active{background:#fff; color:#8b2cff; }
+.tabcontent{padding: 20px; height:auto; border:1px solid #ddd; border-top:none;}

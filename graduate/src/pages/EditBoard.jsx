@@ -1,5 +1,5 @@
 import { Link} from 'react-router-dom';
-import '../css/Board.css';
+import React from 'react';
 
 // 글쓰기 페이지  
 // localhost:3000/EditBoard

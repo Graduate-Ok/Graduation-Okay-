@@ -10,6 +10,7 @@
     font-display: swap;
 }
 
+/*section : 점선 안쪽 부분*/
 .section{ 
     font-family: 'JejuGothic';
     font-weight: lighter;
@@ -25,12 +26,14 @@
     height: auto !important;
 }
 
+
 .section__button{
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
+/*'당신은 졸업이 가능한가요?'*/
 .section__text{
     margin-top: 180px;
     margin-bottom: 20px;
@@ -39,6 +42,7 @@
     text-align: center;
 }
 
+/*pdf 업로드 버튼*/
 .upload__button{
     padding: 6px 25px;
     background-color:#c8c8f8;
@@ -47,6 +51,7 @@
     cursor: pointer;
   }
 
+  /*pdf 위치 설명*/
   .pdf__position
 {
     background-color: #e5e5fdba;
@@ -60,6 +65,7 @@
     
 }
 
+/* '결과조회' 버튼 */
 .graduation__check--button{
     background-color: #c8c8f8;
     width: 250px;

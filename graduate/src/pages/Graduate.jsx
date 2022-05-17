@@ -21,7 +21,7 @@ function Graduate() {
                         당신은 졸업이 가능한가요 ?
                     </div>
                     <div className="section__button">
-                        <label className="upload__button" for="input-file">학업성적확인서 PDF 업로드 </label>
+                        <label className="upload__button" for="input-file" >학업성적확인서 PDF 업로드 </label>
                         <br /> <input type="file" accept='.pdf' id='input-file' style={{ display: "none" }} />
                     </div>
 
@@ -37,7 +37,7 @@ function Graduate() {
                     </div>
                     <br />
                     <div className="GraduateOk__footer">
-                        <Link to="GraduateOk" className="graduation__check--button">결과 조회</Link>
+                        <Link to="GraduateOk" className="graduation__check--button" >결과 조회</Link>
                         <br /><br />
                     </div>
 

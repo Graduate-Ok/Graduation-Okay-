@@ -17,7 +17,6 @@ function ContentsPage(){
         console.log(comp);
     }
 
-
     return (
         <>
         <nav className = "navbar">
@@ -38,7 +37,7 @@ function ContentsPage(){
         {
            current === "Mainpage" ? <Mainpage/> : current === "Notice" ? <Notice/> : current === "Graduate" ? <Graduate/> : current ==="KyRecommend" ? <KyRecommend/> : <Board/>
         }
-        
+       
         </>
     );
 }

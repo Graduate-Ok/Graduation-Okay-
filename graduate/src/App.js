@@ -12,7 +12,7 @@ import GraduateOk from './pages/GraduateOk';
 
 
 const App = () => {
-  
+ 
 
 
   return (
@@ -25,6 +25,7 @@ const App = () => {
               <Route path = "GraduateOk" exact element = {<GraduateOk/>}/>
             </Routes>
             <Footer/>
+            
     </React.Fragment>
     );
 }

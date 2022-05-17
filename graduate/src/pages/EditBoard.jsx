@@ -1,10 +1,30 @@
 import { Link} from 'react-router-dom';
 import React from 'react';
+import {useEffect,useState} from 'react';
+import axios from 'axios';
 
 // 글쓰기 페이지  
 // localhost:3000/EditBoard
 
 function EditBoard(){
+
+    const [testStr, setTestStr ] = useState('');
+
+    function callback(str){
+        setTestStr(str);
+    }
+
+    useEffect(
+        () => {
+            axios({
+                url : '/EditBoard',
+                method : 'GET'
+            }).then((res) => {
+                callback(res.data);
+            })
+        }, []
+    );
+
     return (
         <> 
             <main>
@@ -27,6 +47,9 @@ function EditBoard(){
                             </div>
                         </form>
                     </div>
+                    <ul>
+                        {testStr}
+                    </ul>
                 </div>
             </main>
         </>

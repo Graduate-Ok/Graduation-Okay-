@@ -4,6 +4,32 @@ import '../css/Board.css';
 
 // 게시판 페이지
 
+// axios 연결
+// import {useEffect,useState} from 'react';
+// import axios from 'axios';
+
+// const [testStr, setTestStr ] = useState('');
+
+//     function callback(str){
+//         setTestStr(str);
+//     }
+
+//     useEffect(
+//         () => {
+//             axios({
+//                 url : '/EditBoard',
+//                 method : 'GET'
+//             }).then((res) => {
+//                 callback(res.data);
+//             })
+//         }, []
+//     );
+
+// return
+// <ul>
+// {testStr}
+// </ul>
+
 function Board() {
 
     return (

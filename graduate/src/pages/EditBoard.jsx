@@ -8,22 +8,7 @@ import axios from 'axios';
 
 function EditBoard(){
 
-    const [testStr, setTestStr ] = useState('');
-
-    function callback(str){
-        setTestStr(str);
-    }
-
-    useEffect(
-        () => {
-            axios({
-                url : '/EditBoard',
-                method : 'GET'
-            }).then((res) => {
-                callback(res.data);
-            })
-        }, []
-    );
+    
 
     return (
         <> 
@@ -47,9 +32,7 @@ function EditBoard(){
                             </div>
                         </form>
                     </div>
-                    <ul>
-                        {testStr}
-                    </ul>
+                  
                 </div>
             </main>
         </>

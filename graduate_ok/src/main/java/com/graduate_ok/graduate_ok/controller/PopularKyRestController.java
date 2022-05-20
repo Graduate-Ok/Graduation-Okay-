@@ -15,7 +15,7 @@ import java.util.List;
 public class PopularKyRestController {
     private final PopularKyServiceImpl popularKyService;
 
-    @GetMapping
+    @GetMapping("/list")
     public List<KyListDto> selectKyList(){
         return popularKyService.selectKyList();
     }

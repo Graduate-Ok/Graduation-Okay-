@@ -14,7 +14,6 @@ import Board from './pages/Board';
 import KyRecommend from './pages/KyRecommend';
 
 
-
 const App = () => {
  
 

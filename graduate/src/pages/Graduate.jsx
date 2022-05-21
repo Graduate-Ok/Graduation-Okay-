@@ -1,6 +1,6 @@
 import '../css/Graduate.css';
 import '../css/ContentsPage.css';
-import { Link, useLinkClickHandler } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // input type 커스터 마이징 -> https://helloinyong.tistory.com/275
 /* 

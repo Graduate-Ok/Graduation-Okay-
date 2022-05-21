@@ -1,5 +1,9 @@
 import '../css/ContentsPage.css';
 import '../css/Notice.css'
+import {useEffect, useState} from 'react';
+import axios from 'axios';
+
+import NoticeRow from "../components/NoticeRow"
 
 
 // 공지사항
@@ -20,7 +24,20 @@ import '../css/Notice.css'
 
 
 
-function Notice() {
+const Notice = () => {
+
+   
+
+    const[inputData, setInputData] = useState([]);
+
+    useEffect(() =>{
+        const fetchData = async() => {
+            const response = await axios.get('http://localhost:8089/Notice/list');
+            setInputData(response.data);
+
+        }
+        fetchData();  
+    }, [])
 
     return (
         <>
@@ -32,6 +49,7 @@ function Notice() {
                             <p>공지사항</p>
                         </div>
 
+                        
 
                         <div className="Notice__navbar">
                             <div></div>
@@ -64,44 +82,19 @@ function Notice() {
                                     </div>
 
 
-                                    <div className="Notice__content--content">
-                                        <div className="Notice__content--number">3</div>
-                                        <div className="Notice__content--category">공지</div>
-                                        <div className="Notice__content--name"><details className='detail'>
-                                            <summary>컴퓨터공학부 졸업 대체 요건</summary>
-                                            <p className='context'><br />
-                                                <div className='Notice__content--detail'><br /> 컴퓨터공학부 학생들은 졸업논문을 대체로 작성한다. <br />
-                                                    논문을 대체하기 위해서는 ipp,일학습병행제가 이루어지고 있다. <br /><br /></div></p>
-                                        </details> </div>
-                                        <div className="Notice__content--date">2022-02-01 12:31</div>
-                                    </div>
-
-                                    <div className="Notice__content--content">
-                                        <div className="Notice__content--number">2</div>
-                                        <div className="Notice__content--category">안내</div>
-                                        <div className="Notice__content--name"><details className='detail'>
-                                            <summary>글로벌 비지니스 학부 졸업 대체 요건</summary>
-                                            <p className='context'><br />
-                                                <div className='Notice__content--detail'><br /> 졸업대체 : 토익 750 이상 <br /><br /></div></p>
-                                        </details> </div>
-                                        <div className="Notice__content--date">2022-04-01 02:31</div>
-                                    </div>
-                                    <div className="Notice__content--content">
-                                        <div className="Notice__content--number">1</div>
-                                        <div className="Notice__content--category">공지</div>
-                                        <div className="Notice__content--name"><details className='detail'>
-                                            <summary>공공인재학부 졸업 대체 요건</summary>
-                                            <p className='context'><br />
-                                                <div className='Notice__content--detail'><br /> 생긴지 얼마 안된 신설 학과랍니다 <br /><br /></div></p>
-                                        </details> </div>
-                                        <div className="Notice__content--date">2022-05-14 10:24</div>
-                                    </div>
+                                    {
+                                        inputData.map((e)=>{
+                                            return <NoticeRow Notice={e} />
+                                        })
+                                    }
 
 
 
 
-                                </div></div>
+                                </div>
+                            </div>
                             <div id="tab02">{/*tab 2 내용*/}</div>
+                            
 
 
 
@@ -121,7 +114,6 @@ function Notice() {
                             </div>
                         </div>
                     </div>
-
 
                 </div>
             </main>

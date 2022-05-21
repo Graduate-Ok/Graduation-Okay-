@@ -16,7 +16,7 @@ function EditBoard(){
                 <div className = "Board">
                     <div className = "BoardSize">
                         <div className = "Board__header">
-                            <p>정보공유 게시판</p>
+                            <p> 정보공유 게시판</p>
                         </div>
 
                         <form name = "writing" method = "post" >

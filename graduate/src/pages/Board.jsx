@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import '../css/Board.css';
 
-// 게시판 페이지
+//  정보 공유 게시판 페이지
 
 // axios 연결
 // import {useEffect,useState} from 'react';
@@ -29,6 +29,8 @@ import '../css/Board.css';
 // <ul>
 // {testStr}
 // </ul>
+
+
 
 function Board() {
 
@@ -61,7 +63,7 @@ function Board() {
                         </div>
                         <div className="Board__content--content">
                             <div className="Board__content--number">3</div>
-                            <div className="Board__content--name">세번째 글입니다</div>
+                            <Link to="ViewBoard" className="Board__content--name">세번째 글입니다</Link>
                             <div className="Board__content--writer">배성규</div>
                             <div className="Board__content--date">2022-12-31 12:48</div>
                             <div className="Board__content--hits">18</div>

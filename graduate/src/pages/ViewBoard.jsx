@@ -19,16 +19,14 @@ function ViewBoard() {
                             <span>&nbsp; 조회수 :</span> <span className='BRD_LOOKUP'> 300 </span>
                         </div>
 
-
-
-                        <div className='view--container'>
-                            <div classname="Board__content--BRD_TITLE"> 제목 </div>  <br />
-                            <div classname="Board__content--BRD_CONTENT"> 내용은 여기에 </div>
+                        <div className='Board__viewcontainer'>
+                            {/* 제목 , 내용 여기에 넣어주기 */}
+                            <div id="BRD_title"> 제목 : </div> <br />
+                            <div id="BRD_content"> 내용은 여기에 </div>
                         </div>
 
-
-
                         <div className="Board__footer">
+                            {/* 수정 부분으로 넘어가도록 */}
                             <Link to="/" className="Board__update--button">수정</Link>
                             <Link to="/Board" className="Board__delete--button">삭제</Link>
                         </div>

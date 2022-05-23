@@ -55,17 +55,14 @@
     border-bottom: 1px solid #a79d9d;
 }
 
-
-
 /*순위*/
 .rank_width{
-    width: 8%;
+    width: 12%;
 }
-
 
 /*과목명*/
 .name_width{
-    width: 30%;
+    width: 35%;
 }
 
 /*교양 인재상*/

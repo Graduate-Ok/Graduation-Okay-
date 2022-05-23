@@ -18,7 +18,7 @@ public class NoticeRestController{
     /*
     *  공지사항 조회
     * */
-    @GetMapping("/list")
+    @GetMapping("/")
     public List<NoticeListDto> selectNoticeList() {
         return noticeService.selectNoticeList();
     }

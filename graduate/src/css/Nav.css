@@ -36,7 +36,7 @@
 
 } */
 
-.navbar > div:after{
+.navbar__nav:after{
     display: block;
     content: '';
     border-bottom: solid 2px #000;
@@ -44,11 +44,11 @@
     transition: transform 200ms ease-in-out;
     
 }
-.navbar > div:hover::after{
+.navbar__nav:hover::after{
     transform: scaleX(1);
     
 }
-.navbar > div:hover{
+.navbar__nav:hover{
     cursor : pointer;
 
 }

@@ -32,7 +32,7 @@ const Notice = () => {
 
     useEffect(() =>{
         const fetchData = async() => {
-            const response = await axios.get('http://localhost:8089/Notice/list');
+            const response = await axios.get('http://localhost:8089/Notice/');
             setInputData(response.data);
 
         }

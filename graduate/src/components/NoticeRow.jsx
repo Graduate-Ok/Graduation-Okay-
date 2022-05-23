@@ -11,7 +11,7 @@ const NoticeRow = ({Notice}) => {
                 <div className='Notice__content--detail'><br /> {Notice.notiContent} <br />
                     <br /><br /></div></p>
         </details> </div>
-        <div className="Notice__content--date">{Notice.notiWtTime}</div>
+        <div className="Notice__content--date">{Notice.notiWtTime.substring(0, 10)}</div>
     </div>
     )
 }

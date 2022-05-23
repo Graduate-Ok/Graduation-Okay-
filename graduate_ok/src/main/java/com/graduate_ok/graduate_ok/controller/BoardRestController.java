@@ -28,7 +28,7 @@ public class BoardRestController {
      * 게시글 목록 조회
      * @return
      */
-    @GetMapping("/list")
+    @GetMapping("/")
     @ApiOperation(value = "게시판 목록 조회 API")
     public List<BoardListDto> selectBoardList() {
         return boardService.selectBoardList();

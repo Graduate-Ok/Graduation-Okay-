@@ -95,10 +95,6 @@ const Notice = () => {
                             </div>
                             <div id="tab02">{/*tab 2 내용*/}</div>
                             
-
-
-
-
                             <div className="Notice__page" id="page-button">
                                 <div className="Notice__page--button">이전</div>
                                 <div className="Notice__page--button">1</div>

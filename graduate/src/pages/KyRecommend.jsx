@@ -1,8 +1,26 @@
 import react from 'react';
 import '../css/KyRecommend.css';
+import axios from 'axios';
+import {useEffect, useState} from 'react';
+import KyRecommendRow from "../components/KyRecommendRow"
+
 
 // 교양과목을 추천해주는 페이지 
 function KyRecommend() {
+
+
+    const[inputData, setInputData] = useState([]);
+
+    useEffect(() =>{
+        const fetchData = async() => {
+            const response = await axios.get('http://localhost:8080/KyRecommend/');
+            setInputData(response.data);
+
+        }
+        fetchData();  
+    }, [])
+
+
     return (
         <>
             <main>
@@ -10,7 +28,7 @@ function KyRecommend() {
                     <div className='title'>✨인기 교양 추천✨</div>
                     <br />
                     <div>
-                        <table className='KyTable'>
+                         <table className='KyTable'>
                             <tr className='menu'>
                                 <th className="grade_table_th rank_width" >순위</th>
                                 <th className="grade_table_th name_width" >과목명</th>
@@ -20,7 +38,13 @@ function KyRecommend() {
                                 <th className="grade_table_th num_width" >수강횟수</th>
                             </tr>
 
-                            <tr>
+                            {
+                                        inputData.map((e)=>{
+                                            return <KyRecommendRow KyRecommend={e} />
+                                        })
+                                    }
+
+                           {/* <tr>
                                 <td className="grade_table_td rank_width">1</td>
                                 <td className="grade_table_td name_width">오르간연주법1</td>
                                 <td className="grade_table_td ky_width">소통하는 지성인</td>
@@ -54,9 +78,9 @@ function KyRecommend() {
                                 <td className="grade_table_td core_width">지식정보</td>
                                 <td className="grade_table_th gradenum_width" >3</td>
                                 <td className="grade_table_td num_width">800</td>
-                            </tr>
+                            </tr>*/}
 
-                        </table>
+                        </table> 
                     </div>
 
                 </div>

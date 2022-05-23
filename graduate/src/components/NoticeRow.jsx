@@ -16,5 +16,4 @@ const NoticeRow = ({Notice}) => {
     )
 }
 
-
 export default NoticeRow;

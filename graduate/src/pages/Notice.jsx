@@ -81,7 +81,6 @@ const Notice = () => {
                                         <div className="Notice__content--date">날짜</div>
                                     </div>
 
-
                                     {
                                         inputData.map((e)=>{
                                             return <NoticeRow Notice={e} />

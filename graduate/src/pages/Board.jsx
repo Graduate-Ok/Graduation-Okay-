@@ -1,38 +1,28 @@
-
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../css/Board.css';
 
-//  정보 공유 게시판 페이지
-
-// axios 연결
-// import {useEffect,useState} from 'react';
-// import axios from 'axios';
-
-// const [testStr, setTestStr ] = useState('');
-
-//     function callback(str){
-//         setTestStr(str);
-//     }
-
-//     useEffect(
-//         () => {
-//             axios({
-//                 url : '/EditBoard',
-//                 method : 'GET'
-//             }).then((res) => {
-//                 callback(res.data);
-//             })
-//         }, []
-//     );
-
-// return
-// <ul>
-// {testStr}
-// </ul>
+import BoardRow from '../components/BoardRow';
 
 
 
-function Board() {
+
+
+const Board = () => {
+    
+    const[inputData, setInputData] = useState([]);
+
+    useEffect(() =>{
+        const fetchData = async() => {
+            const response = await axios.get('http://localhost:8089/Board/');
+            setInputData(response.data);
+
+        }
+        fetchData();  
+    }, [])
+    
+    
 
     return (
         <>
@@ -60,28 +50,15 @@ function Board() {
                             <div className="Board__content--writer">작성자</div>
                             <div className="Board__content--date">날짜</div>
                             <div className="Board__content--hits">조회수</div>
+                        
                         </div>
-                        <div className="Board__content--content">
-                            <div className="Board__content--number">3</div>
-                            <Link to="ViewBoard" className="Board__content--name">세번째 글입니다</Link>
-                            <div className="Board__content--writer">배성규</div>
-                            <div className="Board__content--date">2022-12-31 12:48</div>
-                            <div className="Board__content--hits">18</div>
-                        </div>
-                        <div className="Board__content--content">
-                            <div className="Board__content--number">2</div>
-                            <div className="Board__content--name">두번째 글입니다</div>
-                            <div className="Board__content--writer">배성규</div>
-                            <div className="Board__content--date">2022-12-31 11:31</div>
-                            <div className="Board__content--hits">1</div>
-                        </div>
-                        <div className="Board__content--content">
-                            <div className="Board__content--number">1</div>
-                            <div className="Board__content--name">첫번째 글입니다</div>
-                            <div className="Board__content--writer">배성규</div>
-                            <div className="Board__content--date">2022-12-31 10:31</div>
-                            <div className="Board__content--hits">7</div>
-                        </div>
+                        {
+                                inputData.map((e)=>{
+                                    return <BoardRow Board={e} />
+                                })
+                        }
+
+                        
                         <div className="Board__footer">
                             <Link to="EditBoard" className="Board__footer--button">글쓰기</Link>
 

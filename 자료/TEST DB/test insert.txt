@@ -1,0 +1,10 @@
+NOTICE TABLE --------------------------------------------------------------------------------------------------------
+
+INSERT INTO NOTICE( noti_category, noti_title, noti_content) VALUES ( '공지', 'TEST 공지', '테스트 공지입니다')
+INSERT INTO NOTICE( noti_category, noti_title, noti_content) VALUES ( '안내', 'TEST 안내', '테스트 안내입니다') 
+
+BOARD TABLE ---------------------------------------------------------------------------------------------------------
+
+INSERT INTO BOARD( BRD_WRITER, BRD_PASSWORD, BRD_TITLE, BRD_CONTENT) VALUES ( '배성규', '1234a', '테스트 제목1', '테스트 내용1')
+INSERT INTO BOARD( BRD_WRITER, BRD_PASSWORD, BRD_TITLE, BRD_CONTENT) VALUES ( '배성규', '1234a', '테스트 제목2', '테스트 내용2')
+

@@ -6,7 +6,7 @@
     <select id="selectKyList" resultType="KyListDto">
         SELECT ky_name1, ky_type, ky_core, ky_credit, ky_count
         FROM ky_course
-        WHERE del_flag = 0 and ky_required = 0
+        WHERE del_flag = 0 AND ky_required = 0 AND ky_name1 NOT LIKE '%기독교%' AND ky_name1 NOT LIKE '%성서%'
         ORDER BY ky_count DESC
     </select>
 

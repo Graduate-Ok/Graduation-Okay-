@@ -18,6 +18,7 @@
     max-height: 500px;
     overflow-y: scroll;
     text-align: center;
+
 }
 
 .main {
@@ -43,6 +44,7 @@
     margin: 0 auto;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    counter-reset : numbering;
 }
 
 .menu {
@@ -98,4 +100,11 @@
 /*수강횟수*/
 .num_width {
     width: 12%
+}
+
+
+
+.KyTable .KyRecommendWrapper .rank_width:before{
+    counter-increment : numbering; 
+    content : counter(numbering);
 }

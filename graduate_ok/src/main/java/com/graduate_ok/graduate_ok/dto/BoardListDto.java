@@ -14,6 +14,7 @@ public class BoardListDto {
     private Integer brdKey;
     private String brdWriter;
     private String brdTitle;
+    private String brdContent;
     private Timestamp brdWtTime;
     private Integer brdLookup;
 }

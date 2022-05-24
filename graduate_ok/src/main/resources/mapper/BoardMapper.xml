@@ -4,7 +4,7 @@
 <mapper namespace="com.graduate_ok.graduate_ok.mapper.BoardMapper">
     <!-- 게시글 목록 조회 -->
     <select id="selectBoardList" resultType="BoardListDto">
-        SELECT brd_key, brd_title, brd_writer, brd_wt_time, brd_lookup
+        SELECT brd_key, brd_title, brd_writer, brd_wt_time, brd_lookup, brd_content
         FROM board
         WHERE del_flag = 0
     </select>

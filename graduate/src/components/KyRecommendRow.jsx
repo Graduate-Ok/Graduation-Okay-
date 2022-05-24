@@ -2,8 +2,8 @@ import React from 'react';
 
 const KyRecommendRow = ({KyRecommend}) => {
     return(
-                            
-                            <tr>
+           
+                            <tr className='KyRecommendWrapper'>
                                 {/* 숫자 1부터 정렬 */}
                                 <td className="grade_table_td rank_width"></td>
                                 <td className="grade_table_td name_width">{KyRecommend.kyName1}</td>
@@ -12,7 +12,6 @@ const KyRecommendRow = ({KyRecommend}) => {
                                 <td className="grade_table_th gradenum_width" >{KyRecommend.kyCredit}</td>
                                 <td className="grade_table_td num_width">{KyRecommend.kyCount}</td>
                             </tr>
-
     )
 }
 

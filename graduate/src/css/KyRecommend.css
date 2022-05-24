@@ -11,76 +11,90 @@
 }
 
 
-.main{
+
+.KyTableWrapper {
+    display: flex;
+    width: 100%;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.main {
+    display: flex;
+    width: 100%;
     height: 500px;
     font-family: 'JejuGothic';
-    text-align: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .title {
-   font-size: large;
+    display: flex;
+    width: 100%;
+    font-size: large;
+    align-items: center;
+    justify-content: center;
 }
 
 /*교양 테이블*/
-.KyTable{
+.KyTable {
     width: 90%;
-    text-align: center;
-    margin:0 auto;
-    margin-top:1rem;
-    margin-bottom:1rem;  
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
-.menu{
+.menu {
     text-align: center;
     font-size: 1rem;
     height: 2.5rem;
-    background-color: #d6d6f5; 
+    background-color: #d6d6f5;
 }
 
 /*교양 테이블 th*/
-.grade_table_th{
-    vertical-align:middle;
+.grade_table_th {
+    vertical-align: middle;
     border-left: 1px solid #a79d9d;
-    border-right :1px solid #a79d9d;
+    border-right: 1px solid #a79d9d;
     border-bottom: 1px solid #a79d9d;
 }
 
 /*교양 테이블 td*/
-.grade_table_td{
-    vertical-align:middle;
+.grade_table_td {
+    vertical-align: middle;
     font-size: 0.9rem;
     height: 2rem;
     border-left: 1px solid #a79d9d;
-    border-right :1px solid #a79d9d;
+    border-right: 1px solid #a79d9d;
     border-bottom: 1px solid #a79d9d;
 }
 
 /*순위*/
-.rank_width{
+.rank_width {
     width: 12%;
 }
 
 /*과목명*/
-.name_width{
+.name_width {
     width: 35%;
 }
 
 /*교양 인재상*/
-.ky_width{
+.ky_width {
     width: 16%;
 }
 
 /*핵심 역량*/
-.core_width{
+.core_width {
     width: 16%;
 }
 
 /*학점*/
-.gradenum_width{
+.gradenum_width {
     width: 8%;
 }
 
 /*수강횟수*/
-.num_width{
-    width:12%
+.num_width {
+    width: 12%
 }

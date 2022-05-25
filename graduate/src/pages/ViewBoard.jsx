@@ -13,7 +13,7 @@ function ViewBoard() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get('http://localhost:8080/Board/');
+            const response = await axios.get('http://localhost:8089/Board/');
             setInputData(response.data);
 
         }
@@ -36,18 +36,6 @@ function ViewBoard() {
                                 return <ViewBoardRow ViewBoard={e} />
                             })
                         }
-
-
-                        {/* <div className="Board__info">
-                            <span>작성자 :</span> <span className='BRD_WRITER'>김지윤 </span>
-                            <span>&nbsp;작성일 :</span> <span className='BRD_WT_TIME'>2022.03.21 </span>
-                            <span>&nbsp; 조회수 :</span> <span className='BRD_LOOKUP'> 300 </span>
-                        </div>
-
-                        <div className='Board__viewcontainer'>
-                            <div id="BRD_title"> 제목 </div> <br />
-                            <div id="BRD_content"> 내용 </div>
-                        </div>  */}
 
                         <div className="Board__footer">
                             {/* 수정 부분으로 넘어가도록 */}

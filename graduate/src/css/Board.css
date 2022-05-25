@@ -10,6 +10,11 @@
     font-display: swap;
 }
 
+p{
+    color: #7978cd;
+}
+
+
 .Board{
     display: flex;
     align-items: center;
@@ -157,38 +162,72 @@
     cursor : pointer;
 }
 
-/*EditBoard*/
+/*---------------EditBoard----------------*/
 
 .Board__writecontainer{
     display: flex;
-    margin-top: 5%;
-    background-color: #E5E7EB;
+    margin-top: 2%;
+    background-color: #eceff5d8;
+    border:solid 1.2px #c5c8ccd8 ;
     width: 100%;
-    height: 70%;
+    height: 90%;
     border-radius: 20px;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
 }
 
-
-.Board__write--title,
-.Board__write--content{
+/*정보 공유 게시판*/
+.Board__writecontainer--head{
     display: flex;
-    width: 95%;
-    background-color: white;
-    border-radius: 15px;
-}
-
-.Board__write--title{
-    margin-top: 2%;
-    height: 5%;
-   
-}
-
-.Board__write--content{
+    font-size:x-large;
     margin-top: 3%;
-    height: 70%;
+    margin-bottom: 3%;
+    margin-left: 5%;
 }
+
+/*제목, id, pw*/
+.Board__writecontainer--info{
+    display: flex;   
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+    margin-left: 5%;
+    
+}
+
+.Board__writecontainer--detail{
+    display: flex;   
+    align-items: left;
+    justify-content: left;
+    margin-top: 0.5%;
+    margin-bottom: 1%;
+    border-radius: 5px;
+}
+
+.Board__writecontainer--content{
+    display: flex;
+    background-color: white;
+    margin-right: 5%;
+    width: 80%;
+    height: 100px;
+    border-radius: 5px;
+    max-height: 200px;
+}
+
+
+/*이 부분은 오빠가 만들어놓은거*/
+.Board__writecontainer--title,
+.Board__writecontainer--id,
+.Board__writecontainer--password{
+    display: flex;
+    background-color: white;
+    border-radius: 5px;
+    width: 30%;
+    height: 30px;
+    border-color: #b2bec3;
+}
+
 
 
 

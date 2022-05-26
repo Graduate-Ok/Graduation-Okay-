@@ -58,7 +58,7 @@ public class BoardRestController {
 
     /**
      * 게시글 수정
-     * @param key
+     * @param key key
      * @param boardUpdateDto
      */
     @PutMapping("/{key}")

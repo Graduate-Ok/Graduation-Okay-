@@ -37,12 +37,12 @@ public class PdfCheck {
      * 2) 편입생
      */
 
-    public static void main(String[] args) throws Exception {
-        HashMap<String, Object> a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
-
-        // test 교양 카운트 초기화
-        //DBConnection.settingKyCount0();
-    }
+//    public static void main(String[] args) throws Exception {
+//        HashMap<String, Object> a = execute("C:\\Users\\수빈\\Desktop\\um72_0272003_r01.pdf");
+//
+//        // test 교양 카운트 초기화
+//        //DBConnection.settingKyCount0();
+//    }
 
     public static HashMap<String, Object> execute(String fileName) throws Exception {
         HashMap<String, Object> result = new HashMap<>();
@@ -229,7 +229,7 @@ public class PdfCheck {
 
 
         // test
-        System.out.println("\n===부족한 요건 출력===\n" + failure.toString());
+        System.out.println("\n===부족한 요건 출력===\n" + failure);
 
 
         // 반환할 데이터 담기
@@ -252,9 +252,8 @@ public class PdfCheck {
         File source = new File(fileName);
         PDDocument pdfDoc = PDDocument.load(source);
         String text = new PDFTextStripper().getText(pdfDoc);
-        String[] pdf = text.split("\n");
 
-        return pdf;
+        return text.split("\n");
     }
 
 
@@ -288,29 +287,29 @@ public class PdfCheck {
             // 16학번 이전 교양 학점 : 35~45학점
             if (kyCredit > 45) {
                 totalCredit -= (kyCredit - 45);
-                failure.append("교양학점 " + (kyCredit - 45) + "학점 초과되어 총 취득학점에서 " + (kyCredit - 45) + "학점 제외 (총 취득학점 : " + totalCredit + "학점)\n");
+                failure.append("교양학점 ").append(kyCredit - 45).append("학점 초과되어 총 취득학점에서 ").append(kyCredit - 45).append("학점 제외 (총 취득학점 : ").append(totalCredit).append("학점)\n");
             }
         } else {
             // 17학번 이후 교양 학점 : 35~49학점
             if (kyCredit > 49) {
                 totalCredit -= (kyCredit - 49);
-                failure.append("교양학점 " + (kyCredit - 49) + "학점 초과되어 총 취득학점에서 " + (kyCredit - 49) + "학점 제외 (총 취득학점 : " + totalCredit + "학점)\n");
+                failure.append("교양학점 ").append(kyCredit - 49).append("학점 초과되어 총 취득학점에서 ").append(kyCredit - 49).append("학점 제외 (총 취득학점 : ").append(totalCredit).append("학점)\n");
             }
         }
 
         // 1. 졸업학점 검사
         if (graduateCredit > totalCredit) {
-            failure.append("졸업학점 " + (graduateCredit - totalCredit) + "학점 미달\n");
+            failure.append("졸업학점 ").append(graduateCredit - totalCredit).append("학점 미달\n");
         }
 
         // 2. 교양학점 검사
         if (kyCredit < 35) {
-            failure.append("교양학점 " + (35 - kyCredit) + "학점 미달\n");
+            failure.append("교양학점 ").append(35 - kyCredit).append("학점 미달\n");
         }
 
         // 3. 전공 최소이수학점 검사
         if (majorMinCredit > majorCredit) {
-            failure.append("전공학점 " + (majorMinCredit - majorCredit) + "학점 미달\n");
+            failure.append("전공학점 ").append(majorMinCredit - majorCredit).append("학점 미달\n");
         }
 
         return failure;
@@ -327,11 +326,10 @@ public class PdfCheck {
         List<String> requiredMajors = DBConnection.getRequiredMajor(studentId, studentMajor);
 
         // 들어야 할 전필과 학생이 들은 전필 비교
-        Collection<String> std = requiredMajor;
-        requiredMajors.removeAll(std);
+        requiredMajors.removeAll(requiredMajor);
 
         for (String str : requiredMajors) {
-            failure.append("전공필수 '" + str + "' 미수강\n");
+            failure.append("전공필수 '").append(str).append("' 미수강\n");
         }
 
         return failure;
@@ -386,7 +384,7 @@ public class PdfCheck {
         }
 
         // 채플 검사
-        if (countCP < 4) failure.append("교양필수 '채플' " + (4 - countCP) + "회 미수강\n");
+        if (countCP < 4) failure.append("교양필수 '채플' ").append(4 - countCP).append("회 미수강\n");
 
         // 기독교 과목 검사
         if (christian < 1) failure.append("교양필수 '기독교 관련 과목' 미수강\n");
@@ -448,18 +446,18 @@ public class PdfCheck {
         }
 
         // 진로와상담 검사
-        if (counseling < 4) failure.append("교양필수 '진로와상담' " + (4 - countCP) + "회 미수강\n");
+        if (counseling < 4) failure.append("교양필수 '진로와상담' ").append(4 - countCP).append("회 미수강\n");
 
         // 비교과 검사
         if (studentId >= 2020) {
             // 20학번 이후 마일리지 300점 이상
             if (mileage < 300) {
-                failure.append("비교과 마일리지 " + (300 - mileage) + "점 미달\n");
+                failure.append("비교과 마일리지 ").append(300 - mileage).append("점 미달\n");
             }
         } else if (studentId >= 2017) {
             // 17학번 이후 비교과 이수 학기 3학기 이상 또는 마일리지 300점 이상
             if (!(mileage >= 300 || nonSubject >= 3)) {
-                failure.append("비교과 이수 학기 " + (3 - nonSubject) + "학기 미이수 또는 비교과 마일리지 " + (300 - mileage) + "점 미달\n");
+                failure.append("비교과 이수 학기 ").append(3 - nonSubject).append("학기 미이수 또는 비교과 마일리지 ").append(300 - mileage).append("점 미달\n");
             }
         }
 
@@ -495,7 +493,7 @@ public class PdfCheck {
             }
 
             if (cores.size() < 1) {
-                failure.append("교양 핵심역량 '" + type + "' 미수강\n");
+                failure.append("교양 핵심역량 '").append(type).append("' 미수강\n");
             }
         }
 
@@ -509,14 +507,14 @@ public class PdfCheck {
     private static StringBuffer checkTalent(int studentId, List<String> allKy) {
         StringBuffer failure = new StringBuffer();
 
-        /**
-         * 테스트해보고 싶으면 아래 if문 주석 처리하고 돌리기!!!
+        /*
+          테스트해보고 싶으면 아래 if문 주석 처리하고 돌리기!!!
          */
         // 2019 학번 아니면 검사 필요없이 비어 있는 스트링버퍼 return
         if (studentId != 2019) return failure;
 
         String[] talentType = {"소통하는지성인", "실천하는평화인", "도전하는창의인"};
-        int creditSum = 0;
+        int creditSum;
 
         for (String type : talentType) {
             creditSum = 0;
@@ -540,7 +538,7 @@ public class PdfCheck {
             }
 
             if (creditSum < 5) {
-                failure.append("교양 인재상 '" + type + "' " + (5 - creditSum) + "학점 미이수\n");
+                failure.append("교양 인재상 '").append(type).append("' ").append(5 - creditSum).append("학점 미이수\n");
             }
         }
 
@@ -556,7 +554,7 @@ public class PdfCheck {
 
         for (String name : allKy) {
             if (DBConnection.updateKyCount(name) == 0) {
-                failure.append("** 교양 [" + name + "] 카운트 실패!\n");
+                failure.append("** 교양 [").append(name).append("] 카운트 실패!\n");
             }
         }
 
@@ -571,7 +569,7 @@ public class PdfCheck {
         StringBuffer failure = new StringBuffer();
 
         if (credit < 21) {
-            failure.append("부전공 " + (21 - credit) + "학점 미달\n");
+            failure.append("부전공 ").append(21 - credit).append("학점 미달\n");
         }
 
         return failure;

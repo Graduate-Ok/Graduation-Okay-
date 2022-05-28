@@ -14,6 +14,7 @@ import Mainpage from './pages/Mainpage';
 import Board from './pages/Board';
 import ViewBoard from './pages/ViewBoard';
 import KyRecommend from './pages/KyRecommend';
+import NotFound from './pages/NotFound';
 
 
 const App = () => {
@@ -33,7 +34,8 @@ const App = () => {
               <Route path = "KyRecommend" exact element = {<KyRecommend/>}/>
               <Route path = "Board" exact element = {<Board/>}/> 
               <Route path = "Board/EditBoard" exact element = {<EditBoard/>}/>
-              <Route path = "Board/ViewBoard" exact element = {<ViewBoard/>}/>
+              <Route path = "Board/:brdKey" exact element = {<ViewBoard/>}/>
+              <Route path = "*" element = {<NotFound/>}/>
             </Routes>
             <Footer/>
             

@@ -1,26 +1,28 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams} from 'react-router-dom';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 // 글보기 페이지  
-// localhost:3000/ViewBoard
+
 import ViewBoardRow from "../components/ViewBoardRow"
 
 
 function ViewBoard() {
-
+    let params = useParams().brdKey;
+    console.log(params);
     const [inputData, setInputData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get('http://localhost:8089/Board/');
+            const response = await axios.get(`http://localhost:8089/Board/${params}`);
             setInputData(response.data);
 
         }
         fetchData();
     }, [])
 
-
+   
+   
     return (
         <>
             <main>
@@ -32,8 +34,10 @@ function ViewBoard() {
 
 
                         {
-                            inputData.map((e) => {
-                                return <ViewBoardRow ViewBoard={e} />
+                           
+                            inputData.map((inputData) => {
+                                console.log(inputData.brdKey);
+                                return <ViewBoardRow ViewBoard={inputData} key = {inputData.brdKey}  />
                             })
                         }
 

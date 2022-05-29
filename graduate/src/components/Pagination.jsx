@@ -1,40 +1,31 @@
 import react, {useEffect, useState } from 'react';
-import axios from 'axios';
 import '../css/Board.css';
 
-const Pagination = ({ limit, currentPage, onPageChange }) =>{
-    const [pageCount, setPageCount] = useState(0);
-    const [pages, setPages] = useState([]);
-
- 
-
-    useEffect(() =>{
-        const fetchData = async() =>{
-            const response = await axios.get('http://localhost:8089/Notice/');
-            const length = response.data.length;
-            const tmpCnt = Math.ceil(length / limit);
-            setPageCount(tmpCnt);
-            const tmpPages = Array.from({length : tmpCnt}, (v,i) => i +1);
-            setPages(tmpPages);
-        }
-    })
-
-    if(pageCount === 1) return null;
+const Pagination = ({postsPerPage , totalPosts, paginate}) =>{
+    
+    const pageNumbers = [];
+     // page 번호 * 10 - 10 (setState 설정하고 호출 )
+    // ,총 글 개수 35개면 35 / 10 => 3.5 => 4페이지 생성된다 
+    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++){
+        pageNumbers.push(i);
+    }
+    
 
     return (
+      
+     
+
         <div className="Board__page">
             <div className="Board__page--button">이전</div>
-            <div className="Board__page--button">1</div>
-            <div className="Board__page--button">2</div>
-            <div className="Board__page--button">3</div>
-            <div className="Board__page--button">4</div>
-            <div className="Board__page--button">5</div>
-            <div className="Board__page--button">6</div>
-            <div className="Board__page--button">7</div>
-            <div className="Board__page--button">8</div>
-            <div className="Board__page--button">9</div>
+            {pageNumbers.map((number) =>(
+                <div className="Board__page--button" onClick = {() => paginate(number)}>{number}</div>
+            ))}
+            
             <div className="Board__page--button">다음</div>
         </div>
+      
+        
+        
     )
 }
 

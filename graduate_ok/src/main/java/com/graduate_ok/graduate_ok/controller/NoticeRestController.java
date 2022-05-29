@@ -3,10 +3,7 @@ package com.graduate_ok.graduate_ok.controller;
 import com.graduate_ok.graduate_ok.dto.NoticeListDto;
 import com.graduate_ok.graduate_ok.service.serviceImpl.NoticeServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,9 +15,9 @@ public class NoticeRestController{
     /*
     *  공지사항 조회
     * */
-    @GetMapping("/")
-    public List<NoticeListDto> selectNoticeList() {
-        return noticeService.selectNoticeList();
+    @GetMapping("/list/{data_index}")
+    public List<NoticeListDto> selectNoticeList(@PathVariable("data_index") int data_index) {
+        return noticeService.selectNoticeList(data_index);
     }
 
     /*

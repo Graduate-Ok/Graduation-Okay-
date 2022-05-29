@@ -8,6 +8,7 @@
         SELECT noti_key, noti_category, noti_title, noti_content, noti_wt_time
         FROM notice
         WHERE del_flag = 0
+        LIMIT #{data_index} , 10
     </select>
 
     <!-- 공지사항 검색 -->

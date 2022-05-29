@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -7,7 +7,15 @@ import axios from 'axios';
 // localhost:3000/Board/EditBoard
 
 function EditBoard() {
-    let history = useNavigate();
+    const [editData, setEditData] = useState([]);
+
+    useEffect(() =>{
+        const fetchData = async() => {
+            const response = await axios.post('http://localhost:8089/Board/EditBoard');
+            setEditData(response.data);
+        }
+        fetchData();
+    }, [])
 
     return (
         <>
@@ -18,7 +26,7 @@ function EditBoard() {
                             <p> 정보공유 게시판</p>
                         </div>
 
-                        <form name="writing" method="post" action="/Board">
+                        <form name="writing" method="post" action="/EditBoard">
                             <div className="Board__writecontainer">
                                 <label for="edit" className='Board__writecontainer--head'> [ 정보 공유 게시판 ] </label>
 

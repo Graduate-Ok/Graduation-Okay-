@@ -218,7 +218,7 @@
 
 /*이 부분은 오빠가 만들어놓은거*/
 .Board__writecontainer--title,
-.Board__writecontainer--id,
+.Board__writecontainer--writer,
 .Board__writecontainer--password{
     display: flex;
     background-color: white;

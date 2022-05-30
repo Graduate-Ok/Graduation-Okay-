@@ -32,9 +32,8 @@ function EditBoard() {
 
                                 <div className="Board__writecontainer--info">
                                     제목  <div className="Board__writecontainer--detail"> <input type="text" placeholder="제목을 입력하세요." name="title" className="Board__writecontainer--title" autoFocus required ></input></div>
-                                    {/* id -> 작성자 ? */}
-                                    <br/>ID <div className="Board__writecontainer--detail"> <input type="text" placeholder='아이디를 입력하세요.' name="id" className="Board__writecontainer--id" required></input></div>
-                                    <br/> Password<div className="Board__writecontainer--detail">  <input type="password" placeholder='비밀번호를 입력하세요.' name="password" className="Board__writecontainer--password" required></input></div>
+                                    <br/>작성자 <div className="Board__writecontainer--detail"> <input type="text" placeholder='작성자의 이름을 입력하세요.' name="writer" className="Board__writecontainer--writer" required></input></div>
+                                    <br/> Password (수정/삭제시 비밀번호가 필요합니다.)<div className="Board__writecontainer--detail">  <input type="password" placeholder='비밀번호를 입력하세요.' name="password" className="Board__writecontainer--password" required></input></div>
                                     <br/>
                                     내용 <div className="Board__writecontainer--detail"><textarea placeholder="내용을 입력하세요." name="content" className="Board__writecontainer--content" required></textarea></div>
                                 </div>

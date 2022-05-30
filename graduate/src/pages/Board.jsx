@@ -30,7 +30,7 @@ const Board = () => {
                 <div className="Board">
                     <div className="BoardSize">
                         <div className="Board__header">
-                            <p>정보공유 게시판</p>
+                            <p className='minititle'>정보공유 게시판</p>
                         </div>
                         <div className="Board__navbar">
                             <div>전체 n건</div>

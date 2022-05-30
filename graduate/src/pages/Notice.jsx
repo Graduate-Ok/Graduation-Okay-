@@ -46,7 +46,7 @@ const Notice = () => {
                 <div className="Notice">
                     <div className="NoticeSize">
                         <div className="Notice__header">
-                            <p>공지사항</p>
+                            <p className='minititle'>공지사항</p>
                         </div>
 
                         

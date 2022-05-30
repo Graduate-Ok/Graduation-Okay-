@@ -76,7 +76,14 @@
     border-right: 1px solid #a79d9d;
     border-bottom: 1px solid #a79d9d;
     
+    
 }
+
+/*짝수번 색상구분*/
+.KyRecommendWrapper:nth-child(2n+1) {
+    background-color: #f4f4f4;
+  }
+  
 
 /*순위*/
 .rank_width {

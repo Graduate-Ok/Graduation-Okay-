@@ -44,7 +44,7 @@ function EditBoard() {
 
 
                             <div className="Board__footer">
-                                <Link to="/" className="Board__footer--button">돌아가기</Link>
+                                <Link to="/Board" className="Board__footer--button">돌아가기</Link>
                                 <button type="submit" className="Board__footer--button">등록하기</button>
                             </div>
 

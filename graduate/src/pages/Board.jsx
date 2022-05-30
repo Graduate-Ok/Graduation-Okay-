@@ -33,7 +33,8 @@ const Board = () => {
                             <p className='minititle'>정보공유 게시판</p>
                         </div>
                         <div className="Board__navbar">
-                            <div>전체 n건</div>
+                            
+                            <div>전체 {inputData.length}건</div>
                             <div className="Board__search">
                                 <select>
                                     <option value="title">제목</option>
@@ -53,8 +54,8 @@ const Board = () => {
                         
                         </div>
                         {
-                                inputData.map((e)=>{
-                                    return <BoardRow Board={e} />
+                                inputData.map((inputData)=>{
+                                    return <BoardRow Board={inputData} key = {inputData.brdKey} />
                                 })
                         }
 

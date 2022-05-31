@@ -3,19 +3,35 @@
 
 <mapper namespace="com.graduate_ok.graduate_ok.mapper.NoticeMapper">
 
-    <!-- 공지사항 목록 조회 -->
-    <select id="selectNoticeList" resultType="NoticeListDto">
+    <!-- 공지사항 목록 조회 + 검색 기능 + 페이징 추가 -->
+    <select id="selectNoticeList" parameterType="SearchHelper" resultType="NoticeListDto">
         SELECT noti_key, noti_category, noti_title, noti_content, noti_wt_time
         FROM notice
-        WHERE del_flag = 0
-        LIMIT #{data_index} , 10
+        <where>
+            del_flag = 0
+            <if test="srchType == 'title'"> <!-- 제목 검색 -->
+                AND noti_title LIKE CONCAT('%', #{srchKeyword}, '%')
+            </if>
+            <if test="srchType == 'content'"> <!-- 내용 검색 -->
+                AND noti_content LIKE CONCAT('%', #{srchKeyword}, '%')
+            </if>
+        </where>
+        LIMIT #{startIndex}, #{pageSize}
     </select>
 
-    <!-- 공지사항 검색 -->
-    <select id="selectNoticeByKeyword" parameterType="String" resultType="NoticeListDto">
-        SELECT noti_key, noti_title, noti_category, noti_wt_time, noti_content
+    <!-- 공지사항 게시물 목록 카운트 -->
+    <select id="countNoticeList" parameterType="SearchHelper" resultType="int">
+        SELECT COUNT(*)
         FROM notice
-        WHERE del_flag = 0 and noti_title = #{keyword} or noti_content = #{keyword}
+        <where>
+            del_flag = 0
+            <if test="srchType == 'title'"> <!-- 제목 검색 -->
+                AND noti_title LIKE CONCAT('%', #{srchKeyword}, '%')
+            </if>
+            <if test="srchType == 'content'"> <!-- 내용 검색 -->
+                AND noti_content LIKE CONCAT('%', #{srchKeyword}, '%')
+            </if>
+        </where>
     </select>
 
 </mapper>

@@ -12,20 +12,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NoticeRestController{
     private final NoticeServiceImpl noticeService;
-    /*
-    *  공지사항 조회
-    * */
-    @GetMapping("/list/{data_index}")
-    public List<NoticeListDto> selectNoticeList(@PathVariable("data_index") int data_index) {
-        return noticeService.selectNoticeList(data_index);
-    }
 
-    /*
-     * 공지사항 검색
-     * */
-    @GetMapping("/search")
-    public List<NoticeListDto> search(@RequestParam("keyword") String keyword) {
-        return noticeService.selectNoticeByKeyword(keyword);
+    /**
+     * 공지사항 목록 조회 + 검색 + 페이징
+     */
+    @GetMapping("/list/{srchType}/{srchKeyword}")
+    public List<NoticeListDto> selectNoticeList(
+            @PathVariable("srchType") String srchType,
+            @PathVariable("srchKeyword") String srchKeyword
+    ) {
+        return noticeService.selectNoticeList(srchType, srchKeyword);
     }
 
 }

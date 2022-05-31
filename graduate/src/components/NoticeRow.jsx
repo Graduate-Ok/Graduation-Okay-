@@ -1,7 +1,10 @@
 import React from 'react';
 
-const NoticeRow = ({Notice}) => {
+const NoticeRow = ({Notice, posts}) => {
     return(
+        <>
+       
+     
         <div className="Notice__content--content">
             <div className="Notice__content--number">{Notice.notiKey}</div>
             <div className="Notice__content--category">{Notice.notiCategory}</div>
@@ -13,6 +16,7 @@ const NoticeRow = ({Notice}) => {
             </details> </div>
             <div className="Notice__content--date">{Notice.notiWtTime.substring(0, 10)}</div>
         </div>
+        </>
     )
 }
 

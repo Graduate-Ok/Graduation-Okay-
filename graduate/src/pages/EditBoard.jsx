@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -7,7 +7,15 @@ import axios from 'axios';
 // localhost:3000/Board/EditBoard
 
 function EditBoard() {
-    let history = useNavigate();
+    const [editData, setEditData] = useState([]);
+
+    useEffect(() =>{
+        const fetchData = async() => {
+            const response = await axios.post('http://localhost:8089/Board/EditBoard');
+            setEditData(response.data);
+        }
+        fetchData();
+    }, [])
 
     return (
         <>
@@ -15,17 +23,17 @@ function EditBoard() {
                 <div className="Board">
                     <div className="BoardSize">
                         <div className="Board__header">
-                            <p> 정보공유 게시판</p>
+                            <p className='minititle'> 정보공유 게시판</p>
                         </div>
 
-                        <form name="writing" method="post" action="/Board">
+                        <form name="writing" method="post" action="/EditBoard">
                             <div className="Board__writecontainer">
                                 <label for="edit" className='Board__writecontainer--head'> [ 정보 공유 게시판 ] </label>
 
                                 <div className="Board__writecontainer--info">
                                     제목  <div className="Board__writecontainer--detail"> <input type="text" placeholder="제목을 입력하세요." name="title" className="Board__writecontainer--title" autoFocus required ></input></div>
-                                    <br/>ID <div className="Board__writecontainer--detail"> <input type="text" placeholder='아이디를 입력하세요.' name="id" className="Board__writecontainer--id" required></input></div>
-                                    <br/> PASSWORD<div className="Board__writecontainer--detail">  <input type="password" placeholder='비밀번호를 입력하세요.' name="password" className="Board__writecontainer--password" required></input></div>
+                                    <br/>작성자 <div className="Board__writecontainer--detail"> <input type="text" placeholder='작성자의 이름을 입력하세요.' name="writer" className="Board__writecontainer--writer" required></input></div>
+                                    <br/> Password (수정/삭제시 비밀번호가 필요합니다.)<div className="Board__writecontainer--detail">  <input type="password" placeholder='비밀번호를 입력하세요.' name="password" className="Board__writecontainer--password" required></input></div>
                                     <br/>
                                     내용 <div className="Board__writecontainer--detail"><textarea placeholder="내용을 입력하세요." name="content" className="Board__writecontainer--content" required></textarea></div>
                                 </div>
@@ -36,7 +44,7 @@ function EditBoard() {
 
 
                             <div className="Board__footer">
-                                <Link to="/" className="Board__footer--button">돌아가기</Link>
+                                <Link to="/Board" className="Board__footer--button">돌아가기</Link>
                                 <button type="submit" className="Board__footer--button">등록하기</button>
                             </div>
 

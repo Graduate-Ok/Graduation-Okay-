@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react';
 import axios from 'axios';
 
 import NoticeRow from "../components/NoticeRow"
+import Pagination from '../components/Pagination';
 
 
 // 공지사항
@@ -30,15 +31,33 @@ const Notice = () => {
 
     const[inputData, setInputData] = useState([]);
 
-    useEffect(() =>{
-        const fetchData = async() => {
-            const response = await axios.get('http://localhost:8089/Notice/');
-            setInputData(response.data);
+    const [posts, setPosts] = useState([]); // posts state에는 실제 json 데이터들이 들어옴
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage, setPostsPerPage] = useState(10); 
 
+    const [dataIndex, setDataIndex] = useState(0);
+    
+    useEffect(() =>{
+        const fetchData = async() => { 
+            setLoading(true);
+            const response = await axios.get(`http://localhost:8089/Notice/list/${dataIndex}`);
+            setInputData(response.data);
+            setPosts(response.data);
+            setLoading(false);
         }
         fetchData();  
-    }, [])
+    }, [dataIndex]); // 컴포넌트가 맨 처음 렌더링(마운트)될 때만 정의한 함수 실행, 업데이트 될때는 실행 x 
 
+    console.log(posts); 
+
+    const indexOfLast = currentPage * postsPerPage;
+    const indexOfFirst = indexOfLast - postsPerPage;
+    function currentPosts(tmp) {
+        let currentPosts = 0;
+        currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+        return currentPosts;
+    }
     return (
         <>
 
@@ -46,7 +65,7 @@ const Notice = () => {
                 <div className="Notice">
                     <div className="NoticeSize">
                         <div className="Notice__header">
-                            <p>공지사항</p>
+                            <p className='minititle'>공지사항</p>
                         </div>
 
                         
@@ -86,27 +105,11 @@ const Notice = () => {
                                             return <NoticeRow Notice={e} />
                                         })
                                     }
-
-
-
-
                                 </div>
                             </div>
                             <div id="tab02">{/*tab 2 내용*/}</div>
                             
-                            <div className="Notice__page" id="page-button">
-                                <div className="Notice__page--button">이전</div>
-                                <div className="Notice__page--button">1</div>
-                                <div className="Notice__page--button">2</div>
-                                <div className="Notice__page--button">3</div>
-                                <div className="Notice__page--button">4</div>
-                                <div className="Notice__page--button">5</div>
-                                <div className="Notice__page--button">6</div>
-                                <div className="Notice__page--button">7</div>
-                                <div className="Notice__page--button">8</div>
-                                <div className="Notice__page--button">9</div>
-                                <div className="Notice__page--button">다음</div>
-                            </div>
+                            <Pagination postsPerPage = {postsPerPage} totalPosts = {posts.length} paginate = {setCurrentPage} />
                         </div>
                     </div>
 

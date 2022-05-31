@@ -1,9 +1,12 @@
 import React from 'react';
 
-const ViewBoardRow = ({ ViewBoard }) => {
+const ViewBoardRow = ({ ViewBoard}) => {
+ 
+   
     return (
-
+        
         <div>
+            
             <div className="Board__info">
                 <span>작성자 :</span> <span className='BRD_WRITER'>&nbsp;{ViewBoard.brdWriter} &nbsp;</span>
                 <span>&nbsp;작성일 :</span> <span className='BRD_WT_TIME'>&nbsp;{ViewBoard.brdWtTime.substring(0, 10) + ' ' + ViewBoard.brdWtTime.substring(11, 16)}&nbsp;</span>

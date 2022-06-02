@@ -37,13 +37,17 @@ const Notice = () => {
     const [postsPerPage, setPostsPerPage] = useState(10); 
 
     const [dataIndex, setDataIndex] = useState(0);
+    const [srchType, setSrchType] = useState("");
+    const [srchKeyword, setSrchKeyword] = useState("");
+    const [page, setPage] = useState(1);
     
     useEffect(() =>{
         const fetchData = async() => { 
             setLoading(true);
-            const response = await axios.get(`http://localhost:8089/Notice/list/${dataIndex}`);
-            setInputData(response.data);
-            setPosts(response.data);
+            // const response = await axios.get(`http://localhost:8089/Notice/list/${dataIndex}`);
+            const response = await axios.get(`http://localhost:8089/Notice/list?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`);
+            setInputData(response.data.noticeDtoList);
+            setPosts(response.data.noticeDtoList);
             setLoading(false);
         }
         fetchData();  

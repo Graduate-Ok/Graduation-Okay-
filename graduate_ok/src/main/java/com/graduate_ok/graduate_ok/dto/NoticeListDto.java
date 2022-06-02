@@ -4,15 +4,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class NoticeListDto {
-    private Integer notiKey;
-    private  String notiCategory;
-    private String notiTitle;
-    private String notiContent;
-    private Timestamp notiWtTime;
+    List<NoticeDto> noticeDtoList;
+    SearchHelper searchHelper;
 }

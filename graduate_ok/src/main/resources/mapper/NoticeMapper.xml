@@ -4,7 +4,7 @@
 <mapper namespace="com.graduate_ok.graduate_ok.mapper.NoticeMapper">
 
     <!-- 공지사항 목록 조회 + 검색 기능 + 페이징 추가 -->
-    <select id="selectNoticeList" parameterType="SearchHelper" resultType="NoticeListDto">
+    <select id="selectNoticeList" parameterType="SearchHelper" resultType="NoticeDto">
         SELECT noti_key, noti_category, noti_title, noti_content, noti_wt_time
         FROM notice
         <where>

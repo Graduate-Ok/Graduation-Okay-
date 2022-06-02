@@ -15,7 +15,6 @@ public class NoticeRestController {
     private final NoticeServiceImpl noticeService;
 
     /**
-     * ?srchType=title&srchKeyword=title
      * 공지사항 목록 조회 + 검색 + 페이징
      */
     @GetMapping("/list")

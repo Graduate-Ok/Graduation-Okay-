@@ -43,7 +43,7 @@ const Graduate = () => {
                     <div className="section__text">
                         당신은 졸업이 가능한가요 ?
                     </div>
-                    <form>
+                    <form method = "post" action = "/Graduate">
                         <div className="section__button">
                             <label className="upload__button" for="input-file" >학업성적확인서 PDF 업로드 </label>
                             <br /> <input type="file" accept='.pdf' id='input-file' name = "input-file" onChange = {handleChangeFile} multiple = "multiple" style={{ display: "none" }} />

@@ -17,6 +17,8 @@ function EditBoard() {
         fetchData();
     }, [])
 
+    const handleClickBtn = values => {console.log('success', values);}
+
     return (
         <>
             <main>
@@ -26,16 +28,16 @@ function EditBoard() {
                             <p className='minititle'> 정보공유 게시판</p>
                         </div>
 
-                        <form name="writing" method="post" action="/EditBoard">
+                        <form name="writing" method="post" action="/Board/EditBoard">
                             <div className="Board__writecontainer">
                                 <label for="edit" className='Board__writecontainer--head'> [ 정보 공유 게시판 ] </label>
 
                                 <div className="Board__writecontainer--info">
-                                    제목  <div className="Board__writecontainer--detail"> <input type="text" placeholder="제목을 입력하세요." name="title" className="Board__writecontainer--title" autoFocus required ></input></div>
-                                    <br/>작성자 <div className="Board__writecontainer--detail"> <input type="text" placeholder='작성자의 이름을 입력하세요.' name="writer" className="Board__writecontainer--writer" required></input></div>
-                                    <br/> Password (수정/삭제시 비밀번호가 필요합니다.)<div className="Board__writecontainer--detail">  <input type="password" placeholder='비밀번호를 입력하세요.' name="password" className="Board__writecontainer--password" required></input></div>
+                                    제목  <div className="Board__writecontainer--detail"> <input type="text" placeholder="제목을 입력하세요." name="brdTitle" id = "brdTitle" className="Board__writecontainer--title" autoFocus required ></input></div>
+                                    <br/>작성자 <div className="Board__writecontainer--detail"> <input type="text" placeholder='작성자의 이름을 입력하세요.' name="brdWriter" id = "brdWriter" className="Board__writecontainer--writer" required></input></div>
+                                    <br/> Password (수정/삭제시 비밀번호가 필요합니다.)<div className="Board__writecontainer--detail">  <input type="password" placeholder='비밀번호를 입력하세요.' name="brdPassword" id = "brdPassword" className="Board__writecontainer--password" required></input></div>
                                     <br/>
-                                    내용 <div className="Board__writecontainer--detail"><textarea placeholder="내용을 입력하세요." name="content" className="Board__writecontainer--content" required></textarea></div>
+                                    내용 <div className="Board__writecontainer--detail"><textarea placeholder="내용을 입력하세요." name="brdContent" id = "brdContent"className="Board__writecontainer--content" required></textarea></div>
                                 </div>
 
 
@@ -45,7 +47,8 @@ function EditBoard() {
 
                             <div className="Board__footer">
                                 <Link to="/Board" className="Board__footer--button">돌아가기</Link>
-                                <button type="submit" className="Board__footer--button">등록하기</button>
+                                <button onClick = {handleClickBtn} type="submit" id = "submit" name = "submit" className="Board__footer--button">등록하기</button>
+                               
                             </div>
 
 

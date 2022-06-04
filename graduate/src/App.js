@@ -6,7 +6,7 @@ import './css/App.css';
 import Header from './components/Header';
 import Nav from './pages/Nav';
 import Footer from './components/Footer';
-import EditBoard from './pages/EditBoard';
+import PostBoard from './pages/PostBoard';
 import GraduateOk from './pages/GraduateOk';
 import Graduate from './pages/Graduate';
 import Notice from './pages/Notice';
@@ -33,7 +33,7 @@ const App = () => {
               <Route path = "Graduate/GraduateOk" exact element = {<GraduateOk/>}/>
               <Route path = "KyRecommend" exact element = {<KyRecommend/>}/>
               <Route path = "Board" exact element = {<Board/>}/> 
-              <Route path = "Board/EditBoard" exact element = {<EditBoard/>}/>
+              <Route path = "Board/PostBoard" exact element = {<PostBoard/>}/>
               <Route path = "Board/:brdKey" exact element = {<ViewBoard/>}/>
               <Route path = "*" element = {<NotFound/>}/>
             </Routes>

@@ -13,6 +13,7 @@ public class BoardDto {
     private String brdWriter;
     private String brdTitle;
     private String brdContent;
+    private String brdPassword;
     private Timestamp brdWtTime;
     private Integer brdLookup;
 }

@@ -21,7 +21,7 @@ function ViewBoard() {
         fetchData();
     }, [])
 
-   
+  
    
     return (
         <>
@@ -44,7 +44,7 @@ function ViewBoard() {
                         <div className="Board__footer">
                             {/* 수정 부분으로 넘어가도록 */}
                             <Link to="/" className="Board__update--button">수정</Link> &nbsp;
-                            <Link to="/Board" className="Board__delete--button">삭제</Link>
+                            <button className="Board__delete--button">삭제</button>
                         </div>
 
                     </div>

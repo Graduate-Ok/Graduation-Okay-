@@ -22,7 +22,7 @@ const Board = () => {
         fetchData();  
     }, [])
     
-    
+    console.log(inputData);
 
     return (
         <>
@@ -61,7 +61,7 @@ const Board = () => {
 
                         
                         <div className="Board__footer">
-                            <Link to="EditBoard" className="Board__footer--button">글쓰기</Link>
+                            <Link to="PostBoard" className="Board__footer--button">글쓰기</Link>
 
                         </div>
                         <div className="Board__page">

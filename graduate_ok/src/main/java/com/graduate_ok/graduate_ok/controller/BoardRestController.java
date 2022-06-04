@@ -50,9 +50,9 @@ public class BoardRestController {
      * 게시글 작성
      * @param boardInsertDto
      */
-    @PostMapping("/EditBoard")
+    @PostMapping("/PostBoard")
     @ApiOperation(value = "게시판 작성 API")
-    public void insertBoard(BoardInsertDto boardInsertDto) {
+    public void insertBoard( @RequestBody BoardInsertDto boardInsertDto) {
         boardService.insertBoard(boardInsertDto);
     }
 

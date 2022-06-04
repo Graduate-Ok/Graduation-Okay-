@@ -20,8 +20,8 @@ const Graduate = () => {
         setFile(event.target.files);
 
         const fd = new FormData();
-        const getFile = document.getElementById("input-file");
-        fd.append("input-file", getFile.files[0]);
+        const getFile = document.getElementById("file");
+        fd.append("file", getFile.files[0]);
         axios.post('http://localhost:8089/Graduate', fd,{
             headers : {
                 'Content-Type' : `multipart/form-data`,
@@ -45,8 +45,8 @@ const Graduate = () => {
                     </div>
                     <form method = "post" action = "/Graduate">
                         <div className="section__button">
-                            <label className="upload__button" for="input-file" >학업성적확인서 PDF 업로드 </label>
-                            <br /> <input type="file" accept='.pdf' id='input-file' name = "input-file" onChange = {handleChangeFile} multiple = "multiple" style={{ display: "none" }} />
+                            <label className="upload__button" for="file" >학업성적확인서 PDF 업로드 </label>
+                            <br /> <input type="file" accept='.pdf' id='file' name = "file" onChange = {handleChangeFile} multiple = "multiple" style={{ display: "none" }} />
                         </div>
                     </form>
 

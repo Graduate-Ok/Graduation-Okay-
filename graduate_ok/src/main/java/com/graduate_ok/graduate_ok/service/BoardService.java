@@ -1,20 +1,16 @@
 package com.graduate_ok.graduate_ok.service;
 
-import com.graduate_ok.graduate_ok.dto.BoardDto;
-import com.graduate_ok.graduate_ok.dto.BoardInsertDto;
-import com.graduate_ok.graduate_ok.dto.BoardListDto;
-import com.graduate_ok.graduate_ok.dto.BoardUpdateDto;
+import com.graduate_ok.graduate_ok.dto.*;
 
 import java.util.List;
 
 public interface BoardService {
 
     // 게시글 목록 조회
-    List<BoardListDto> selectBoardList();
+    BoardListDto selectBoardList(String srchType, String srchKeyword, int page);
 
     // 게시글 조회 + 조회수 증가
-    List<BoardDto> selectBoardByKey(Integer key);
-    void updateLookup(Integer key);
+    List<BoardViewDto> selectBoardByKey(Integer key);
 
     // 게시글 작성
     void insertBoard(BoardInsertDto boardInsertDto);
@@ -23,7 +19,7 @@ public interface BoardService {
     void updateBoard(BoardUpdateDto boardUpdateDto);
 
     // 게시글 삭제
-    void deleteBoard(Integer key);
+    void deleteBoard(BoardDeleteDto boardDeleteDto);
 
     // 게시글 검색
     List<BoardListDto> selectBoardByKeyword(String keyword);

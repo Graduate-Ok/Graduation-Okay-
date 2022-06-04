@@ -45,7 +45,7 @@ const Notice = () => {
         const fetchData = async() => { 
             setLoading(true);
             // const response = await axios.get(`http://localhost:8089/Notice/list/${dataIndex}`);
-            const response = await axios.get(`http://localhost:8089/Notice/list?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`);
+            const response = await axios.get(`http://localhost:8089/Notice/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`);
             setInputData(response.data.noticeDtoList);
             setPosts(response.data.noticeDtoList);
             setLoading(false);

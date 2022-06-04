@@ -4,16 +4,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class BoardListDto {
-    private Integer brdKey;
-    private String brdWriter;
-    private String brdTitle;
-    private String brdContent;
-    private Timestamp brdWtTime;
-    private Integer brdLookup;
+    List<BoardDto> boardDtoList;
+    SearchHelper searchHelper;
 }

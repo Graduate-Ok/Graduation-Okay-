@@ -9,10 +9,11 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BoardDto {
-    private Integer brdKey;
-    private String brdTitle;
+public class BoardViewDto {
     private String brdWriter;
+    private String brdTitle;
+    private String brdContent;
+    private String brdPassword;
     private Timestamp brdWtTime;
     private Integer brdLookup;
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Axios from 'axios';
-import {  Route, Routes} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Reset } from 'styled-reset';
 import './css/App.css';
 import Header from './components/Header';
@@ -15,31 +15,32 @@ import Board from './pages/Board';
 import ViewBoard from './pages/ViewBoard';
 import KyRecommend from './pages/KyRecommend';
 import NotFound from './pages/NotFound';
-
+import EditBoard from './pages/EditBoard';
 
 const App = () => {
- 
-
-
-  return (
-    <React.Fragment>
-            <Reset/>
-            <Header/>
-            <Nav/>
+    return (
+        <React.Fragment>
+            <Reset />
+            <Header />
+            <Nav />
             <Routes>
-              <Route path = "" exact element = {<Mainpage/>}/>
-              <Route path = "Notice" exact element = {<Notice/>}/>
-              <Route path = "Graduate" exact element = {<Graduate/>}/>
-              <Route path = "Graduate/GraduateOk" exact element = {<GraduateOk/>}/>
-              <Route path = "KyRecommend" exact element = {<KyRecommend/>}/>
-              <Route path = "Board" exact element = {<Board/>}/> 
-              <Route path = "Board/PostBoard" exact element = {<PostBoard/>}/>
-              <Route path = "Board/:brdKey" exact element = {<ViewBoard/>}/>
-              <Route path = "*" element = {<NotFound/>}/>
+                <Route path="" exact element={<Mainpage />} />
+                <Route path="Notice" exact element={<Notice />} />
+                <Route path="Graduate" exact element={<Graduate />} />
+                <Route
+                    path="Graduate/GraduateOk"
+                    exact
+                    element={<GraduateOk />}
+                />
+                <Route path="KyRecommend" exact element={<KyRecommend />} />
+                <Route path="Board" exact element={<Board />} />
+                <Route path="Board/PostBoard" exact element={<PostBoard />} />
+                <Route path="Board/EditBoard" exact element={<EditBoard />} />
+                <Route path="Board/:brdKey" exact element={<ViewBoard />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
-            <Footer/>
-            
-    </React.Fragment>
+            <Footer />
+        </React.Fragment>
     );
-}
+};
 export default App;

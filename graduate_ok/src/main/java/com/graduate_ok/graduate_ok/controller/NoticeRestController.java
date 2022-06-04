@@ -17,7 +17,7 @@ public class NoticeRestController {
     /**
      * 공지사항 목록 조회 + 검색 + 페이징
      */
-    @GetMapping("/list")
+    @GetMapping("/")
     public NoticeListDto selectNoticeList(@RequestParam(value = "srchType", defaultValue = " ") String srchType,
                                           @RequestParam(value = "srchKeyword", defaultValue = " ") String srchKeyword,
                                           @RequestParam(value = "page", defaultValue = "1") String page) {

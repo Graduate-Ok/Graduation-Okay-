@@ -1,9 +1,6 @@
 package com.graduate_ok.graduate_ok.service.serviceImpl;
 
-import com.graduate_ok.graduate_ok.dto.BoardDto;
-import com.graduate_ok.graduate_ok.dto.BoardInsertDto;
-import com.graduate_ok.graduate_ok.dto.BoardListDto;
-import com.graduate_ok.graduate_ok.dto.BoardUpdateDto;
+import com.graduate_ok.graduate_ok.dto.*;
 import com.graduate_ok.graduate_ok.mapper.BoardMapper;
 import com.graduate_ok.graduate_ok.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -18,35 +15,38 @@ public class BoardServiceImpl implements BoardService {
 
     /**
      * 게시글 목록 조회
-     * @return
      */
     @Override
-    public List<BoardListDto> selectBoardList() {
-        return boardMapper.selectBoardList();
+    public BoardListDto selectBoardList(String srchType, String srchKeyword, int page) {
+        BoardListDto boardListDto = new BoardListDto();
+
+        SearchHelper searchHelper = new SearchHelper();
+        searchHelper.setSrchType(srchType);
+        searchHelper.setSrchKeyword(srchKeyword);
+
+        int totalCount = boardMapper.countBoardList(searchHelper);
+
+        searchHelper = new SearchHelper(totalCount, page, srchType, srchKeyword);
+
+        List<BoardDto> list = boardMapper.selectBoardList(searchHelper);
+
+        boardListDto.setBoardDtoList(list);
+        boardListDto.setSearchHelper(searchHelper);
+
+        return boardListDto;
     }
 
     /**
-     * 게시글 조회
-     * @param key
-     * @return
+     * 게시글 조회 + 조회수 증가
      */
     @Override
-    public List<BoardDto> selectBoardByKey(Integer key) {
+    public List<BoardViewDto> selectBoardByKey(Integer key) {
+        boardMapper.updateLookup(key);
         return boardMapper.selectBoardByKey(key);
     }
 
     /**
-     * 조회수 증가
-     * @param key
-     */
-    @Override
-    public void updateLookup(Integer key) {
-        boardMapper.updateLookup(key);
-    }
-
-    /**
      * 게시글 작성
-     * @param boardInsertDto
      */
     @Override
     public void insertBoard(BoardInsertDto boardInsertDto) {
@@ -55,7 +55,6 @@ public class BoardServiceImpl implements BoardService {
 
     /**
      * 게시글 수정
-     * @param boardUpdateDto
      */
     @Override
     public void updateBoard(BoardUpdateDto boardUpdateDto) {
@@ -64,11 +63,10 @@ public class BoardServiceImpl implements BoardService {
 
     /**
      * 게시글 삭제
-     * @param key
      */
     @Override
-    public void deleteBoard(Integer key) {
-        boardMapper.deleteBoard(key);
+    public void deleteBoard(BoardDeleteDto boardDeleteDto) {
+        boardMapper.deleteBoard(boardDeleteDto);
     }
 
     /**

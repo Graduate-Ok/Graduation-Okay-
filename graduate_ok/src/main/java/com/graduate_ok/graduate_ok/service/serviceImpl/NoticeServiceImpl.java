@@ -25,10 +25,7 @@ public class NoticeServiceImpl implements NoticeService {
 
         int totalCount = noticeMapper.countNoticeList(searchHelper);
 
-        searchHelper = new SearchHelper(totalCount, page);
-
-        searchHelper.setSrchType(srchType);
-        searchHelper.setSrchKeyword(srchKeyword);
+        searchHelper = new SearchHelper(totalCount, page, srchType, srchKeyword);
 
         List<NoticeDto> list = noticeMapper.selectNoticeList(searchHelper);
 

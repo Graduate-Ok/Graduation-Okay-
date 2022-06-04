@@ -36,7 +36,10 @@ public class SearchHelper {
     /**
      * 파라미터로 row 개수를 카운트해서 현재 페이지 번호를 넣기
      */
-    public SearchHelper(int totalRowCnt, int page) {
+    public SearchHelper(int totalRowCnt, int page, String srchType, String srchKeyword) {
+        setSrchType(srchType);
+        setSrchKeyword(srchKeyword);
+
         setPage(page); // 현재 페이지 번호
         setTotalRowCnt(totalRowCnt); // 전체 row 개수
 

@@ -12,11 +12,15 @@ import BoardRow from '../components/BoardRow';
 const Board = () => {
     
     const[inputData, setInputData] = useState([]);
+    const [srchType, setSrchType] = useState("");
+    const [srchKeyword, setSrchKeyword] = useState("");
+    const [page, setPage] = useState(1);
 
     useEffect(() =>{
         const fetchData = async() => {
-            const response = await axios.get('http://localhost:8089/Board/');
-            setInputData(response.data);
+            const response = await axios.get(`http://localhost:8089/Board/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`);
+            console.log(response.data);
+            setInputData(response.data.boardDtoList);
 
         }
         fetchData();  

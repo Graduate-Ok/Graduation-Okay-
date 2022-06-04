@@ -1,9 +1,6 @@
 package com.graduate_ok.graduate_ok.controller;
 
-import com.graduate_ok.graduate_ok.dto.BoardDto;
-import com.graduate_ok.graduate_ok.dto.BoardInsertDto;
-import com.graduate_ok.graduate_ok.dto.BoardListDto;
-import com.graduate_ok.graduate_ok.dto.BoardUpdateDto;
+import com.graduate_ok.graduate_ok.dto.*;
 import com.graduate_ok.graduate_ok.service.BoardService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -17,49 +14,44 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/Board")
 @ApiResponses({
-        @ApiResponse(code=200, message="ok"),
-        @ApiResponse(code=500, message="server error"),
-        @ApiResponse(code=404, message="not found")
+        @ApiResponse(code = 200, message = "ok"),
+        @ApiResponse(code = 500, message = "server error"),
+        @ApiResponse(code = 404, message = "not found")
 })
 public class BoardRestController {
     private final BoardService boardService;
 
     /**
      * 게시글 목록 조회
-     * @return
      */
     @GetMapping("/")
     @ApiOperation(value = "게시판 목록 조회 API")
-    public List<BoardListDto> selectBoardList() {
-        return boardService.selectBoardList();
+    public BoardListDto selectBoardList(@RequestParam(value = "srchType", defaultValue = " ") String srchType,
+                                        @RequestParam(value = "srchKeyword", defaultValue = " ") String srchKeyword,
+                                        @RequestParam(value = "page", defaultValue = "1") String page) {
+        return boardService.selectBoardList(srchType, srchKeyword, Integer.parseInt(page));
     }
 
     /**
      * 게시글 조회 + 조회수 증가
-     * @param key
-     * @return
      */
     @GetMapping("/{key}")
     @ApiOperation(value = "게시글 조회 API")
-    public List<BoardDto> selectBoardByKey(@PathVariable("key") Integer key) {
-        boardService.updateLookup(key);
+    public List<BoardViewDto> selectBoardByKey(@PathVariable("key") Integer key) {
         return boardService.selectBoardByKey(key);
     }
 
     /**
      * 게시글 작성
-     * @param boardInsertDto
      */
     @PostMapping("/PostBoard")
     @ApiOperation(value = "게시판 작성 API")
-    public void insertBoard( @RequestBody BoardInsertDto boardInsertDto) {
+    public void insertBoard(@RequestBody BoardInsertDto boardInsertDto) {
         boardService.insertBoard(boardInsertDto);
     }
 
     /**
      * 게시글 수정
-     * @param key key
-     * @param boardUpdateDto
      */
     @PutMapping("/{key}")
     @ApiOperation(value = "게시글 수정 API")
@@ -70,12 +62,20 @@ public class BoardRestController {
 
     /**
      * 게시글 삭제
-     * @param key
      */
     @DeleteMapping("/{key}")
     @ApiOperation(value = "게시글 삭제 API")
-    public void deleteBoard(@PathVariable("key") Integer key) {
-        boardService.deleteBoard(key);
+    public String deleteBoard(@PathVariable("key") Integer key, BoardDeleteDto boardDeleteDto) {
+        boardDeleteDto.setBrdKey(key);
+
+        try {
+            boardService.deleteBoard(boardDeleteDto);
+            //
+            return "성공적으로 삭제되었습니다.";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "비밀번호 오류";
+        }
     }
 
     /**

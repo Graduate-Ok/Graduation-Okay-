@@ -1,6 +1,7 @@
 package com.graduate_ok.graduate_ok.controller;
 
 import com.graduate_ok.graduate_ok.dto.*;
+import com.graduate_ok.graduate_ok.pdfCheck.DBConnection;
 import com.graduate_ok.graduate_ok.service.BoardService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -55,9 +56,20 @@ public class BoardRestController {
      */
     @PutMapping("/{key}")
     @ApiOperation(value = "게시글 수정 API")
-    public void updateBoard(@PathVariable("key") Integer key, BoardUpdateDto boardUpdateDto) {
-        boardUpdateDto.setBrdKey(key);
-        boardService.updateBoard(boardUpdateDto);
+    public String updateBoard(@PathVariable("key") Integer key, BoardUpdateDto boardUpdateDto) {
+        // 비밀번호 확인
+        int result = DBConnection.checkPassword(key, boardUpdateDto.getBrdPassword());
+
+        if (result == 1) {
+            boardUpdateDto.setBrdKey(key);
+            boardService.updateBoard(boardUpdateDto);
+            return "성공적으로 수정되었습니다.";
+        } else if (result == 0) {
+            return "비밀번호가 일치하지 않습니다.";
+        } else if (result == -1) {
+            return "데이터베이스 오류";
+        }
+        return "";
     }
 
     /**
@@ -65,24 +77,19 @@ public class BoardRestController {
      */
     @DeleteMapping("/{key}")
     @ApiOperation(value = "게시글 삭제 API")
-    public String deleteBoard(@PathVariable("key") Integer key, BoardDeleteDto boardDeleteDto) {
-        boardDeleteDto.setBrdKey(key);
+    public String deleteBoard(@PathVariable("key") Integer key,
+                              @RequestParam(value = "password", defaultValue = "") String password) {
+        // 비밀번호 확인
+        int result = DBConnection.checkPassword(key, password);
 
-        try {
-            boardService.deleteBoard(boardDeleteDto);
-            //
+        if (result == 1) {
+            boardService.deleteBoard(new BoardDeleteDto(key, password));
             return "성공적으로 삭제되었습니다.";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "비밀번호 오류";
+        } else if (result == 0) {
+            return "비밀번호가 일치하지 않습니다.";
+        } else if (result == -1) {
+            return "데이터베이스 오류";
         }
-    }
-
-    /**
-     * 게시글 검색
-     */
-    @GetMapping("/search")
-    public List<BoardListDto> search(@RequestParam("keyword") String keyword) {
-        return boardService.selectBoardByKeyword(keyword);
+        return "";
     }
 }

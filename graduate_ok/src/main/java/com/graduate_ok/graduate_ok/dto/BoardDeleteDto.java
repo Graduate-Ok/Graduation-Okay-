@@ -13,4 +13,9 @@ public class BoardDeleteDto {
     private Integer brdKey;
     @ApiParam(value = "게시글 비밀번호")
     private String brdPassword;
+
+    public BoardDeleteDto(Integer brdKey, String brdPassword) {
+        this.brdKey = brdKey;
+        this.brdPassword = brdPassword;
+    }
 }

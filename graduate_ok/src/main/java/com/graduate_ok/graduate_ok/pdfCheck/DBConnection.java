@@ -14,7 +14,7 @@ public class DBConnection {
         Connection con = null;
         try {
             Class.forName(DB_DRIVER_CLASS);
-            con = DriverManager.getConnection(DB_URL,DB_USERNAME,DB_PASSWORD);
+            con = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -46,6 +46,7 @@ public class DBConnection {
         String sql = "SELECT ky_name1 FROM ky_course WHERE ky_core = '" + type + "';";
         return getListDataFromTable(sql);
     }
+
     public static List<String> getCore2(String type) {
         String sql = "SELECT ky_name2 FROM ky_course WHERE ky_core = '" + type + "';";
         return getListDataFromTable(sql);
@@ -56,6 +57,7 @@ public class DBConnection {
         String sql = "SELECT ky_name1 FROM ky_course WHERE ky_type = '" + type + "';";
         return getListDataFromTable(sql);
     }
+
     public static List<String> getTalent2(String type) {
         String sql = "SELECT ky_name2 FROM ky_course WHERE ky_type = '" + type + "';";
         return getListDataFromTable(sql);
@@ -68,7 +70,6 @@ public class DBConnection {
     }
 
 
-
     // DB에서 리스트 데이터 가져오기
     private static List<String> getListDataFromTable(String sql) {
         List<String> list = new ArrayList<>();
@@ -78,7 +79,7 @@ public class DBConnection {
             PreparedStatement pstmt = con.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 list.add(rs.getString(1));
             }
 
@@ -152,5 +153,28 @@ public class DBConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    // 정보공유 게시판 수정,삭제 패스워드 확인
+    public static int checkPassword(int key, String password) {
+        String sql = "SELECT brd_password FROM board WHERE brd_key = " + key + ";";
+        try {
+            Connection con = getCon();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                if (rs.getString(1).equals(password)) return 1; // 패스워드 일치
+                else return 0; // 패스워드 불일치
+            }
+
+            rs.close();
+            pstmt.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; // db 오류
     }
 }

@@ -35,10 +35,11 @@ const EditBoard = ({ brdKey }) => {
                 `http://localhost:8089/Board/${params}`,
             );
             setInputData(response.data);
+            console.log(response.data);
         };
         fetchData();
     }, []);
-    console.log(brdKey);
+
     return (
         <>
             <main>

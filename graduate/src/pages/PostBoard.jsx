@@ -51,7 +51,7 @@ const PostBoard = () => {
                         <form
                             name="writing"
                             method="post"
-                            action="/Board/EditBoard"
+                            action="/Board/PostBoard"
                         >
                             <div className="Board__writecontainer">
                                 <label

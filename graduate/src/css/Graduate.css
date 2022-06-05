@@ -17,10 +17,10 @@
     display: flex;
     flex-direction: column;
     width: 75%;
-    height: 70vh;
+    height: 75vh;
     margin: auto;
-    margin-top: 50px;
-    margin-bottom: 20px;
+    margin-top: 100px;
+    margin-bottom: 100px;
     border: dashed; /* 보더 수정 예정 */
     max-width: 100%;
     height: auto !important;
@@ -57,6 +57,7 @@
     background-color: #e5e5fdba;
     width: 250px;
     margin: auto;   
+    margin-bottom: 10vh;
     color: #2c2c2cdf;
     padding: 10px 25px;
     border-radius: 10px;
@@ -83,3 +84,62 @@
     justify-content: center;
 }
 
+
+.Graduate__check{
+    font-family: 'JejuGothic';
+    text-align: center;
+}
+
+/*졸업 가능시*/
+.Graduate_Possible{
+    color: rgba(8, 0, 255, 0.815);
+    font-size:x-large;
+    font-weight: 300;
+    text-align: center;
+}
+
+/*졸업 불가능시*/
+.Graduate_imPossible{
+    color: rgba(255, 13, 13, 0.815);
+    font-size:x-large;
+    font-weight: 300;
+    text-align: center;
+}
+
+/*졸업요건 확인 테이블*/
+.OkTable{
+    width: 90%;
+    text-align: center;
+    margin:auto;
+    margin-top:1rem;
+    margin-bottom:8vh;  
+    line-height:30px;
+    
+}
+
+
+
+/*th*/
+.Ok__menu{
+    background-color: #bfdefc96;
+}
+
+/*td*/
+.Lack__Graduate__Credit,
+.Lack__MajorCredit,
+.Lack__KyCredit,
+.Lack__NonSub,
+.Lack__mileage{
+    vertical-align:middle;
+    border:1px solid #a79d9d;
+    width: 20%;
+}
+
+/*부족한 졸업 요건*/
+.Graduate_lack{
+    color: rgb(0, 0, 0);
+    font-size:medium;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 5vh;
+}

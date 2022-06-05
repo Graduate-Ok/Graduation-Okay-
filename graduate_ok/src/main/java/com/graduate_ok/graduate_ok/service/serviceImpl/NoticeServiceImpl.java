@@ -1,6 +1,5 @@
 package com.graduate_ok.graduate_ok.service.serviceImpl;
 
-import com.graduate_ok.graduate_ok.dto.BoardDto;
 import com.graduate_ok.graduate_ok.dto.NoticeDto;
 import com.graduate_ok.graduate_ok.dto.NoticeListDto;
 import com.graduate_ok.graduate_ok.dto.SearchHelper;

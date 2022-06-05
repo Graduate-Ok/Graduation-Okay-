@@ -25,7 +25,6 @@ const PostBoard = () => {
             alert('비어있는 항목이 있습니다. 입력 후 다시 등록해주세요');
             return false;
         }
-        console.log(title, writer, password, content);
         await axios.post('http://localhost:8089/Board/PostBoard', {
             brdTitle: title,
             brdWriter: writer,

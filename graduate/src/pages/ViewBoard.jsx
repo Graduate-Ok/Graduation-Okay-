@@ -64,18 +64,19 @@ function ViewBoard() {
                         <div className="Board__footer">
                             {/* 수정 부분으로 넘어가도록 */}
                             <Link
-                                to="../Board/EditBoard"
+                                to="../Board/EditBoard/{params}"
                                 className="Board__update--button"
                             >
                                 수정
                             </Link>{' '}
                             &nbsp;
-                            <button
+                            <div
+                                type="submit"
                                 onClick={handleDelete}
                                 className="Board__delete--button"
                             >
                                 삭제
-                            </button>
+                            </div>
                         </div>
                     </div>
                 </div>

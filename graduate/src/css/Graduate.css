@@ -48,12 +48,22 @@
 /*pdf 업로드 버튼*/
 .upload__button{
     padding: 6px 25px;
-    background-color:#c8c8f8;
     border-radius: 4px;
     color: white;
     cursor: pointer;
+    background:  #c8c8f8;
+    margin-bottom: 20px;
+    transition: all 0.2s;
+    display: block;
+    position : relative;
   }
 
+  .upload__button:hover {
+    background: #A040CE;
+  }
+  .buttonColor{
+   background:  #ECECFE;
+  }
   /*pdf 위치 설명*/
   .pdf__position
 {

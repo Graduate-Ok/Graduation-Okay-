@@ -4,12 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-// input type 커스터 마이징 -> https://helloinyong.tistory.com/275
-/* 
-투두
-    방법 및 링크 다시 넣어주기. 
-*/
-
 // 설명페이지
 const Graduate = () => {
     const [file, setFile] = useState(null);
@@ -19,7 +13,8 @@ const Graduate = () => {
     const [nonSubject, setNonSubject] = useState(0);
     const [failure, setFailure] = useState('');
     const [totalCredit, setTotalCredit] = useState(0);
-    const [graduateok, setGraduateok] = useState('졸업 되려나..');
+    const [graduateok, setGraduateok] = useState('🤔졸업 되려나..🤔');
+    const [color, setColor] = useState({ color: 'black' });
 
     // 데이터를 입력받아서 보여주는 것
     const handleChangeFile = (event) => {
@@ -37,6 +32,7 @@ const Graduate = () => {
             })
             .then((response) => {
                 console.log('success');
+                console.log('response.data');
                 setMileage(response.data.mileage);
                 setkyCredit(response.data.kyCredit);
                 setMajorCredit(response.data.majorCredit);
@@ -44,12 +40,18 @@ const Graduate = () => {
                 setTotalCredit(response.data.totalCredit);
                 setFailure(response.data.failure);
 
-                if (failure === '') {
-                    setGraduateok('졸업 가능!');
-                } else {
-                    setGraduateok('졸업 불가능');
+                if (response.data.result === -1) {
+                    alert('파일을 읽을 수 없습니다. 다시 확인해주세요');
+                    setColor({ color: 'red' });
+                    setGraduateok('파일을 다시 확인해주세요');
+                } else if (response.data.result === 1) {
+                    setColor({ color: 'blue' });
+                    setGraduateok('😆졸업 가능!😆');
+                } else if (response.data.result === 0) {
+                    setColor({ color: 'red' });
+                    setGraduateok('😵‍💫졸업 불가능!😵‍💫');
                 }
-                console.log(response.data);
+                console.log(color);
             })
             .catch((error) => {
                 console.log(error);
@@ -99,8 +101,8 @@ const Graduate = () => {
                     </div>
 
                     <div className="Graduate__check">
-                        <div className="Graduate_imPossible">
-                            <br /> [ {graduateok} ] <br />
+                        <div className="Graduate" style={color}>
+                            <br /> {graduateok} <br />
                             <br />
                         </div>
 

@@ -21,9 +21,10 @@
     margin: auto;
     margin-top: 100px;
     margin-bottom: 100px;
-    border: dashed; /* 보더 수정 예정 */
+    border:  dashed; /* 보더 수정 예정 */
     max-width: 100%;
     height: auto !important;
+    border-color :rgba(0, 0, 0, 0.5)
 }
 
 
@@ -35,11 +36,13 @@
 
 /*'당신은 졸업이 가능한가요?'*/
 .section__text{
+    font-size: large;
     margin-top: 80px;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
     text-align: center;
+    
 }
 
 /*pdf 업로드 버튼*/
@@ -90,20 +93,12 @@
     text-align: center;
 }
 
-/*졸업 가능시*/
-.Graduate_Possible{
-    color: rgba(8, 0, 255, 0.815);
-    font-size:x-large;
-    font-weight: 300;
-    text-align: center;
-}
 
-/*졸업 불가능시*/
-.Graduate_imPossible{
-    color: rgba(255, 13, 13, 0.815);
-    font-size:x-large;
+.Graduate{
+    font-size: x-large;
     font-weight: 300;
     text-align: center;
+    
 }
 
 /*졸업요건 확인 테이블*/
@@ -137,7 +132,7 @@
 
 /*부족한 졸업 요건*/
 .Graduate_lack{
-    color: rgb(0, 0, 0);
+    color: red;
     font-size:medium;
     font-weight: 300;
     text-align: center;

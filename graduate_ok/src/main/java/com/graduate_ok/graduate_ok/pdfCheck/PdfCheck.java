@@ -264,7 +264,7 @@ public class PdfCheck {
         result.put("nonSubject", nonSubject); // 비교과 이수학기
         result.put("mileage", mileage); // 마일리지
         result.put("failure", failure); // 부족한 졸업요건
-        if (failure.equals("")) {
+        if (failure == null) {
             result.put("result", 1); // 졸업가능
         } else {
             result.put("result", 0); // 졸업 불가능
@@ -585,7 +585,7 @@ public class PdfCheck {
 
         for (String name : allKy) {
             if (DBConnection.updateKyCount(name) == 0) {
-                failure.append("** 교양 [" + name + "] 카운트 실패!\n");
+                //failure.append("** 교양 [" + name + "] 카운트 실패!\n");
             }
         }
 

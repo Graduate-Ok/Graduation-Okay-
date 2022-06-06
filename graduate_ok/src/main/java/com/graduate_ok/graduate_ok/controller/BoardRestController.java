@@ -56,20 +56,21 @@ public class BoardRestController {
      */
     @PutMapping("/{key}")
     @ApiOperation(value = "게시글 수정 API")
-    public String updateBoard(@PathVariable("key") Integer key, BoardUpdateDto boardUpdateDto) {
-        // 비밀번호 확인
-        int result = DBConnection.checkPassword(key, boardUpdateDto.getBrdPassword());
-
-        if (result == 1) {
-            boardUpdateDto.setBrdKey(key);
-            boardService.updateBoard(boardUpdateDto);
-            return "성공적으로 수정되었습니다.";
-        } else if (result == 0) {
-            return "비밀번호가 일치하지 않습니다.";
-        } else if (result == -1) {
-            return "데이터베이스 오류";
-        }
-        return "";
+    public void updateBoard(@PathVariable("key") Integer key, @RequestBody BoardUpdateDto boardUpdateDto) {
+        boardService.updateBoard(boardUpdateDto);
+//        // 비밀번호 확인
+//        int result = DBConnection.checkPassword(key, boardUpdateDto.getBrdPassword());
+//
+//        if (result == 1) {
+//            boardUpdateDto.setBrdKey(key);
+//            boardService.updateBoard(boardUpdateDto);
+//            return "성공적으로 수정되었습니다.";
+//        } else if (result == 0) {
+//            return "비밀번호가 일치하지 않습니다.";
+//        } else if (result == -1) {
+//            return "데이터베이스 오류";
+//        }
+//        return "";
     }
 
     /**

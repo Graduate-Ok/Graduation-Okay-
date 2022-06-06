@@ -37,7 +37,9 @@ public class PdfRestController {
             String mimeType = new Tika().detect(is);
 
             if (!Objects.requireNonNull(file.getOriginalFilename()).toLowerCase(Locale.ROOT).endsWith(".pdf") || !isPdfMimeType(mimeType)) {
-                return new HashMap<>();
+                HashMap<String, Object> hashMap = new HashMap<>();
+                hashMap.put("result", -1);
+                return hashMap;
             }
 
             File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + file.getOriginalFilename());
@@ -48,7 +50,9 @@ public class PdfRestController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new HashMap<>();
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("result", -1);
+            return hashMap;
         }
     }
 

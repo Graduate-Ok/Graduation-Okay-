@@ -59,10 +59,7 @@
   }
 
   .upload__button:hover {
-    background: #A040CE;
-  }
-  .buttonColor{
-   background:  #ECECFE;
+    background: #9e9eece3;
   }
   /*pdf 위치 설명*/
   .pdf__position

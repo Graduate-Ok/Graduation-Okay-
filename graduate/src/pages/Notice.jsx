@@ -48,6 +48,14 @@ const Notice = () => {
 
     console.log(page);
 
+    const handleSearch = () => {};
+    const handleChange = () => {};
+
+    // 공지 / 안내 탭
+    const handleTab = (param, e) => {
+        e.preventDefault();
+        console.log(param);
+    };
     return (
         <>
             <main>
@@ -65,25 +73,31 @@ const Notice = () => {
                         <div class="tab">
                             <ul class="tabnav">
                                 <li>
-                                    <a href="#tab01"> 공지 </a>
+                                    <div> 공지 </div>
                                 </li>
                                 <li>
-                                    <a href="#tab02"> 안내 </a>
+                                    <div onClick={handleTab}> 안내 </div>
                                 </li>
                             </ul>
-                            <div className="Notice__search">
-                                <select>
-                                    <option value="title">제목</option>
-                                    <option value="content">내용</option>
-                                </select>
-                                <input
-                                    type="text"
-                                    placeholder="검색어를 입력하세요"
-                                ></input>
-                                <div className="Notice__search--button">
-                                    검 색
+                            <form>
+                                <div className="Notice__search">
+                                    <select>
+                                        <option value="title">제목</option>
+                                        <option value="content">내용</option>
+                                    </select>
+                                    <input
+                                        type="text"
+                                        placeholder="검색어를 입력하세요"
+                                        onChange={handleChange}
+                                    ></input>
+                                    <div
+                                        className="Notice__search--button"
+                                        onClick={handleSearch}
+                                    >
+                                        검 색
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
 
                             <div class="tabcontent">
                                 {/*tab 1*/}

@@ -46,14 +46,28 @@ const Notice = () => {
         fetchData();
     }, [dataIndex]); // 컴포넌트가 맨 처음 렌더링(마운트)될 때만 정의한 함수 실행, 업데이트 될때는 실행 x
 
-    console.log(page);
-
-    const handleSearch = () => {};
-    const handleChange = () => {};
-
-    // 공지 / 안내 탭
-    const handleTab = (param, e) => {
+    // 검색 쿼리
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const select = document.forms['searchBar']['srchType'].value;
+        const search = document.forms['searchBar']['srchKeyword'].value;
+        if (search === '') {
+            alert('검색어를 입력해주세요!');
+            const response = await axios.get(`http://localhost:8089/Notice/`);
+            setInputData(response.data.noticeDtoList);
+        } else {
+            const response = await axios.get(
+                `http://localhost:8089/Notice/?srchType=${select}&srchKeyword=${search}`,
+            );
+            setInputData(response.data.noticeDtoList);
+        }
+    };
+    // 공지 안내 탭 클릭이벤트
+    const handleClickTab = async (param) => {
+        const response = await axios.get(
+            `http://localhost:8089/Notice/?srchType=${param}`,
+        );
+        setInputData(response.data);
         console.log(param);
     };
     return (
@@ -73,29 +87,45 @@ const Notice = () => {
                         <div class="tab">
                             <ul class="tabnav">
                                 <li>
-                                    <div> 공지 </div>
+                                    <div
+                                        onClick={() => {
+                                            handleClickTab('notice');
+                                        }}
+                                    >
+                                        {' '}
+                                        공지{' '}
+                                    </div>
                                 </li>
                                 <li>
-                                    <div onClick={handleTab}> 안내 </div>
+                                    <div
+                                        onClick={() => {
+                                            handleClickTab('guide');
+                                        }}
+                                    >
+                                        {' '}
+                                        안내{' '}
+                                    </div>
                                 </li>
                             </ul>
-                            <form>
-                                <div className="Notice__search">
-                                    <select>
-                                        <option value="title">제목</option>
-                                        <option value="content">내용</option>
-                                    </select>
-                                    <input
-                                        type="text"
-                                        placeholder="검색어를 입력하세요"
-                                        onChange={handleChange}
-                                    ></input>
-                                    <div
-                                        className="Notice__search--button"
-                                        onClick={handleSearch}
-                                    >
-                                        검 색
-                                    </div>
+
+                            <form className="Notice__search" name="searchBar">
+                                <select name="srchType" id="srchType">
+                                    <option value="title">제목</option>
+                                    <option value="content">내용</option>
+                                </select>
+                                <input
+                                    type="text"
+                                    placeholder="검색어를 입력하세요"
+                                    name="srchKeyword"
+                                    id="srchKeyword"
+                                ></input>
+                                <div
+                                    className="Notice__search--button"
+                                    id="submit"
+                                    name="submit"
+                                    onClick={handleSubmit}
+                                >
+                                    검 색
                                 </div>
                             </form>
 

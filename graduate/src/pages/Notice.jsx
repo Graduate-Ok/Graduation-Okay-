@@ -62,14 +62,26 @@ const Notice = () => {
             setInputData(response.data.noticeDtoList);
         }
     };
+
     // 공지 안내 탭 클릭이벤트
     const handleClickTab = async (param) => {
         const response = await axios.get(
             `http://localhost:8089/Notice/?srchType=${param}`,
         );
-        setInputData(response.data);
-        console.log(param);
+        setInputData(response.data.noticeDtoList);
     };
+
+    // 페이지네이션
+    const [searchHelper, setSearchHelper] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.get(`http://localhost:8089/Notice/`);
+            setSearchHelper(response.data.searchHelper);
+        };
+        fetchData();
+    }, []);
+
     return (
         <>
             <main>
@@ -153,8 +165,14 @@ const Notice = () => {
                                 </div>
                             </div>
                             <div id="tab02">{/*tab 2 내용*/}</div>
-
-                            <Pagination page={page} />
+                            <div className="Board__page">
+                                <div className="Board__page--button">이전</div>
+                                <Pagination
+                                    totalPageCnt={searchHelper.totalPageCnt}
+                                    pageSize={searchHelper.pageSize}
+                                />
+                                <div className="Board__page--button">다음</div>
+                            </div>
                         </div>
                     </div>
                 </div>

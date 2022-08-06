@@ -5,6 +5,7 @@ import '../css/Board.css';
 import useInput from '../hooks/useInput';
 import BoardRow from '../components/BoardRow';
 import { navigate } from 'pos/lexicon';
+import Pagination from '../components/Pagination';
 
 const Board = () => {
     const [inputData, setInputData] = useState([]);
@@ -17,29 +18,22 @@ const Board = () => {
             const response = await axios.get(
                 `http://localhost:8089/Board/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
             );
-            //console.log(response.data);
+            console.log(response.data);
             setInputData(response.data.boardDtoList);
         };
         fetchData();
     }, []);
 
-    // 페이지 번호 받아오기
-    const [totalPageCnt, setTotalPageCnt] = useState();
+    // 페이지네이션
+    const [searchHelper, setSearchHelper] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`http://localhost:8089/Notice/`);
-            setTotalPageCnt(response.data.searchHelper.totalPageCnt);
-            for (let i = 1; i <= response.data.searchHelper.pageSize; i++) {
-                if (i === totalPageCnt) {
-                    break;
-                } else {
-                }
-            }
+            const response = await axios.get(`http://localhost:8089/Board/`);
+            setSearchHelper(response.data.searchHelper);
         };
         fetchData();
     }, []);
-    //console.log(page);
 
     // 검색 쿼리
     const handleSubmit = async (e) => {
@@ -120,15 +114,15 @@ const Board = () => {
                                 글쓰기
                             </Link>
                         </div>
+
                         <div className="Board__page">
                             <div className="Board__page--button">이전</div>
-                            <div className="Board__page--button">
-                                {
-                                    // 페이지 데이터가 ex) 2 처럼 한개씩만 들어오는데
-                                    // 그 전까지 페이징 하려면 어떻게 해야하지...
-                                    totalPageCnt
-                                }
-                            </div>
+
+                            <Pagination
+                                totalPageCnt={searchHelper.totalPageCnt}
+                                pageSize={searchHelper.pageSize}
+                            />
+
                             <div className="Board__page--button">다음</div>
                         </div>
                     </div>

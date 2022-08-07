@@ -64,7 +64,9 @@
     justify-content: center;
     width: 70px;
     height: 28px;
+    border : none;
     background-color: #8F8DE7;   
+    font-family: 'JejuGothic';
 }
 
 

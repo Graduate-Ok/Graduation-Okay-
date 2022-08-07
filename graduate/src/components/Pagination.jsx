@@ -1,13 +1,8 @@
 import react from 'react';
-import axios from 'axios';
 import '../css/Board.css';
 
-const Pagination = ({ totalPageCnt, pageSize }) => {
-    const handlePageClick = (i, e) => {
-        e.preventDefault();
-        console.log(i);
-    };
-    function paging() {
+const Pagination = ({ totalPageCnt, pageSize, handlePageClick }) => {
+    const paging = () => {
         let array = [];
         for (let i = 1; i <= pageSize; i++) {
             if (i === totalPageCnt + 1) {
@@ -24,7 +19,8 @@ const Pagination = ({ totalPageCnt, pageSize }) => {
             }
         }
         return array;
-    }
+    };
+
     return <>{paging()}</>;
 };
 

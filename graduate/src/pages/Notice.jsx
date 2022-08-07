@@ -82,6 +82,13 @@ const Notice = () => {
         fetchData();
     }, []);
 
+    const handlePageClick = async (i) => {
+        const response = await axios.get(
+            `http://localhost:8089/Notice/?page=${i}`,
+        );
+        console.log(response.data.noticeDtoList);
+        setInputData(response.data.noticeDtoList);
+    };
     return (
         <>
             <main>
@@ -120,7 +127,11 @@ const Notice = () => {
                                 </li>
                             </ul>
 
-                            <form className="Notice__search" name="searchBar">
+                            <form
+                                className="Notice__search"
+                                name="searchBar"
+                                onSubmit={handleSubmit}
+                            >
                                 <select name="srchType" id="srchType">
                                     <option value="title">제목</option>
                                     <option value="content">내용</option>
@@ -131,14 +142,13 @@ const Notice = () => {
                                     name="srchKeyword"
                                     id="srchKeyword"
                                 ></input>
-                                <div
+                                <input
+                                    type="submit"
                                     className="Notice__search--button"
                                     id="submit"
                                     name="submit"
-                                    onClick={handleSubmit}
-                                >
-                                    검 색
-                                </div>
+                                    value="검 색"
+                                ></input>
                             </form>
 
                             <div class="tabcontent">
@@ -170,6 +180,7 @@ const Notice = () => {
                                 <Pagination
                                     totalPageCnt={searchHelper.totalPageCnt}
                                     pageSize={searchHelper.pageSize}
+                                    handlePageClick={handlePageClick}
                                 />
                                 <div className="Board__page--button">다음</div>
                             </div>

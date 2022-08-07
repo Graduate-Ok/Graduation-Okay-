@@ -73,6 +73,8 @@ select{
     width: 70px;
     height: 28px;
     background-color: #8F8DE7;   
+    border : none;
+    font-family: 'JejuGothic';
 }
 
 /*검색 버튼 클릭 시 효과*/

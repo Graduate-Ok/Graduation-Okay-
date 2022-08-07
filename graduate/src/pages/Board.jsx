@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../css/Board.css';
-import useInput from '../hooks/useInput';
 import BoardRow from '../components/BoardRow';
-import { navigate } from 'pos/lexicon';
 import Pagination from '../components/Pagination';
 
 const Board = () => {
@@ -18,7 +16,6 @@ const Board = () => {
             const response = await axios.get(
                 `http://localhost:8089/Board/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
             );
-            console.log(response.data);
             setInputData(response.data.boardDtoList);
         };
         fetchData();
@@ -34,6 +31,18 @@ const Board = () => {
         };
         fetchData();
     }, []);
+
+    const handlePagination = () => {
+        // console.log('a');
+    };
+
+    const handlePageClick = async (i) => {
+        const response = await axios.get(
+            `http://localhost:8089/Board/?page=${i}`,
+        );
+        console.log(response.data.boardDtoList);
+        setInputData(response.data.boardDtoList);
+    };
 
     // 검색 쿼리
     const handleSubmit = async (e) => {
@@ -52,11 +61,6 @@ const Board = () => {
         }
     };
 
-    const handleKeyUp = (e) => {
-        if (e.key === 13) {
-            handleSubmit();
-        }
-    };
     return (
         <>
             <main>
@@ -67,7 +71,11 @@ const Board = () => {
                         </div>
                         <div className="Board__navbar">
                             <div>전체 {inputData.length}건</div>
-                            <form className="Board__search" name="searchBar">
+                            <form
+                                className="Board__search"
+                                name="searchBar"
+                                onSubmit={handleSubmit}
+                            >
                                 <select name="srchType" id="srchType">
                                     <option value="title">제목</option>
                                     <option value="content">내용</option>
@@ -78,16 +86,14 @@ const Board = () => {
                                     placeholder="검색어를 입력하세요"
                                     name="srchKeyword"
                                     id="srchKeyword"
-                                    onKeyUp={handleKeyUp}
                                 ></input>
-                                <div
+                                <input
+                                    type="submit"
                                     className="Board__search--button"
                                     id="submit"
                                     name="submit"
-                                    onClick={handleSubmit}
-                                >
-                                    검 색
-                                </div>
+                                    value="검 색"
+                                ></input>
                             </form>
                         </div>
                         <div className="Board__content--title">
@@ -116,14 +122,24 @@ const Board = () => {
                         </div>
 
                         <div className="Board__page">
-                            <div className="Board__page--button">이전</div>
+                            <div
+                                className="Board__page--button"
+                                onClick={handlePagination}
+                            >
+                                이전
+                            </div>
 
                             <Pagination
                                 totalPageCnt={searchHelper.totalPageCnt}
                                 pageSize={searchHelper.pageSize}
+                                handlePageClick={handlePageClick}
                             />
-
-                            <div className="Board__page--button">다음</div>
+                            <div
+                                className="Board__page--button"
+                                onClick={handlePagination}
+                            >
+                                다음
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -64,9 +64,17 @@ const Notice = () => {
     };
 
     // 공지 안내 탭 클릭이벤트
+    // const handleClickTab = async (param) => {
+    //     const response = await axios.get(
+    //         `http://localhost:8089/Notice/?srchType=${param}`,
+    //     );
+    //     setInputData(response.data.noticeDtoList);
+    // };
+
+    // notice 탭 추가 (수빈)
     const handleClickTab = async (param) => {
         const response = await axios.get(
-            `http://localhost:8089/Notice/?srchType=${param}`,
+            `http://localhost:8089/Notice/?notiCategory=${param}`,
         );
         setInputData(response.data.noticeDtoList);
     };

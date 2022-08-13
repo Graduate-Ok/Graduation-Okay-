@@ -15,13 +15,14 @@ public class NoticeRestController {
     private final NoticeServiceImpl noticeService;
 
     /**
-     * 공지사항 목록 조회 + 검색 + 페이징
+     * 공지사항 목록 조회 + 검색 + 페이징 + notice 탭 추가
      */
     @GetMapping("/")
-    public NoticeListDto selectNoticeList(@RequestParam(value = "srchType", defaultValue = " ") String srchType,
+    public NoticeListDto selectNoticeList(@RequestParam(value = "notiCategory", defaultValue = " ") String notiCategory,
+                                          @RequestParam(value = "srchType", defaultValue = " ") String srchType,
                                           @RequestParam(value = "srchKeyword", defaultValue = " ") String srchKeyword,
                                           @RequestParam(value = "page", defaultValue = "1") String page) {
-        return noticeService.selectNoticeList(srchType, srchKeyword, Integer.parseInt(page));
+        return noticeService.selectNoticeList(notiCategory, srchType, srchKeyword, Integer.parseInt(page));
     }
 
 }

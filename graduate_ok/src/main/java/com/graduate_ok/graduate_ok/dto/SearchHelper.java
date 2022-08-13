@@ -9,8 +9,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SearchHelper {
 
-    private String srchType; // 검색 타입 (제목, 내용)
+    private String srchType; // 검색 타입 (제목, 내용, 작성자(보드 게시판만 해당))
     private String srchKeyword; // 검색어
+    private String notiCategory; // notice 게시판 탭 (공지, 안내)
 
     /**
      * 페이징
@@ -33,13 +34,31 @@ public class SearchHelper {
     private int prevBlock; // 이전 블럭의 마지막 페이지
     private int nextBlock; // 다음 블럭의 시작 페이지
 
+
     /**
-     * 파라미터로 row 개수를 카운트해서 현재 페이지 번호를 넣기
+     * notice 게시판 SearchHelper 생성자
+     */
+    public SearchHelper(int totalRowCnt, int page, String notiCategory, String srchType, String srchKeyword) {
+        setNotiCategory(notiCategory);
+        setSrchType(srchType);
+        setSrchKeyword(srchKeyword);
+        setSearchHelper(totalRowCnt, page);
+    }
+
+    /**
+     * board 게시판 SearchHelper 생성자
      */
     public SearchHelper(int totalRowCnt, int page, String srchType, String srchKeyword) {
         setSrchType(srchType);
         setSrchKeyword(srchKeyword);
+        setSearchHelper(totalRowCnt, page);
+    }
 
+
+    /**
+     * SearchHelper 변수 계산 세팅 메소드
+     */
+    private void setSearchHelper(int totalRowCnt, int page) {
         setPage(page); // 현재 페이지 번호
         setTotalRowCnt(totalRowCnt); // 전체 row 개수
 
@@ -76,5 +95,4 @@ public class SearchHelper {
         // 첫 페이지의 index 값 알아내기
         setStartIndex((page - 1) * pageSize);
     }
-
 }

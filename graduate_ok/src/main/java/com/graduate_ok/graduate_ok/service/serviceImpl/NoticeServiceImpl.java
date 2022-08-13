@@ -18,16 +18,18 @@ public class NoticeServiceImpl implements NoticeService {
     private final NoticeMapper noticeMapper;
 
     @Override
-    public NoticeListDto selectNoticeList(String srchType, String srchKeyword, int page) {
+    public NoticeListDto selectNoticeList(String notiCategory, String srchType, String srchKeyword, int page) {
         NoticeListDto noticeListDto = new NoticeListDto();
 
         SearchHelper searchHelper = new SearchHelper();
+        searchHelper.setNotiCategory(notiCategory); // notice 탭 추가
         searchHelper.setSrchType(srchType);
         searchHelper.setSrchKeyword(srchKeyword);
 
+
         int totalCount = noticeMapper.countNoticeList(searchHelper);
 
-        searchHelper = new SearchHelper(totalCount, page, srchType, srchKeyword);
+        searchHelper = new SearchHelper(totalCount, page, notiCategory, srchType, srchKeyword);
 
         List<NoticeDto> list = noticeMapper.selectNoticeList(searchHelper);
 

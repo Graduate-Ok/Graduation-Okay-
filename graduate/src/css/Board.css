@@ -3,29 +3,32 @@
     font-weight: normal;
     font-style: normal;
     src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot');
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot?#iefix') format('embedded-opentype'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff2') format('woff2'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff') format('woff'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.ttf') format("truetype");
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot?#iefix')
+            format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff2')
+            format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff')
+            format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.ttf')
+            format('truetype');
     font-display: swap;
 }
 
-.minititle{
+.minititle {
     color: #7978cd;
 }
 
-
-.Board{
+.Board {
     display: flex;
     align-items: center;
     text-align: center;
     justify-content: center;
 }
 
-.BoardSize{
+.BoardSize {
     font-family: 'JejuGothic';
     display: flex;
-    width : 85%;
+    width: 85%;
     flex-direction: column;
     height: 700px;
 }
@@ -35,16 +38,16 @@
 .Board__content--title,
 .Board__content--content,
 .Board__footer,
-.Board__page{
+.Board__page {
     display: flex;
     width: 100%;
 }
 
-.Board__header{
+.Board__header {
     font-size: large;
 }
 
-.Board__navbar{
+.Board__navbar {
     margin-top: 15px;
     margin-bottom: 15px;
     text-align: center;
@@ -52,78 +55,73 @@
     justify-content: space-between;
 }
 
-
-.Board__search{
+.Board__search {
     display: flex;
     flex-direction: row;
 }
 
-.Board__search--button{
+.Board__search--button {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 70px;
     height: 28px;
-    border : none;
-    background-color: #8F8DE7;   
+    border: none;
+    background-color: #8f8de7;
     font-family: 'JejuGothic';
 }
-
 
 .Board__search--button:hover,
 .Board__footer--button:hover,
 .Board__update--button:hover,
-.Board__delete--button:hover{
+.Board__delete--button:hover {
     opacity: 80%;
-    cursor : pointer;
+    cursor: pointer;
 }
 
-.Board__content--title{
+.Board__content--title {
     display: flex;
     border-top: 1px solid #000;
     border-bottom: 1px solid #b2bec3;
-    background-color : #d6d6f5;
+    background-color: #d6d6f5;
 }
 
-.Board__content--content{
+.Board__content--content {
     display: flex;
     border-bottom: 1px solid #b2bec3;
 }
-
 
 .Board__content--number,
 .Board__content--name,
 .Board__content--writer,
 .Board__content--date,
-.Board__content--hits{
+.Board__content--hits {
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-
-
-.Board__content--number{
+.Board__content--number {
     width: 8%;
 }
 
-.Board__content--name{
-    width : 60%;
-    cursor : pointer;
+.Board__content--name {
+    width: 60%;
+    cursor: pointer;
 }
 
-.Board__content--writer{
+.Board__content--writer {
     width: 14%;
 }
 
-.Board__content--date{
+.Board__content--date {
     width: 12%;
 }
 
-.Board__content--hits{
+.Board__content--hits {
     width: 8%;
 }
 
-.Board__footer{
+.Board__footer {
     display: flex;
     height: 28px;
     justify-content: flex-end;
@@ -131,23 +129,22 @@
     margin-bottom: 8px;
     width: 100%;
 }
-.Board__footer--button{
+.Board__footer--button {
     display: flex;
-    background-color: #8F8DE7;   
+    background-color: #8f8de7;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     width: 80px;
 }
 
-.Board__page{
+.Board__page {
     display: flex;
     width: 100%;
     justify-content: center;
-    margin-top: 10%;
 }
 
-.Board__page--button{
+.Board__page--button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -155,22 +152,22 @@
     width: 35px;
     height: 30px;
     font-size: small;
-    border-radius: 3px;  
+    border-radius: 3px;
     text-decoration-line: none;
 }
 
-.Board__page--button:hover{
+.Board__page--button:hover {
     background-color: #b2bec3;
-    cursor : pointer;
+    cursor: pointer;
 }
 
 /*---------------EditBoard----------------*/
 
-.Board__writecontainer{
+.Board__writecontainer {
     display: flex;
     margin-top: 2%;
     background-color: #eceff5d8;
-    border:solid 1.2px #c5c8ccd8 ;
+    border: solid 1.2px #c5c8ccd8;
     width: 100%;
     height: 90%;
     border-radius: 20px;
@@ -179,27 +176,26 @@
 }
 
 /*정보 공유 게시판*/
-.Board__writecontainer--head{
+.Board__writecontainer--head {
     display: flex;
-    font-size:x-large;
+    font-size: x-large;
     margin-top: 3%;
     margin-bottom: 3%;
     margin-left: 5%;
 }
 
 /*제목, id, pw*/
-.Board__writecontainer--info{
-    display: flex;   
+.Board__writecontainer--info {
+    display: flex;
     flex-direction: column;
     align-items: left;
     justify-content: left;
     text-align: left;
     margin-left: 5%;
-    
 }
 
-.Board__writecontainer--detail{
-    display: flex;   
+.Board__writecontainer--detail {
+    display: flex;
     align-items: left;
     justify-content: left;
     margin-top: 0.5%;
@@ -207,7 +203,7 @@
     border-radius: 5px;
 }
 
-.Board__writecontainer--content{
+.Board__writecontainer--content {
     display: flex;
     background-color: white;
     margin-right: 5%;
@@ -217,11 +213,10 @@
     max-height: 200px;
 }
 
-
 /*이 부분은 오빠가 만들어놓은거*/
 .Board__writecontainer--title,
 .Board__writecontainer--writer,
-.Board__writecontainer--password{
+.Board__writecontainer--password {
     display: flex;
     background-color: white;
     border-radius: 5px;
@@ -230,13 +225,6 @@
     border-color: #b2bec3;
 }
 
-
-
-
-
-
-
-
 /*---------------- ViewBoard -----------------*/
 .Board__info,
 .BRD_WRITER,
@@ -244,52 +232,49 @@
 .BRD_LOOKUP,
 .BRD_title,
 .BRD_content,
-.Board__viewcontainer{
+.Board__viewcontainer {
     display: flex;
 }
 
-
 .Board__update--button,
-.Board__delete--button{
+.Board__delete--button {
     display: flex;
-    background-color: #8F8DE7;   
+    background-color: #8f8de7;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     width: 80px;
 }
 
-.Board__info{
+.Board__info {
     justify-content: right;
     width: 100%;
 }
 
 .BRD_WRITER,
-.BRD_WT_TIME{
+.BRD_WT_TIME {
     border-right: dotted 1.5px rgb(62, 62, 62);
 }
 
 /*제목*/
-.BRD_title{
+.BRD_title {
     font-size: 25px;
     background: #c8c8f8c5;
     height: 50px;
     border-top: solid 2px rgb(109, 108, 108);
     border-bottom: solid 1.5px rgb(150, 149, 149);
     align-items: center;
-    justify-content : center;
+    justify-content: center;
     margin-top: 1%;
-
-    
 }
 
 /*내용*/
-.BRD_content{
+.BRD_content {
     width: 100%;
     font-size: 17px;
-    justify-content : center;
-    border: solid 2px #E5E7EB;
-    background-color:#f2f2f2 ;
+    justify-content: center;
+    border: solid 2px #e5e7eb;
+    background-color: #f2f2f2;
     align-items: center;
     height: 500px;
 }

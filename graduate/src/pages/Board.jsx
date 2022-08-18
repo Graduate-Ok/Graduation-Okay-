@@ -4,13 +4,14 @@ import axios from 'axios';
 import '../css/Board.css';
 import BoardRow from '../components/BoardRow';
 import Pagination from '../components/Pagination';
-
+import { useNavigate, useParams } from 'react-router-dom';
 const Board = () => {
     const [inputData, setInputData] = useState([]);
     const [srchType, setSrchType] = useState('');
     const [srchKeyword, setSrchKeyword] = useState('');
     const [page, setPage] = useState(1);
 
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
@@ -32,16 +33,29 @@ const Board = () => {
         fetchData();
     }, []);
 
-    const handlePagination = () => {
-        // console.log('a');
-    };
+    const handleNextBtn = async () => {
+        const response = await axios.get(
+            `http://localhost:8089/Board/?page=${searchHelper.nextBlock}`,
+        );
 
+        console.log(searchHelper.nextBlock);
+        setInputData(response.data.boardDtoList);
+    };
+    const handlePrevBtn = async () => {
+        const response = await axios.get(
+            `http://localhost:8089/Board/?page=${searchHelper.prevBlock}`,
+        );
+
+        console.log(searchHelper.prevBlock);
+        setInputData(response.data.boardDtoList);
+    };
     const handlePageClick = async (i) => {
         const response = await axios.get(
             `http://localhost:8089/Board/?page=${i}`,
         );
-        console.log(response.data.boardDtoList);
+        console.log(response.data);
         setInputData(response.data.boardDtoList);
+        navigate(`/Board/?page=${i}`);
     };
 
     // 검색 쿼리
@@ -57,6 +71,7 @@ const Board = () => {
             const response = await axios.get(
                 `http://localhost:8089/Board/?srchType=${select}&srchKeyword=${search}`,
             );
+
             setInputData(response.data.boardDtoList);
         }
     };
@@ -70,7 +85,7 @@ const Board = () => {
                             <p className="minititle">정보공유 게시판</p>
                         </div>
                         <div className="Board__navbar">
-                            <div>전체 {inputData.length}건</div>
+                            <div>전체 {searchHelper.totalRowCnt}건</div>
                             <form
                                 className="Board__search"
                                 name="searchBar"
@@ -124,7 +139,7 @@ const Board = () => {
                         <div className="Board__page">
                             <div
                                 className="Board__page--button"
-                                onClick={handlePagination}
+                                onClick={handlePrevBtn}
                             >
                                 이전
                             </div>
@@ -133,10 +148,11 @@ const Board = () => {
                                 totalPageCnt={searchHelper.totalPageCnt}
                                 pageSize={searchHelper.pageSize}
                                 handlePageClick={handlePageClick}
+                                page={searchHelper.page}
                             />
                             <div
                                 className="Board__page--button"
-                                onClick={handlePagination}
+                                onClick={handleNextBtn}
                             >
                                 다음
                             </div>

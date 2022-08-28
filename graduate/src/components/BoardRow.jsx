@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const BoardRow = ({ Board }) => {
-    console.log(Board.brdWtTime);
     return (
         <div className="Board__content--content">
             <div className="Board__content--number">{Board.brdKey}</div>

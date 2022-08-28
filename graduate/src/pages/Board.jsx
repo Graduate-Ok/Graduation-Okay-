@@ -10,7 +10,7 @@ const Board = () => {
     const [srchType, setSrchType] = useState('');
     const [srchKeyword, setSrchKeyword] = useState('');
     const [page, setPage] = useState(1);
-
+    const pageName = 'Board';
     const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
@@ -53,7 +53,6 @@ const Board = () => {
         const response = await axios.get(
             `http://localhost:8089/Board/?page=${i}`,
         );
-        console.log(response.data);
         setInputData(response.data.boardDtoList);
         navigate(`/Board/?page=${i}`);
     };
@@ -143,6 +142,7 @@ const Board = () => {
                                 searchHelper={searchHelper}
                                 handleNextBtn={handleNextBtn}
                                 handlePrevBtn={handlePrevBtn}
+                                pageName={pageName}
                             />
                         </div>
                     </div>

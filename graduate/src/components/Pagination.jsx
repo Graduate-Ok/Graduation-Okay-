@@ -8,13 +8,14 @@ const Pagination = ({
     searchHelper,
     handleNextBtn,
     handlePrevBtn,
+    pageName,
 }) => {
     const paging = () => {
         let array = [];
         for (let i = searchHelper.startPage; i <= searchHelper.endPage; i++) {
             array.push(
                 <Link
-                    to={'/Board/?page=' + page}
+                    to={`/${pageName}/?page=${page}`}
                     className="Board__page--button"
                     onClick={(e) => handlePageClick(i, e)}
                 >

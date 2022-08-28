@@ -2,49 +2,26 @@ import '../css/ContentsPage.css';
 import '../css/Notice.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 import NoticeRow from '../components/NoticeRow';
 import Pagination from '../components/Pagination';
 
-// 공지사항
-/* 
-  추가할 사항들 
-  공지내용을 올림. 
-  > 누르면 내용 쫙 펼쳐지고 닫아지게
-  https://moonhouse.co.kr/html/529065
-  접기 펼치기
-  https://pjw48.net/wordpress/2017/04/02/html-details-tag/
-  
-  TAB
-  https://carina16.tistory.com/173
-*/
-
 const Notice = () => {
     const [inputData, setInputData] = useState([]);
-
-    const [posts, setPosts] = useState([]); // posts state에는 실제 json 데이터들이 들어옴
-    const [loading, setLoading] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(10);
-
-    const [dataIndex, setDataIndex] = useState(0);
     const [srchType, setSrchType] = useState('');
     const [srchKeyword, setSrchKeyword] = useState('');
     const [page, setPage] = useState(1);
-
+    const pageName = 'Notice';
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true);
-            // const response = await axios.get(`http://localhost:8089/Notice/list/${dataIndex}`);
             const response = await axios.get(
                 `http://localhost:8089/Notice/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
             );
             setInputData(response.data.noticeDtoList);
-            setPosts(response.data.noticeDtoList);
-            setLoading(false);
         };
         fetchData();
-    }, [dataIndex]); // 컴포넌트가 맨 처음 렌더링(마운트)될 때만 정의한 함수 실행, 업데이트 될때는 실행 x
+    }, []);
 
     // 검색 쿼리
     const handleSubmit = async (e) => {
@@ -63,15 +40,7 @@ const Notice = () => {
         }
     };
 
-    // 공지 안내 탭 클릭이벤트
-    // const handleClickTab = async (param) => {
-    //     const response = await axios.get(
-    //         `http://localhost:8089/Notice/?srchType=${param}`,
-    //     );
-    //     setInputData(response.data.noticeDtoList);
-    // };
-
-    // notice 탭 추가 (수빈)
+    // notice 탭 클릭(공지/안내)
     const handleClickTab = async (param) => {
         const response = await axios.get(
             `http://localhost:8089/Notice/?notiCategory=${param}`,
@@ -90,12 +59,29 @@ const Notice = () => {
         fetchData();
     }, []);
 
+    const handleNextBtn = async (e) => {
+        e.preventDefault();
+        const response = await axios.get(
+            `http://localhost:8089/Notice/?page=${searchHelper.nextBlock}`,
+        );
+        setSearchHelper(response.data.searchHelper);
+        setInputData(response.data.noticeDtoList);
+    };
+    const handlePrevBtn = async (e) => {
+        e.preventDefault();
+        const response = await axios.get(
+            `http://localhost:8089/Notice/?page=${searchHelper.prevBlock}`,
+        );
+
+        setSearchHelper(response.data.searchHelper);
+        setInputData(response.data.noticeDtoList);
+    };
     const handlePageClick = async (i) => {
         const response = await axios.get(
             `http://localhost:8089/Notice/?page=${i}`,
         );
-        console.log(response.data.noticeDtoList);
         setInputData(response.data.noticeDtoList);
+        navigate(`/Notice/?page=${i}`);
     };
     return (
         <>
@@ -119,8 +105,7 @@ const Notice = () => {
                                             handleClickTab('notice');
                                         }}
                                     >
-                                        {' '}
-                                        공지{' '}
+                                        공지
                                     </div>
                                 </li>
                                 <li>
@@ -129,8 +114,7 @@ const Notice = () => {
                                             handleClickTab('guide');
                                         }}
                                     >
-                                        {' '}
-                                        안내{' '}
+                                        안내
                                     </div>
                                 </li>
                             </ul>
@@ -177,20 +161,22 @@ const Notice = () => {
                                         </div>
                                     </div>
 
-                                    {inputData.map((e) => {
-                                        return <NoticeRow Notice={e} />;
+                                    {inputData.map((inputData) => {
+                                        return <NoticeRow Notice={inputData} />;
                                     })}
+                                    {/* {inputData.map((inputData) => {})} */}
                                 </div>
                             </div>
                             <div id="tab02">{/*tab 2 내용*/}</div>
                             <div className="Board__page">
-                                <div className="Board__page--button">이전</div>
                                 <Pagination
-                                    totalPageCnt={searchHelper.totalPageCnt}
-                                    pageSize={searchHelper.pageSize}
                                     handlePageClick={handlePageClick}
+                                    page={searchHelper.page}
+                                    searchHelper={searchHelper}
+                                    handleNextBtn={handleNextBtn}
+                                    handlePrevBtn={handlePrevBtn}
+                                    pageName={pageName}
                                 />
-                                <div className="Board__page--button">다음</div>
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../css/Board.css';
 import BoardRow from '../components/BoardRow';
 import Pagination from '../components/Pagination';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const Board = () => {
     const [inputData, setInputData] = useState([]);
     const [srchType, setSrchType] = useState('');
@@ -21,7 +21,6 @@ const Board = () => {
         };
         fetchData();
     }, []);
-
     // 페이지네이션
     const [searchHelper, setSearchHelper] = useState([]);
 
@@ -33,20 +32,21 @@ const Board = () => {
         fetchData();
     }, []);
 
-    const handleNextBtn = async () => {
+    const handleNextBtn = async (e) => {
+        e.preventDefault();
         const response = await axios.get(
             `http://localhost:8089/Board/?page=${searchHelper.nextBlock}`,
         );
-
-        console.log(searchHelper.nextBlock);
+        setSearchHelper(response.data.searchHelper);
         setInputData(response.data.boardDtoList);
     };
-    const handlePrevBtn = async () => {
+    const handlePrevBtn = async (e) => {
+        e.preventDefault();
         const response = await axios.get(
             `http://localhost:8089/Board/?page=${searchHelper.prevBlock}`,
         );
 
-        console.log(searchHelper.prevBlock);
+        setSearchHelper(response.data.searchHelper);
         setInputData(response.data.boardDtoList);
     };
     const handlePageClick = async (i) => {
@@ -137,25 +137,13 @@ const Board = () => {
                         </div>
 
                         <div className="Board__page">
-                            <div
-                                className="Board__page--button"
-                                onClick={handlePrevBtn}
-                            >
-                                이전
-                            </div>
-
                             <Pagination
-                                totalPageCnt={searchHelper.totalPageCnt}
-                                pageSize={searchHelper.pageSize}
                                 handlePageClick={handlePageClick}
                                 page={searchHelper.page}
+                                searchHelper={searchHelper}
+                                handleNextBtn={handleNextBtn}
+                                handlePrevBtn={handlePrevBtn}
                             />
-                            <div
-                                className="Board__page--button"
-                                onClick={handleNextBtn}
-                            >
-                                다음
-                            </div>
                         </div>
                     </div>
                 </div>

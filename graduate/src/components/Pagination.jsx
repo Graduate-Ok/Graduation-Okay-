@@ -2,36 +2,46 @@ import react from 'react';
 import '../css/Board.css';
 import { Link } from 'react-router-dom';
 
-const Pagination = ({ totalPageCnt, pageSize, handlePageClick, page }) => {
+const Pagination = ({
+    handlePageClick,
+    page,
+    searchHelper,
+    handleNextBtn,
+    handlePrevBtn,
+}) => {
     const paging = () => {
         let array = [];
-        for (let i = 1; i <= pageSize; i++) {
-            if (i === totalPageCnt + 1) {
-                break;
-            } else {
-                // array.push(
-                //     <div
-                //         className="Board__page--button"
-                //         onClick={(e) => handlePageClick(i, e)}
-                //     >
-                //         {i}
-                //     </div>,
-                // );
-                array.push(
-                    <Link
-                        to={'/Board/?page=' + page}
-                        className="Board__page--button"
-                        onClick={(e) => handlePageClick(i, e)}
-                    >
-                        {i}
-                    </Link>,
-                );
-            }
+        for (let i = searchHelper.startPage; i <= searchHelper.endPage; i++) {
+            array.push(
+                <Link
+                    to={'/Board/?page=' + page}
+                    className="Board__page--button"
+                    onClick={(e) => handlePageClick(i, e)}
+                >
+                    {i}
+                </Link>,
+            );
         }
         return array;
     };
 
-    return <>{paging()}</>;
+    return (
+        <>
+            <div
+                className="Board__page--button"
+                onClick={(e) => handlePrevBtn(e)}
+            >
+                이전
+            </div>
+            {paging()}
+            <div
+                className="Board__page--button"
+                onClick={(e) => handleNextBtn(e)}
+            >
+                다음
+            </div>
+        </>
+    );
 };
 
 export default Pagination;

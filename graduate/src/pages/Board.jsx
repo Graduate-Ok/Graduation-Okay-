@@ -4,7 +4,8 @@ import axios from 'axios';
 import '../css/Board.css';
 import BoardRow from '../components/BoardRow';
 import Pagination from '../components/Pagination';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Routes, Route } from 'react-router-dom';
+
 const Board = () => {
     const [inputData, setInputData] = useState([]);
     const [srchType, setSrchType] = useState('');
@@ -54,7 +55,7 @@ const Board = () => {
             `http://localhost:8089/Board/?page=${i}`,
         );
         setInputData(response.data.boardDtoList);
-        navigate(`/Board/?page=${i}`);
+        // navigate(`/Board/?page=${i}`);
     };
 
     // 검색 쿼리
@@ -85,6 +86,7 @@ const Board = () => {
                         </div>
                         <div className="Board__navbar">
                             <div>전체 {searchHelper.totalRowCnt}건</div>
+
                             <form
                                 className="Board__search"
                                 name="searchBar"

@@ -81,7 +81,7 @@ const Notice = () => {
             `http://localhost:8089/Notice/?page=${i}`,
         );
         setInputData(response.data.noticeDtoList);
-        navigate(`/Notice/?page=${i}`);
+        //  navigate(`/Notice/?page=${i}`);
     };
     return (
         <>
@@ -164,7 +164,6 @@ const Notice = () => {
                                     {inputData.map((inputData) => {
                                         return <NoticeRow Notice={inputData} />;
                                     })}
-                                    {/* {inputData.map((inputData) => {})} */}
                                 </div>
                             </div>
                             <div id="tab02">{/*tab 2 내용*/}</div>

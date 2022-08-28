@@ -14,13 +14,13 @@ const Pagination = ({
         let array = [];
         for (let i = searchHelper.startPage; i <= searchHelper.endPage; i++) {
             array.push(
-                <Link
-                    to={`/${pageName}/?page=${page}`}
+                <div
+                    // to={`/${pageName}/?page=${page}`}
                     className="Board__page--button"
                     onClick={(e) => handlePageClick(i, e)}
                 >
                     {i}
-                </Link>,
+                </div>,
             );
         }
         return array;

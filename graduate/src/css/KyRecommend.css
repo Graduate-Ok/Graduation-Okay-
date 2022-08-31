@@ -3,14 +3,16 @@
     font-weight: normal;
     font-style: normal;
     src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot');
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot?#iefix') format('embedded-opentype'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff2') format('woff2'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff') format('woff'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.ttf') format("truetype");
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot?#iefix')
+            format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff2')
+            format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff')
+            format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.ttf')
+            format('truetype');
     font-display: swap;
 }
-
-
 
 .KyTableWrapper {
     display: flex;
@@ -18,10 +20,7 @@
     max-height: 60vh;
     overflow-y: scroll;
     text-align: center;
-
 }
-
-
 
 .main {
     display: flex;
@@ -38,15 +37,20 @@
     font-size: large;
     align-items: center;
     justify-content: center;
+    flex-direction: row;
 }
 
+.rightBar {
+    display: flex;
+    margin-left: 70%;
+}
 /*교양 테이블*/
 .KyTable {
     width: 100%;
     margin: 0 auto;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    counter-reset : numbering;
+    counter-reset: numbering;
 }
 
 .menu {
@@ -75,15 +79,12 @@
     border-left: 1px solid #a79d9d;
     border-right: 1px solid #a79d9d;
     border-bottom: 1px solid #a79d9d;
-    
-    
 }
 
 /*짝수번 색상구분*/
-.KyRecommendWrapper:nth-child(2n+1) {
+.KyRecommendWrapper:nth-child(2n + 1) {
     background-color: #f4f4f4;
-  }
-  
+}
 
 /*순위*/
 .rank_width {
@@ -112,12 +113,10 @@
 
 /*수강횟수*/
 .num_width {
-    width: 12%
+    width: 12%;
 }
 
-
-
-.KyTable .KyRecommendWrapper .rank_width:before{
-    counter-increment : numbering; 
-    content : counter(numbering);
+.KyTable .KyRecommendWrapper .rank_width:before {
+    counter-increment: numbering;
+    content: counter(numbering);
 }

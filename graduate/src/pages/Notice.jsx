@@ -144,29 +144,26 @@ const Notice = () => {
                             </form>
 
                             <div class="tabcontent">
-                                {/*tab 1*/}
-                                <div id="tab01">
-                                    <div className="Notice__content--title">
-                                        <div className="Notice__content--number">
-                                            번호
-                                        </div>
-                                        <div className="Notice__content--category">
-                                            카테고리
-                                        </div>
-                                        <div className="Notice__content--name">
-                                            제목
-                                        </div>
-                                        <div className="Notice__content--date">
-                                            날짜
-                                        </div>
+                                <div className="Notice__content--title">
+                                    <div className="Notice__content--number">
+                                        번호
                                     </div>
-
-                                    {inputData.map((inputData) => {
-                                        return <NoticeRow Notice={inputData} />;
-                                    })}
+                                    <div className="Notice__content--category">
+                                        카테고리
+                                    </div>
+                                    <div className="Notice__content--name">
+                                        제목
+                                    </div>
+                                    <div className="Notice__content--date">
+                                        날짜
+                                    </div>
                                 </div>
+
+                                {inputData.map((inputData) => {
+                                    return <NoticeRow Notice={inputData} />;
+                                })}
                             </div>
-                            <div id="tab02">{/*tab 2 내용*/}</div>
+
                             <div className="Board__page">
                                 <Pagination
                                     handlePageClick={handlePageClick}

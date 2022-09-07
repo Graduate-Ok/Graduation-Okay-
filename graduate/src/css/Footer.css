@@ -1,12 +1,16 @@
-  @font-face {
+@font-face {
     font-family: 'JejuGothic';
     font-weight: normal;
     font-style: normal;
     src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot');
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot?#iefix') format('embedded-opentype'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff2') format('woff2'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff') format('woff'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.ttf') format("truetype");
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot?#iefix')
+            format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff2')
+            format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff')
+            format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.ttf')
+            format('truetype');
     font-display: swap;
 }
 
@@ -16,30 +20,30 @@
     width: 100%;
 } */
 
-.footer{
+.footer {
     font-family: 'JejuGothic';
     display: flex;
     width: 100%;
     height: 100%;
-    background-color: #8F8DE7;
+    background-color: #8f8de7;
 }
 
-.footer__section{
+.footer__section {
     display: flex;
     padding: 20px;
     width: 100%;
 }
 
-.section-content{
+.section-content {
     display: flex;
     padding: 10px;
     width: 100%;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    font-size: small;   
+    font-size: small;
 }
 
 .section-content > a:hover {
-    color: #FFB02E;
+    color: #ffb02e;
 }

@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ *
+ * @description BoardRow 컴포넌트
+ */
 const BoardRow = ({ Board }) => {
     return (
         <div className="Board__content--content">

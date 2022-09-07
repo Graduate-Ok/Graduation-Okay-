@@ -6,6 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import NoticeRow from '../components/NoticeRow';
 import Pagination from '../components/Pagination';
 
+/**
+ *
+ * @description notice 페이지 컴포넌트
+ */
 const Notice = () => {
     const [inputData, setInputData] = useState([]);
     const [srchType, setSrchType] = useState('');
@@ -13,6 +17,7 @@ const Notice = () => {
     const [page, setPage] = useState(1);
     const pageName = 'Notice';
     const navigate = useNavigate();
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
@@ -23,7 +28,10 @@ const Notice = () => {
         fetchData();
     }, []);
 
-    // 검색 쿼리
+    /**
+     *
+     * @description 검색 쿼리 기능
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         const select = document.forms['searchBar']['srchType'].value;
@@ -40,7 +48,10 @@ const Notice = () => {
         }
     };
 
-    // notice 탭 클릭(공지/안내)
+    /**
+     *
+     * @description notice 탭
+     */
     const handleClickTab = async (param) => {
         const response = await axios.get(
             `http://localhost:8089/Notice/?notiCategory=${param}`,
@@ -48,7 +59,9 @@ const Notice = () => {
         setInputData(response.data.noticeDtoList);
     };
 
-    // 페이지네이션
+    /**
+     * @description 페이지네이션 기능
+     */
     const [searchHelper, setSearchHelper] = useState([]);
 
     useEffect(() => {
@@ -72,7 +85,6 @@ const Notice = () => {
         const response = await axios.get(
             `http://localhost:8089/Notice/?page=${searchHelper.prevBlock}`,
         );
-
         setSearchHelper(response.data.searchHelper);
         setInputData(response.data.noticeDtoList);
     };
@@ -81,8 +93,8 @@ const Notice = () => {
             `http://localhost:8089/Notice/?page=${i}`,
         );
         setInputData(response.data.noticeDtoList);
-        //  navigate(`/Notice/?page=${i}`);
     };
+
     return (
         <>
             <main>
@@ -95,7 +107,6 @@ const Notice = () => {
                         <div className="Notice__navbar">
                             <div></div>
                         </div>
-
                         {/*TAB*/}
                         <div class="tab">
                             <ul class="tabnav">
@@ -118,7 +129,6 @@ const Notice = () => {
                                     </div>
                                 </li>
                             </ul>
-
                             <form
                                 className="Notice__search"
                                 name="searchBar"
@@ -142,7 +152,6 @@ const Notice = () => {
                                     value="검 색"
                                 ></input>
                             </form>
-
                             <div class="tabcontent">
                                 <div className="Notice__content--title">
                                     <div className="Notice__content--number">
@@ -158,12 +167,10 @@ const Notice = () => {
                                         날짜
                                     </div>
                                 </div>
-
                                 {inputData.map((inputData) => {
                                     return <NoticeRow Notice={inputData} />;
                                 })}
                             </div>
-
                             <div className="Board__page">
                                 <Pagination
                                     handlePageClick={handlePageClick}

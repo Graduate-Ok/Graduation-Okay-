@@ -1,15 +1,19 @@
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useInput from '../hooks/useInput';
 
-// 글쓰기 페이지
-// localhost:3000/Board/PostBoard
-
+/**
+ *
+ * @description PostBoard 컴포넌트 페이지
+ */
 const PostBoard = () => {
-    const navigate = useNavigate(); // form 제출 후 /Board로 돌아가는 코드
+    const navigate = useNavigate();
 
+    /**
+     *
+     * @description 버튼 클릭 시 직전 페이지로 돌아가는 기능
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         const title = document.forms['writing']['brdTitle'].value;
@@ -47,7 +51,6 @@ const PostBoard = () => {
                         <div className="Board__header">
                             <p className="minititle"> 정보공유 게시판</p>
                         </div>
-
                         <form
                             name="writing"
                             method="post"
@@ -58,14 +61,11 @@ const PostBoard = () => {
                                     for="edit"
                                     className="Board__writecontainer--head"
                                 >
-                                    {' '}
-                                    [ 정보 공유 게시판 ]{' '}
+                                    [ 정보 공유 게시판 ]
                                 </label>
-
                                 <div className="Board__writecontainer--info">
-                                    제목{' '}
+                                    제목
                                     <div className="Board__writecontainer--detail">
-                                        {' '}
                                         <input
                                             type="text"
                                             onChange={onChangeTitle}
@@ -78,9 +78,8 @@ const PostBoard = () => {
                                         ></input>
                                     </div>
                                     <br />
-                                    작성자{' '}
+                                    작성자
                                     <div className="Board__writecontainer--detail">
-                                        {' '}
                                         <input
                                             type="text"
                                             onChange={onChangeWriter}
@@ -94,7 +93,6 @@ const PostBoard = () => {
                                     <br /> Password (수정/삭제시 비밀번호가
                                     필요합니다.)
                                     <div className="Board__writecontainer--detail">
-                                        {' '}
                                         <input
                                             type="password"
                                             onChange={onChangePassword}
@@ -106,7 +104,7 @@ const PostBoard = () => {
                                         ></input>
                                     </div>
                                     <br />
-                                    내용{' '}
+                                    내용
                                     <div className="Board__writecontainer--detail">
                                         <textarea
                                             placeholder="내용을 입력하세요."
@@ -119,7 +117,6 @@ const PostBoard = () => {
                                     </div>
                                 </div>
                             </div>
-
                             <div className="Board__footer">
                                 <div
                                     onClick={() => navigate(-1)}

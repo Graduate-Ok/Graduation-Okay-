@@ -1,6 +1,10 @@
 import react from 'react';
 import '../css/Board.css';
-import { Link } from 'react-router-dom';
+
+/**
+ *
+ * @description 페이지네이션 컴포넌트
+ */
 
 const Pagination = ({
     handlePageClick,
@@ -15,7 +19,6 @@ const Pagination = ({
         for (let i = searchHelper.startPage; i <= searchHelper.endPage; i++) {
             array.push(
                 <div
-                    // to={`/${pageName}/?page=${page}`}
                     className="Board__page--button"
                     onClick={(e) => handlePageClick(i, e)}
                 >

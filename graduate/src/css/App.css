@@ -1,15 +1,14 @@
-body{
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
-footer{
-  margin-top: auto;
+footer {
+    margin-top: auto;
 }
-
 
 a:link,
-a:visited{
+a:visited {
     text-decoration: none;
     color: #000;
 }

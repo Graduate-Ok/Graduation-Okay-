@@ -1,21 +1,25 @@
 @font-face {
-    font-family: "yg-jalnan";
-    src: url("../fonts/Jalnan.ttf");
-  }
-  
-  @font-face {
+    font-family: 'yg-jalnan';
+    src: url('../fonts/Jalnan.ttf');
+}
+
+@font-face {
     font-family: 'JejuGothic';
     font-weight: normal;
     font-style: normal;
     src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot');
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot?#iefix') format('embedded-opentype'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff2') format('woff2'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff') format('woff'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.ttf') format("truetype");
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot?#iefix')
+            format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff2')
+            format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff')
+            format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.ttf')
+            format('truetype');
     font-display: swap;
 }
 
-.navbar{
+.navbar {
     font-family: 'JejuGothic';
     font-weight: lighter;
     display: flex;
@@ -36,25 +40,20 @@
 
 } */
 
-.navbar__nav:after{
+.navbar__nav:after {
     display: block;
     content: '';
     border-bottom: solid 2px #000;
     transform: scaleX(0);
     transition: transform 200ms ease-in-out;
-    
 }
-.navbar__nav:hover::after{
+.navbar__nav:hover::after {
     transform: scaleX(1);
-    
 }
-.navbar__nav:hover{
-    cursor : pointer;
-
+.navbar__nav:hover {
+    cursor: pointer;
 }
 
-.navbar__nav{
+.navbar__nav {
     margin: auto;
 }
-
-

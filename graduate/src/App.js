@@ -24,11 +24,9 @@ const App = () => {
             <Routes>
                 <Route path="" exact element={<Mainpage />} />
                 <Route path="Notice" exact element={<Notice />} />
-                {/* <Route path="Notice/?page=:page" exact element={<Notice />} /> */}
                 <Route path="Graduate" exact element={<Graduate />} />
                 <Route path="KyRecommend" exact element={<KyRecommend />} />
                 <Route path="Board" exact element={<Board />} />
-                {/* <Route path="Board/?page=:page" exact element={<Board />} /> */}
                 <Route path="Board/PostBoard" exact element={<PostBoard />} />
                 <Route path="Board/EditBoard" exact element={<EditBoard />} />
                 <Route path="Board/:brdKey" exact element={<ViewBoard />} />

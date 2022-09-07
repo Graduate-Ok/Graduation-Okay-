@@ -1,15 +1,20 @@
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useInput from '../hooks/useInput';
 
-// 글 수정 페이지
-// localhost:3000/Board/EditBoard
-
+/**
+ *
+ * @description 글 수정 페이지 컴포넌트
+ */
 const EditBoard = ({ brdKey }) => {
-    const navigate = useNavigate(); // form 제출 후 /Board로 돌아가는 코드
+    const navigate = useNavigate();
 
+    /**
+     *
+     * @description 클릭이벤트 시 직전페이지로 돌아가기
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         await axios.post('http://localhost:8089/Board/PostBoard', {
@@ -25,7 +30,6 @@ const EditBoard = ({ brdKey }) => {
     const [writer, onChangeWriter] = useInput('');
     const [password, onChangePassword] = useInput('');
     const [content, onChangeContent] = useInput('');
-
     const [inputData, setInputData] = useState([]);
 
     let params = useParams().brdKey;
@@ -35,7 +39,6 @@ const EditBoard = ({ brdKey }) => {
                 `http://localhost:8089/Board/${params}`,
             );
             setInputData(response.data);
-            console.log(response.data);
         };
         fetchData();
     }, []);
@@ -48,7 +51,6 @@ const EditBoard = ({ brdKey }) => {
                         <div className="Board__header">
                             <p className="minititle"> 정보공유 게시판</p>
                         </div>
-
                         <form
                             name="writing"
                             method="post"
@@ -59,14 +61,12 @@ const EditBoard = ({ brdKey }) => {
                                     for="edit"
                                     className="Board__writecontainer--head"
                                 >
-                                    {' '}
-                                    [ 정보 공유 게시판 ]{' '}
+                                    [ 정보 공유 게시판 ]
                                 </label>
 
                                 <div className="Board__writecontainer--info">
-                                    제목{' '}
+                                    제목
                                     <div className="Board__writecontainer--detail">
-                                        {''}
                                         <input
                                             type="text"
                                             onChange={onChangeTitle}
@@ -79,9 +79,8 @@ const EditBoard = ({ brdKey }) => {
                                         ></input>
                                     </div>
                                     <br />
-                                    작성자{' '}
+                                    작성자
                                     <div className="Board__writecontainer--detail">
-                                        {' '}
                                         <input
                                             type="text"
                                             onChange={onChangeWriter}
@@ -95,7 +94,6 @@ const EditBoard = ({ brdKey }) => {
                                     <br /> Password (수정/삭제시 비밀번호가
                                     필요합니다.)
                                     <div className="Board__writecontainer--detail">
-                                        {' '}
                                         <input
                                             type="password"
                                             onChange={onChangePassword}
@@ -107,7 +105,7 @@ const EditBoard = ({ brdKey }) => {
                                         ></input>
                                     </div>
                                     <br />
-                                    내용{' '}
+                                    내용
                                     <div className="Board__writecontainer--detail">
                                         <textarea
                                             placeholder="내용을 입력하세요."
@@ -120,7 +118,6 @@ const EditBoard = ({ brdKey }) => {
                                     </div>
                                 </div>
                             </div>
-
                             <div className="Board__footer">
                                 <div
                                     onClick={() => navigate(-1)}

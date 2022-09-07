@@ -1,10 +1,12 @@
 import '../css/Graduate.css';
 import '../css/ContentsPage.css';
-import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-// 설명페이지
+/**
+ *
+ * @description Graduate 페이지 컴포넌트
+ */
 const Graduate = () => {
     const [file, setFile] = useState(null);
     const [mileage, setMileage] = useState(0);
@@ -16,11 +18,12 @@ const Graduate = () => {
     const [graduateok, setGraduateok] = useState('🤔졸업 되려나..🤔');
     const [color, setColor] = useState({ color: 'black' });
 
-    // 데이터를 입력받아서 보여주는 것
+    /**
+     *
+     * @description 파일 버튼 클릭
+     */
     const handleChangeFile = (event) => {
-        console.log(event.target.files);
         setFile(event.target.files);
-
         const fd = new FormData();
         const getFile = document.getElementById('file');
         fd.append('file', getFile.files[0]);
@@ -31,8 +34,6 @@ const Graduate = () => {
                 },
             })
             .then((response) => {
-                console.log('success');
-                console.log('response.data');
                 setMileage(response.data.mileage);
                 setkyCredit(response.data.kyCredit);
                 setMajorCredit(response.data.majorCredit);
@@ -51,7 +52,6 @@ const Graduate = () => {
                     setColor({ color: 'red' });
                     setGraduateok('😵‍💫졸업 불가능!😵‍💫');
                 }
-                console.log(color);
             })
             .catch((error) => {
                 console.log(error);
@@ -99,13 +99,11 @@ const Graduate = () => {
                         👉Save
                         <br />
                     </div>
-
                     <div className="Graduate__check">
                         <div className="Graduate" style={color}>
                             <br /> {graduateok} <br />
                             <br />
                         </div>
-
                         <div>
                             <table className="OkTable">
                                 <tr className="Ok__menu">
@@ -123,7 +121,6 @@ const Graduate = () => {
                                     </th>
                                     <th className="Lack__mileage">마일리지</th>
                                 </tr>
-
                                 <tr>
                                     <td className="Lack__Graduate__Credit">
                                         {totalCredit}
@@ -141,7 +138,6 @@ const Graduate = () => {
                                 </tr>
                             </table>
                         </div>
-
                         <div className="Graduate_lack">{failure}</div>
                     </div>
                 </section>

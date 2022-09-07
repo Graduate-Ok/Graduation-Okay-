@@ -2,15 +2,16 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-// 글보기 페이지
-
 import ViewBoardRow from '../components/ViewBoardRow';
 
+/**
+ *
+ * @description ViewBoard 컴포넌트 페이지
+ */
 function ViewBoard() {
     let params = useParams().brdKey;
-
     const [inputData, setInputData] = useState([]);
-    const navigate = useNavigate(); // 글 삭제 후 목록으로
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -41,6 +42,7 @@ function ViewBoard() {
             navigate(0);
         }
     };
+
     return (
         <>
             <main>
@@ -60,7 +62,6 @@ function ViewBoard() {
                                 />
                             );
                         })}
-
                         <div className="Board__footer">
                             {/* 수정 부분으로 넘어가도록 */}
                             <Link
@@ -68,7 +69,7 @@ function ViewBoard() {
                                 className="Board__update--button"
                             >
                                 수정
-                            </Link>{' '}
+                            </Link>
                             &nbsp;
                             <div
                                 type="submit"

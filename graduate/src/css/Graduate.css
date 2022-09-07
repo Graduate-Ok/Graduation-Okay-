@@ -3,15 +3,19 @@
     font-weight: normal;
     font-style: normal;
     src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot');
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot?#iefix') format('embedded-opentype'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff2') format('woff2'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff') format('woff'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.ttf') format("truetype");
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.eot?#iefix')
+            format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff2')
+            format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.woff')
+            format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuGothic.ttf')
+            format('truetype');
     font-display: swap;
 }
 
 /*section : 점선 안쪽 부분*/
-.section{ 
+.section {
     font-family: 'JejuGothic';
     font-weight: lighter;
     display: flex;
@@ -21,72 +25,67 @@
     margin: auto;
     margin-top: 100px;
     margin-bottom: 100px;
-    border:  dashed; /* 보더 수정 예정 */
+    border: dashed; /* 보더 수정 예정 */
     max-width: 100%;
     height: auto !important;
-    border-color :rgba(0, 0, 0, 0.5)
+    border-color: rgba(0, 0, 0, 0.5);
 }
 
-
-.section__button{
+.section__button {
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
 /*'당신은 졸업이 가능한가요?'*/
-.section__text{
+.section__text {
     font-size: large;
     margin-top: 80px;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
     text-align: center;
-    
 }
 
 /*pdf 업로드 버튼*/
-.upload__button{
+.upload__button {
     padding: 6px 25px;
     border-radius: 4px;
     color: white;
     cursor: pointer;
-    background:  #c8c8f8;
+    background: #c8c8f8;
     margin-bottom: 20px;
     transition: all 0.2s;
     display: block;
-    position : relative;
-  }
+    position: relative;
+}
 
-  .upload__button:hover {
+.upload__button:hover {
     background: #9e9eece3;
-  }
-  /*pdf 위치 설명*/
-  .pdf__position
-{
+}
+/*pdf 위치 설명*/
+.pdf__position {
     background-color: #e5e5fdba;
     width: 250px;
-    margin: auto;   
+    margin: auto;
     margin-bottom: 10vh;
     color: #2c2c2cdf;
     padding: 10px 25px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
-    
 }
 
 /* '결과조회' 영역 */
-.GraduateOk__footer{
+.GraduateOk__footer {
     margin-bottom: 80px;
 }
 
-
 /* '결과조회' 버튼 */
-.graduation__check--button{
+.graduation__check--button {
     background-color: #c8c8f8;
     width: 250px;
-    margin: auto;   
+    margin: auto;
     color: #2c2c2cdf;
     padding: 10px 25px;
     border-radius: 10px;
@@ -94,35 +93,29 @@
     justify-content: center;
 }
 
-
-.Graduate__check{
+.Graduate__check {
     font-family: 'JejuGothic';
     text-align: center;
 }
 
-
-.Graduate{
+.Graduate {
     font-size: x-large;
     font-weight: 300;
     text-align: center;
-    
 }
 
 /*졸업요건 확인 테이블*/
-.OkTable{
+.OkTable {
     width: 90%;
     text-align: center;
-    margin:auto;
-    margin-top:1rem;
-    margin-bottom:8vh;  
-    line-height:30px;
-    
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 8vh;
+    line-height: 30px;
 }
 
-
-
 /*th*/
-.Ok__menu{
+.Ok__menu {
     background-color: #bfdefc96;
 }
 
@@ -131,16 +124,16 @@
 .Lack__MajorCredit,
 .Lack__KyCredit,
 .Lack__NonSub,
-.Lack__mileage{
-    vertical-align:middle;
-    border:1px solid #a79d9d;
+.Lack__mileage {
+    vertical-align: middle;
+    border: 1px solid #a79d9d;
     width: 20%;
 }
 
 /*부족한 졸업 요건*/
-.Graduate_lack{
+.Graduate_lack {
     color: red;
-    font-size:medium;
+    font-size: medium;
     font-weight: 300;
     text-align: center;
     margin-bottom: 5vh;

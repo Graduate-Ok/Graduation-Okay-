@@ -1,8 +1,7 @@
-.Header{
+.Header {
     display: flex;
     justify-content: center;
     align-content: center;
-    padding : 5px;
+    padding: 5px;
     margin-top: 20px;
 }
-

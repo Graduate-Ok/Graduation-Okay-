@@ -223,6 +223,7 @@ li {
     font-size: 0;
     border: 1px solid #ddd;
     float: left;
+    cursor: pointer;
 }
 .tabnav li {
     display: inline-flex;

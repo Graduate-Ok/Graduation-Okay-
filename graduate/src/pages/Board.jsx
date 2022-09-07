@@ -27,7 +27,7 @@ const Board = () => {
     }, []);
 
     /**
-     * @description 페이지 네이션 기능
+     * @description 페이지네이션 기능
      *
      */
     const [searchHelper, setSearchHelper] = useState([]);

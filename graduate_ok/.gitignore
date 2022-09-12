@@ -26,6 +26,10 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+# DB 개인정보
+application.properties
+DBConnection
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

@@ -10,8 +10,11 @@ function KyRecommend() {
 
     useEffect(() => {
         const fetchData = async () => {
+            // const response = await axios.get(
+            //     'http://localhost:8089/KyRecommend/',
+            // );
             const response = await axios.get(
-                'http://localhost:8089/KyRecommend/',
+                'http://hsgraduateok.caemqdnz46sa.us-west-1.rds.amazonaws.com:3306/KyRecommend/',
             );
             setInputData(response.data);
         };

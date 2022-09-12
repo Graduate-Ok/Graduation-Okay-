@@ -18,8 +18,11 @@ const Board = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            // const response = await axios.get(
+            //     `http://localhost:8089/Board/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
+            // );
             const response = await axios.get(
-                `http://localhost:8089/Board/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
+                `http://hsgraduateok.caemqdnz46sa.us-west-1.rds.amazonaws.com:3306/Board/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
             );
             setInputData(response.data.boardDtoList);
         };
@@ -34,7 +37,11 @@ const Board = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`http://localhost:8089/Board/`);
+            // const response = await axios.get(`http://localhost:8089/Board/`);
+            const response = await axios.get(
+                `http://hsgraduateok.caemqdnz46sa.us-west-1.rds.amazonaws.com:3306/Board/`,
+            );
+
             setSearchHelper(response.data.searchHelper);
         };
         fetchData();
@@ -43,23 +50,31 @@ const Board = () => {
     const handleNextBtn = async (e) => {
         e.preventDefault();
         const response = await axios.get(
-            `http://localhost:8089/Board/?page=${searchHelper.nextBlock}`,
+            `http://hsgraduateok.caemqdnz46sa.us-west-1.rds.amazonaws.com:3306/Board/?page=${searchHelper.nextBlock}`,
         );
+        // const response = await axios.get(
+        //     `http://localhost:8089/Board/?page=${searchHelper.nextBlock}`,
+        // );
         setSearchHelper(response.data.searchHelper);
         setInputData(response.data.boardDtoList);
     };
     const handlePrevBtn = async (e) => {
         e.preventDefault();
+        // const response = await axios.get(
+        //     `http://localhost:8089/Board/?page=${searchHelper.prevBlock}`,
+        // );
         const response = await axios.get(
-            `http://localhost:8089/Board/?page=${searchHelper.prevBlock}`,
+            `http://hsgraduateok.caemqdnz46sa.us-west-1.rds.amazonaws.com:3306/Board/?page=${searchHelper.prevBlock}`,
         );
-
         setSearchHelper(response.data.searchHelper);
         setInputData(response.data.boardDtoList);
     };
     const handlePageClick = async (i) => {
+        // const response = await axios.get(
+        //     `http://localhost:8089/Board/?page=${i}`,
+        // );
         const response = await axios.get(
-            `http://localhost:8089/Board/?page=${i}`,
+            `http://hsgraduateok.caemqdnz46sa.us-west-1.rds.amazonaws.com:3306/Board/?page=${i}`,
         );
         setInputData(response.data.boardDtoList);
     };
@@ -74,12 +89,19 @@ const Board = () => {
         const search = document.forms['searchBar']['srchKeyword'].value;
         if (search === '') {
             alert('검색어를 입력해주세요!');
-            const response = await axios.get(`http://localhost:8089/Board/`);
+            const response = await axios.get(
+                `http://hsgraduateok.caemqdnz46sa.us-west-1.rds.amazonaws.com:3306/Board/`,
+            );
+            // const response = await axios.get(`http://localhost:8089/Board/`);
+
             setInputData(response.data.boardDtoList);
         } else {
             const response = await axios.get(
-                `http://localhost:8089/Board/?srchType=${select}&srchKeyword=${search}`,
+                `http://hsgraduateok.caemqdnz46sa.us-west-1.rds.amazonaws.com:3306/Board/?srchType=${select}&srchKeyword=${search}`,
             );
+            // const response = await axios.get(
+            //     `http://localhost:8089/Board/?srchType=${select}&srchKeyword=${search}`,
+            // );
             setInputData(response.data.boardDtoList);
         }
     };

@@ -120,7 +120,7 @@ public class PdfCheck {
             // 학과 추출 (복수전공)
             if (line.contains("복수전공Ⅰ")) {
                 String[] strings = line.split(" ");
-                if(!strings[7].equals("복수전공Ⅱ")) {
+                if(strings[7].equals("복수전공Ⅱ")) {
                     studentDoubleMajor = strings[7];
                 }
             }
@@ -550,13 +550,11 @@ public class PdfCheck {
          * 테스트해보고 싶으면 아래 if문 주석 처리하고 돌리기!!!
          */
         // 2019 학번 아니면 검사 필요없이 비어 있는 스트링버퍼 return
-        if (studentId != 2019) return failure;
+        if (studentId != 2018) return failure;
 
         String[] talentType = {"소통하는지성인", "실천하는평화인", "도전하는창의인"};
-        int creditSum = 0;
 
         for (String type : talentType) {
-            creditSum = 0;
 
             List<String> talents = new ArrayList<>();
             talents.addAll(DBConnection.getTalent1(type));
@@ -568,17 +566,12 @@ public class PdfCheck {
             System.out.println("\n===인재상 [" + type + "] 과목===");
 
             for (String str : talents) {
-                int kyCredit = DBConnection.getKyCredit(str);
-
-                // test
-                System.out.println(str + " (" + kyCredit + "학점)");
-
-                creditSum += kyCredit;
+                    System.out.println(str);
+            }
+            if (talents.size() < 1) {
+                failure.append("교양 인재상 '" + type + "' 미수강\n");
             }
 
-            if (creditSum < 5) {
-                failure.append("교양 인재상 '" + type + "' " + (5 - creditSum) + "학점 미이수\n");
-            }
         }
 
         return failure;

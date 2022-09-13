@@ -38,7 +38,7 @@ public class PdfCheck {
      */
 
     public static void main(String[] args) throws Exception {
-        HashMap<String, Object> a = execute("C:\\springboot\\um72_0272003_r01.pdf");
+        HashMap<String, Object> a = execute("C:\\springboot\\um72_0272003_r02.pdf");
 
         // test 교양 카운트 초기화
         //DBConnection.settingKyCount0();
@@ -103,16 +103,24 @@ public class PdfCheck {
                 studentMajor = strings[2].substring(0, strings[2].length() - 1);
 
                 // 부전공
-                String[] strings2 = line.split(" ");
-                if (strings2.length > 1 && !(strings2[1].equals("") || strings2[1].equals(" "))) {
-                    studentSubMajor = strings2[1];
+//                String[] strings2 = line.split(" ");
+//                if (strings2.length > 1 && !(strings2[1].equals("") || strings2[1].equals(" "))) {
+//                    studentSubMajor = strings2[1];
+//                }
+            }
+
+            // 부전공
+            if (line.contains("부전공Ⅱ")){
+                String[] strings = line.split(" ");
+                if (!strings[0].equals("부전공Ⅱ")) {
+                    studentSubMajor = strings[0];
                 }
             }
 
             // 학과 추출 (복수전공)
             if (line.contains("복수전공Ⅰ")) {
                 String[] strings = line.split(" ");
-                if(strings[7].equals("복수전공Ⅱ")) {
+                if(!strings[7].equals("복수전공Ⅱ")) {
                     studentDoubleMajor = strings[7];
                 }
             }

@@ -29,7 +29,7 @@ const PostBoard = () => {
             alert('비어있는 항목이 있습니다. 입력 후 다시 등록해주세요');
             return false;
         }
-        await axios.post('http://localhost:8089/Board/PostBoard', {
+        await axios.post('http://13.125.25.62:8089/Board/PostBoard', {
             brdTitle: title,
             brdWriter: writer,
             brdContent: content,

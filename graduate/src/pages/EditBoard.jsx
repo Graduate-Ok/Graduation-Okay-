@@ -17,7 +17,7 @@ const EditBoard = ({ brdKey }) => {
      */
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:8089/Board/PostBoard', {
+        await axios.post('http://13.125.25.62:8089/Board/PostBoard', {
             brdTitle: title,
             brdWriter: writer,
             brdContent: content,
@@ -36,7 +36,7 @@ const EditBoard = ({ brdKey }) => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `http://localhost:8089/Board/${params}`,
+                `http://13.125.25.62:8089/Board/${params}`,
             );
             setInputData(response.data);
         };

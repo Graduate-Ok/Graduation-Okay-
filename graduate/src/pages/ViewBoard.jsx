@@ -16,7 +16,7 @@ function ViewBoard() {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `http://localhost:8089/Board/${params}`,
+                `http://13.125.25.62:8089/Board/${params}`,
             );
             setInputData(response.data);
         };
@@ -30,7 +30,7 @@ function ViewBoard() {
         );
         if (window.confirm('정말 삭제하시겠습니까?')) {
             const response = await axios.delete(
-                `http://localhost:8089/Board/${params}?password=${inputPassword}`,
+                `http://13.125.25.62:8089/Board/${params}?password=${inputPassword}`,
                 {
                     brdPassword: inputPassword,
                 },

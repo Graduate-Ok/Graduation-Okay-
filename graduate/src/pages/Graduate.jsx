@@ -28,7 +28,7 @@ const Graduate = () => {
         const getFile = document.getElementById('file');
         fd.append('file', getFile.files[0]);
         axios
-            .post('http://localhost:8089/Graduate', fd, {
+            .post('http://13.125.25.62:8089/Graduate', fd, {
                 headers: {
                     'Content-Type': `multipart/form-data`,
                 },

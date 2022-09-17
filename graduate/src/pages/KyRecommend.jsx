@@ -25,8 +25,18 @@ function KyRecommend() {
         <>
             <main>
                 <div className="main">
-                    <div className="title">✨인기 교양 추천✨</div>
-                    <br />
+                    {/* <div className="title">✨인기 교양 추천✨</div> */}
+                    <div className="title">( 교양 과목 찾기 : ctrl+f + 과목명 )</div><br/><br/>
+
+
+                    <div className='starOrder'>
+                    <button id='btnStarOrder'> ⭐에브리타임 별점순⭐</button>
+                        <KyRecommendRow2></KyRecommendRow2>
+                        </div>
+
+                        
+                    <button id='btnNumOrder' > ☝수강 횟수 순✌</button> <br/>
+                    
                     <div className="KyTableWrapper">
                         <table className="KyTable">
                             <tr className="menu">
@@ -52,9 +62,14 @@ function KyRecommend() {
                             {inputData.map((e) => {
                                 return <KyRecommendRow KyRecommend={e} />;
                             })}
+                            <br /><br />
                         </table>
+                        
                     </div>
-                </div>
+                    </div>
+
+                <br /><br /> <br /><br />
+                    
             </main>
         </>
     );

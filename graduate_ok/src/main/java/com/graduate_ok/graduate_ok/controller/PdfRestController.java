@@ -19,7 +19,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class PdfRestController {
 
     @PostMapping("/Graduate")

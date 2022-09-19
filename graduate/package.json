@@ -1,5 +1,4 @@
 {
-    "proxy": "http://13.125.25.62:8089",
     "name": "graduate",
     "version": "0.1.0",
     "private": true,

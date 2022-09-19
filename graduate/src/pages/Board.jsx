@@ -23,6 +23,7 @@ const Board = () => {
             // );
             const response = await axios.get(
                 `http://13.125.25.62:8089/Board/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
+                { withCredentials: true },
             );
             setInputData(response.data.boardDtoList);
         };
@@ -38,7 +39,10 @@ const Board = () => {
     useEffect(() => {
         const fetchData = async () => {
             // const response = await axios.get(`http://localhost:8089/Board/`);
-            const response = await axios.get(`http://13.125.25.62:8089/Board/`);
+            const response = await axios.get(
+                `http://13.125.25.62:8089/Board/`,
+                { withCredentials: true },
+            );
 
             setSearchHelper(response.data.searchHelper);
         };
@@ -49,6 +53,7 @@ const Board = () => {
         e.preventDefault();
         const response = await axios.get(
             `http://13.125.25.62:8089/Board/?page=${searchHelper.nextBlock}`,
+            { withCredentials: true },
         );
         // const response = await axios.get(
         //     `http://localhost:8089/Board/?page=${searchHelper.nextBlock}`,
@@ -63,6 +68,7 @@ const Board = () => {
         // );
         const response = await axios.get(
             `http://13.125.25.62:8089/Board/?page=${searchHelper.prevBlock}`,
+            { withCredentials: true },
         );
         setSearchHelper(response.data.searchHelper);
         setInputData(response.data.boardDtoList);
@@ -73,6 +79,7 @@ const Board = () => {
         // );
         const response = await axios.get(
             `http://13.125.25.62:8089/Board/?page=${i}`,
+            { withCredentials: true },
         );
         setInputData(response.data.boardDtoList);
     };
@@ -87,13 +94,17 @@ const Board = () => {
         const search = document.forms['searchBar']['srchKeyword'].value;
         if (search === '') {
             alert('검색어를 입력해주세요!');
-            const response = await axios.get(`http://13.125.25.62:8089/Board/`);
+            const response = await axios.get(
+                `http://13.125.25.62:8089/Board/`,
+                { withCredentials: true },
+            );
             // const response = await axios.get(`http://localhost:8089/Board/`);
 
             setInputData(response.data.boardDtoList);
         } else {
             const response = await axios.get(
                 `http://13.125.25.62:8089/Board/?srchType=${select}&srchKeyword=${search}`,
+                { withCredentials: true },
             );
             // const response = await axios.get(
             //     `http://localhost:8089/Board/?srchType=${select}&srchKeyword=${search}`,

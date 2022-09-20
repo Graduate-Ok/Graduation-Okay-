@@ -37,7 +37,7 @@
     text-align: center;
 }
 
-/*'당신은 졸업이 가능한가요?'*/
+/*'당신은 졸업이 가능한가요?, 교양과목 정보 외의 인적사항 ...'*/
 .section__text {
     font-size: large;
     margin-top: 80px;
@@ -45,6 +45,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    flex-direction: column;
 }
 
 /*pdf 업로드 버튼*/

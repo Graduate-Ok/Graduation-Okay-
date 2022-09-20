@@ -65,6 +65,9 @@ const Graduate = () => {
                     <div className="section__text">
                         당신은 졸업이 가능한가요 ?
                     </div>
+                    <div className="section__text">
+                        교양과목 정보 외의 인적사항 및 학점은 따로 저장하지 않습니다!
+                    </div>
                     <form method="post" action="/Graduate">
                         <div className="section__button">
                             <label className="upload__button" for="file">

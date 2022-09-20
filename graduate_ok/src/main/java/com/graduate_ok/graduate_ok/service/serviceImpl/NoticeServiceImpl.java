@@ -1,5 +1,6 @@
 package com.graduate_ok.graduate_ok.service.serviceImpl;
 
+import com.graduate_ok.graduate_ok.dto.BoardDto;
 import com.graduate_ok.graduate_ok.dto.NoticeDto;
 import com.graduate_ok.graduate_ok.dto.NoticeListDto;
 import com.graduate_ok.graduate_ok.dto.SearchHelper;
@@ -9,7 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,14 +36,25 @@ public class NoticeServiceImpl implements NoticeService {
 
         List<NoticeDto> list = noticeMapper.selectNoticeList(searchHelper);
 
-        // 타임스탬프 시간 변경 (9시간 추가)
-        for (NoticeDto nd : list) {
-            Timestamp original = nd.getNotiWtTime();
-            Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(original.getTime());
-            cal.add(Calendar.HOUR, 9);
-            Timestamp change = new Timestamp(cal.getTime().getTime());
-            nd.setNotiWtTime(change);
+        // 타임스탬프 시간 변경 (9시간 추가) // 로컬에서 돌릴 때 해당
+//        for (NoticeDto nd : list) {
+//            Timestamp original = nd.getNotiWtTime();
+//            Calendar cal = Calendar.getInstance();
+//            cal.setTimeInMillis(original.getTime());
+//            cal.add(Calendar.HOUR, 9);
+//            Timestamp change = new Timestamp(cal.getTime().getTime());
+//            nd.setNotiWtTime(change);
+//        }
+
+        // Unix Time -> Timestamp 변환
+        for (NoticeDto bd : list) {
+            Long original = Long.parseLong(bd.getNotiWtTime().toString());
+            Date date = new Date(original*1000);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            simpleDateFormat.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9"));
+            String timestamp = simpleDateFormat.format(date);
+            Timestamp changed = Timestamp.valueOf(timestamp);
+            bd.setNotiWtTime(changed);
         }
 
         noticeListDto.setNoticeDtoList(list);

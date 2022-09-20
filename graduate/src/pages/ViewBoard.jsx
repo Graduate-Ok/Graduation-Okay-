@@ -49,14 +49,14 @@ function ViewBoard() {
             '작성 시 사용했던 비밀번호를 입력해주세요',
         );
         if (window.confirm('수정하시겠습니까?')) {
-            const response = await axios.put(
+            const response = await axios.get(
                 `http://13.125.25.62:8089/Board/${params}?password=${inputPassword}`,
                 {
                     brdPassword: inputPassword,
                 },
             );
             alert(response.data);
-            navigate(`../Board/EditBoard/${params}`);
+            // navigate(`../Board/EditBoard/${params}`);
         } else {
             alert('수정이 취소되었습니다');
             navigate(0);
@@ -86,7 +86,8 @@ function ViewBoard() {
                             {/* 수정 부분으로 넘어가도록 */}
                             <div
                                 onClick={handleUpdate}
-                                className="Board__update--button">
+                                className="Board__update--button"
+                            >
                                 수정
                             </div>
                             &nbsp;

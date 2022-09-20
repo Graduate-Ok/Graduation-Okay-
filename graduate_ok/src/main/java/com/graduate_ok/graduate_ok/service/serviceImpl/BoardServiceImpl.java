@@ -6,8 +6,11 @@ import com.graduate_ok.graduate_ok.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -32,7 +35,7 @@ public class BoardServiceImpl implements BoardService {
 
         List<BoardDto> list = boardMapper.selectBoardList(searchHelper);
 
-        // 타임스탬프 시간 변경 (9시간 추가)
+        // 타임스탬프 시간 변경 (9시간 추가) // 로컬에서 돌릴 때 해당
         for (BoardDto bd : list) {
             Timestamp original = bd.getBrdWtTime();
             Calendar cal = Calendar.getInstance();
@@ -40,6 +43,17 @@ public class BoardServiceImpl implements BoardService {
             cal.add(Calendar.HOUR, 9);
             Timestamp change = new Timestamp(cal.getTime().getTime());
             bd.setBrdWtTime(change);
+        }
+
+        // Unix Time -> Timestamp 변환
+        for (BoardDto bd : list) {
+            Long original = Long.parseLong(bd.getBrdWtTime().toString());
+            Date date = new Date(original*1000);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            simpleDateFormat.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9"));
+            String timestamp = simpleDateFormat.format(date);
+            Timestamp changed = Timestamp.valueOf(timestamp);
+            bd.setBrdWtTime(changed);
         }
 
         boardListDto.setBoardDtoList(list);

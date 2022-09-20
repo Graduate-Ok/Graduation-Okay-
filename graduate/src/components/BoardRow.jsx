@@ -14,9 +14,10 @@ const BoardRow = ({ Board }) => {
             </Link>
             <div className="Board__content--writer">{Board.brdWriter}</div>
             <div className="Board__content--date">
-                {Board.brdWtTime.toString().substring(0, 10) +
-                    ' ' +
-                    Board.brdWtTime.toString().substring(11, 16)}
+                {Board.brdWtTime.toString()}
+                {/*{Board.brdWtTime.toString().substring(0, 10) +*/}
+                {/*    ' ' +*/}
+                {/*    Board.brdWtTime.toString().substring(11, 16)}*/}
             </div>
             <div className="Board__content--hits">{Board.brdLookup}</div>
         </div>

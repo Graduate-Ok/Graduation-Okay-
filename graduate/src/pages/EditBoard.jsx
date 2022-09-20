@@ -26,6 +26,8 @@ const EditBoard = ({ brdKey }) => {
         navigate('/Board');
     };
 
+
+
     const [title, onChangeTitle] = useInput('');
     const [writer, onChangeWriter] = useInput('');
     const [password, onChangePassword] = useInput('');
@@ -44,7 +46,7 @@ const EditBoard = ({ brdKey }) => {
     }, []);
 
     console.log(params);
-    
+
     return (
         <>
             <main>
@@ -53,7 +55,18 @@ const EditBoard = ({ brdKey }) => {
                         <div className="Board__header">
                             <p className="minititle"> 정보공유 게시판</p>
                         </div>
-                        <form
+
+                        {inputData.map((inputData) => {
+                            return (
+                                <EditBoardRow
+                                    EditBoard={inputData}
+                                    key={inputData.brdKey}
+                                />
+                            );
+                        })}
+
+
+                        {/* <form
                             name="writing"
                             method="post"
                             action="/Board/EditBoard"
@@ -137,7 +150,7 @@ const EditBoard = ({ brdKey }) => {
                                     등록하기
                                 </button>
                             </div>
-                        </form>
+                        </form> */}
                     </div>
                 </div>
             </main>

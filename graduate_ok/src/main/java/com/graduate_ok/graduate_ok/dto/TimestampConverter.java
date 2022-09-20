@@ -22,10 +22,12 @@ public class TimestampConverter {
             Date date = new Date(original * 1000L);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9"));
-            String test = sdf.format(date);
-            // test
-//            System.out.println("sdf.format(date) : " + sdf.format(date));
-            timestamp = Timestamp.valueOf(test);
+            timestamp = new Timestamp(sdf.parse(String.valueOf(date)).getTime());
+
+//            String test = sdf.format(date);
+//            // test
+////            System.out.println("sdf.format(date) : " + sdf.format(date));
+//            timestamp = Timestamp.valueOf(test);
 
         } catch (Exception e) {
             e.printStackTrace();

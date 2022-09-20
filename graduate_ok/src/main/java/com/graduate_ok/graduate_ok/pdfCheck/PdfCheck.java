@@ -38,7 +38,7 @@ public class PdfCheck {
      */
 
     public static void main(String[] args) throws Exception {
-        HashMap<String, Object> a = execute("C:\\springboot\\um72_0272003_r02.pdf");
+        HashMap<String, Object> a = execute("C:\\Users\\수빈\\Desktop\\백업\\um72_0272003_r01.pdf");
 
         // test 교양 카운트 초기화
         //DBConnection.settingKyCount0();
@@ -100,7 +100,8 @@ public class PdfCheck {
             if (line.contains("부전공Ⅰ")) {
                 // 주전공
                 String[] strings = list[i - 1].split(" ");
-                studentMajor = strings[2].substring(0, strings[2].length() - 1);
+                int length = strings[2].length() - 1;
+                studentMajor = strings[2].substring(0, length);
 
                 // 부전공
 //                String[] strings2 = line.split(" ");
@@ -128,7 +129,8 @@ public class PdfCheck {
 
             // 총 취득학점 추출
             if (line.contains("총 취득학점")) {
-                totalCredit = Integer.parseInt(line.substring(7, line.length() - 1).trim());
+                int length = line.length() - 1;
+                totalCredit = Integer.parseInt(line.substring(7, length).trim());
             }
 
             // 교양, 전공 이수학점 추출
@@ -168,7 +170,8 @@ public class PdfCheck {
 
             // 마일리지 추출
             if (line.contains("마일리지")) {
-                mileage = Integer.parseInt(line.substring(22, line.length() - 1));
+                int length = line.length() - 1;
+                mileage = Integer.parseInt(line.substring(22, length));
             }
 
             // 영어인증자 추출

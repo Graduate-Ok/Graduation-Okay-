@@ -52,8 +52,6 @@ const EditBoardRow = ({ EditBoard }) => {
 
     return (
         <div>
-
-
             <form
                 name="writing"
                 method="post"
@@ -140,14 +138,14 @@ const EditBoardRow = ({ EditBoard }) => {
                         수정하기
                     </button>
 
-                    {/*
+                    
                     <div
                         onClick={() => navigate(`http://13.125.25.62:8089/Board`)}
                         className="Board__footer--button"
                     >
                         돌아가기
                     </div> 
-                    */}
+                   
 
                 </div>
             </form>

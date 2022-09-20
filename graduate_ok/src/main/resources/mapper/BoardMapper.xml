@@ -68,6 +68,13 @@
         )
     </insert>
 
+    <!-- 수정할 게시글 key로 조회 -->
+    <select id="selectEditBoardByKey" resultType="BoardUpdateDto" parameterType="Integer">
+        SELECT brd_key, brd_title, brd_password, brd_writer, brd_content
+        FROM board
+        WHERE brd_key = #{key}
+    </select>
+
     <!-- 게시글 수정 -->
     <update id="updateBoard" parameterType="BoardUpdateDto">
         UPDATE board

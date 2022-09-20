@@ -78,6 +78,14 @@ public class BoardServiceImpl implements BoardService {
     }
 
     /**
+     * 수정할 게시글 조회
+     */
+    @Override
+    public BoardUpdateDto selectEditBoardByKey(Integer key) {
+        return boardMapper.selectEditBoardByKey(key);
+    }
+
+    /**
      * 게시글 수정
      */
     @Override

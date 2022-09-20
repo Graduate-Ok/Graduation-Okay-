@@ -56,6 +56,7 @@ function ViewBoard() {
                 },
             );
             alert(response.data);
+            console.log(response.data);
             // navigate(`../Board/EditBoard/${params}`);
         } else {
             alert('수정이 취소되었습니다');

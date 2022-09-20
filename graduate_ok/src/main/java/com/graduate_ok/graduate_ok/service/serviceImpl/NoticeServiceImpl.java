@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -49,6 +50,8 @@ public class NoticeServiceImpl implements NoticeService {
             Long original = Long.parseLong(bd.getNotiWtTime().toString());
             Date date = new Date(original*1000);
             Timestamp changed = new Timestamp(date.getTime());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String c = sdf.format(changed);
             Calendar cal = Calendar.getInstance();
             cal.setTimeInMillis(changed.getTime());
             cal.add(Calendar.HOUR, 9);

@@ -100,7 +100,7 @@ public class PdfCheck {
             if (line.contains("부전공Ⅰ")) {
                 // 주전공
                 String[] strings = list[i - 1].split(" ");
-                int length = strings[2].length() - 1;
+                int length = strings[2].length();// - 1;
                 studentMajor = strings[2].substring(0, length);
 
                 // 부전공
@@ -129,7 +129,7 @@ public class PdfCheck {
 
             // 총 취득학점 추출
             if (line.contains("총 취득학점")) {
-                int length = line.length() - 1;
+                int length = line.length();// - 1;
                 totalCredit = Integer.parseInt(line.substring(7, length).trim());
             }
 
@@ -170,7 +170,7 @@ public class PdfCheck {
 
             // 마일리지 추출
             if (line.contains("마일리지")) {
-                int length = line.length() - 1;
+                int length = line.length();// - 1;
                 mileage = Integer.parseInt(line.substring(22, length));
             }
 

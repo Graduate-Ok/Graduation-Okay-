@@ -4,32 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useInput from '../hooks/useInput';
-
-
+import { useNavigate, useParams } from 'react-router-dom';
 
 const EditBoardRow = ({ EditBoard }) => {
+    
     const navigate = useNavigate();
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     await axios.post('http://13.125.25.62:8089/Board/PostBoard', {
-    //         brdTitle: title,
-    //         brdWriter: writer,
-    //         brdContent: content,
-    //         brdPassword: password,
-    //     });
-    //     navigate('/Board');
-    // };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.put('http://13.125.25.62:8089/Board/PostBoard', {
+        await axios.put(`http://13.125.25.62:8089/Board/${params}?password=${inputPassword}`, {
             brdTitle: title,
             brdWriter: writer,
             brdContent: content,
             brdPassword: password,
         });
-        // navigate('/Board');
+        navigate('/Board');
     };
+
+    
 
 
     const [title, onChangeTitle] = useInput('');
@@ -97,7 +88,7 @@ const EditBoardRow = ({ EditBoard }) => {
                                 required
                             ></input>
                         </div>
-                        {/* <br /> Password (수정/삭제시 비밀번호가
+                        <br /> Password (수정/삭제시 비밀번호가
                                     필요합니다.)
                                     <div className="Board__writecontainer--detail">
                                         {' '}
@@ -110,7 +101,7 @@ const EditBoardRow = ({ EditBoard }) => {
                                             className="Board__writecontainer--password"
                                             required
                                         ></input>
-                                    </div> */}
+                                    </div>
                         <br />
                         내용{' '}
                         <div className="Board__writecontainer--detail">

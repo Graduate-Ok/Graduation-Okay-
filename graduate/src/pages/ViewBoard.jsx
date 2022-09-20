@@ -49,15 +49,15 @@ function ViewBoard() {
             '작성 시 사용했던 비밀번호를 입력해주세요',
         );
         if (window.confirm('수정하시겠습니까?')) {
-            const response = await axios.get(
-                `http://13.125.25.62:8089/Board/${params}?password=${inputPassword}`,
+            const response = await axios.put(
+                `http://13.125.25.62:8089/Board/${params}`,
                 {
                     brdPassword: inputPassword,
                 },
             );
             alert(response.data);
             console.log(response.data);
-            // navigate(`../Board/EditBoard/${params}`);
+            navigate(`../Board/EditBoard/${params}`);
         } else {
             alert('수정이 취소되었습니다');
             navigate(0);

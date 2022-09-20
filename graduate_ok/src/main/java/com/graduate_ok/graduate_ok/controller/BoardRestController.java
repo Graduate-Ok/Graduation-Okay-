@@ -58,9 +58,10 @@ public class BoardRestController {
     @PutMapping("/{key}")
     @ApiOperation(value = "게시글 수정 API")
     public String updateBoard(@PathVariable("key") Integer key,
+                              @RequestParam(value = "password", defaultValue = "") String password,
                               @RequestBody BoardUpdateDto boardUpdateDto) {
         // 비밀번호 확인
-        int result = DBConnection.checkPassword(key, boardUpdateDto.getBrdPassword());
+        int result = DBConnection.checkPassword(key, password);
 
         if (result == 1) {
             boardUpdateDto.setBrdKey(key);

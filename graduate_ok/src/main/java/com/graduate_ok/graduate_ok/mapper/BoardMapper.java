@@ -21,6 +21,9 @@ public interface BoardMapper {
     // 게시글 작성
     void insertBoard(BoardInsertDto boardInsertDto);
 
+    // 수정할 게시글 조회
+    BoardUpdateDto selectEditBoardByKey(Integer key);
+
     // 게시글 수정
     void updateBoard(BoardUpdateDto boardUpdateDto);
 

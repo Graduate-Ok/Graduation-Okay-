@@ -112,7 +112,7 @@ public class PdfCheck {
             // 부전공
             if (line.contains("부전공Ⅱ")){
                 String[] strings = line.split(" ");
-                if (!strings[0].equals("부전공Ⅱ")) {
+                if (!strings[0].contains("부전공Ⅱ")) {
                     studentSubMajor = strings[0];
                 }
             }
@@ -120,7 +120,7 @@ public class PdfCheck {
             // 학과 추출 (복수전공)
             if (line.contains("복수전공Ⅰ")) {
                 String[] strings = line.split(" ");
-                if(strings[7].equals("복수전공Ⅱ")) {
+                if(!strings[7].contains("복수전공Ⅱ")) {
                     studentDoubleMajor = strings[7];
                 }
             }

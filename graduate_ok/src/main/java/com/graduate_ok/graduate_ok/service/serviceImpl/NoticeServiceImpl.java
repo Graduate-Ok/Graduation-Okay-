@@ -3,15 +3,16 @@ package com.graduate_ok.graduate_ok.service.serviceImpl;
 import com.graduate_ok.graduate_ok.dto.NoticeDto;
 import com.graduate_ok.graduate_ok.dto.NoticeListDto;
 import com.graduate_ok.graduate_ok.dto.SearchHelper;
+import com.graduate_ok.graduate_ok.dto.TimestampConverter;
 import com.graduate_ok.graduate_ok.mapper.NoticeMapper;
 import com.graduate_ok.graduate_ok.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -47,15 +48,8 @@ public class NoticeServiceImpl implements NoticeService {
 
         // Unix Time -> Timestamp 변환
         for (NoticeDto bd : list) {
-            Long original = Long.parseLong(bd.getNotiWtTime().toString());
-            Date date = new Date(original*1000);
-            Timestamp changed = new Timestamp(date.getTime());
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String c = sdf.format(changed);
-            Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(changed.getTime());
-            cal.add(Calendar.HOUR, 9);
-            bd.setNotiWtTime(new Timestamp(cal.getTime().getTime()));
+            Timestamp timestamp = TimestampConverter.timestampConverter(bd.getNotiWtTime().toString());
+            bd.setNotiWtTime(timestamp);
         }
 
         noticeListDto.setNoticeDtoList(list);

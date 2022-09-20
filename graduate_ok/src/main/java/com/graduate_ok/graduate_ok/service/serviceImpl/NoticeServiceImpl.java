@@ -1,6 +1,5 @@
 package com.graduate_ok.graduate_ok.service.serviceImpl;
 
-import com.graduate_ok.graduate_ok.dto.BoardDto;
 import com.graduate_ok.graduate_ok.dto.NoticeDto;
 import com.graduate_ok.graduate_ok.dto.NoticeListDto;
 import com.graduate_ok.graduate_ok.dto.SearchHelper;
@@ -9,10 +8,10 @@ import com.graduate_ok.graduate_ok.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -51,10 +50,12 @@ public class NoticeServiceImpl implements NoticeService {
             Long original = Long.parseLong(bd.getNotiWtTime().toString());
             Date date = new Date(original*1000);
             Timestamp changed = new Timestamp(date.getTime());
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 형식
-            sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9")); // 9시간 추가
-            String timestamp = sdf.format(changed);
-            bd.setNotiWtTime(Timestamp.valueOf(timestamp));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String c = sdf.format(changed);
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(changed.getTime());
+            cal.add(Calendar.HOUR, 9);
+            bd.setNotiWtTime(new Timestamp(cal.getTime().getTime()));
         }
 
         noticeListDto.setNoticeDtoList(list);

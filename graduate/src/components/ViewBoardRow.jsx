@@ -15,9 +15,9 @@ const ViewBoardRow = ({ ViewBoard }) => {
                 <span>&nbsp;작성일 :</span>
                 <span className="BRD_WT_TIME">
                     &nbsp;
-                    {ViewBoard.brdWtTime.substring(0, 10) +
+                    {ViewBoard.brdWtTime.toString().substring(0, 10) +
                         ' ' +
-                        ViewBoard.brdWtTime.substring(11, 16)}
+                        ViewBoard.brdWtTime.toString().substring(11, 16)}
                     &nbsp;
                 </span>
                 <span>&nbsp; 조회수 :</span>

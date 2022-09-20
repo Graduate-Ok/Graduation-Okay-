@@ -26,7 +26,7 @@ const NoticeRow = ({ Notice }) => {
                     </details>
                 </div>
                 <div className="Notice__content--date">
-                    {Notice.notiWtTime.substring(0, 10)}
+                    {Notice.notiWtTime.toString().substring(0, 10)}
                 </div>
             </div>
         </>

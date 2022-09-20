@@ -50,10 +50,10 @@ public class BoardServiceImpl implements BoardService {
             Long original = Long.parseLong(bd.getBrdWtTime().toString());
             Date date = new Date(original*1000);
             Timestamp changed = new Timestamp(date.getTime());
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 형식
-            sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9")); // 9시간 추가
-            String timestamp = sdf.format(changed);
-            bd.setBrdWtTime(Timestamp.valueOf(timestamp));
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(changed.getTime());
+            cal.add(Calendar.HOUR, 9);
+            bd.setBrdWtTime(new Timestamp(cal.getTime().getTime()));
         }
 
         boardListDto.setBoardDtoList(list);

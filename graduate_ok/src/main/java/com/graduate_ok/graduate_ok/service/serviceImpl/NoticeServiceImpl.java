@@ -51,10 +51,10 @@ public class NoticeServiceImpl implements NoticeService {
             Long original = Long.parseLong(bd.getNotiWtTime().toString());
             Date date = new Date(original*1000);
             Timestamp changed = new Timestamp(date.getTime());
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 형식
-            sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9")); // 9시간 추가
-            String timestamp = sdf.format(changed);
-            bd.setNotiWtTime(Timestamp.valueOf(timestamp));
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(changed.getTime());
+            cal.add(Calendar.HOUR, 9);
+            bd.setNotiWtTime(new Timestamp(cal.getTime().getTime()));
         }
 
         noticeListDto.setNoticeDtoList(list);

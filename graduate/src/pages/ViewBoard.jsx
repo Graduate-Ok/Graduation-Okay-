@@ -43,6 +43,26 @@ function ViewBoard() {
         }
     };
 
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        const inputPassword = prompt(
+            '작성 시 사용했던 비밀번호를 입력해주세요',
+        );
+        if (window.confirm('수정하시겠습니까?')) {
+            const response = await axios.put(
+                `http://13.125.25.62:8089/Board/${params}?password=${inputPassword}`,
+                {
+                    brdPassword: inputPassword,
+                },
+            );
+            alert(response.data);
+            navigate(`../Board/EditBoard/${params}`);
+        } else {
+            alert('수정이 취소되었습니다');
+            navigate(0);
+        }
+    };
+
     return (
         <>
             <main>
@@ -64,12 +84,11 @@ function ViewBoard() {
                         })}
                         <div className="Board__footer">
                             {/* 수정 부분으로 넘어가도록 */}
-                            <Link
-                                to="../Board/EditBoard/{params}"
-                                className="Board__update--button"
-                            >
+                            <div
+                                onClick={handleUpdate}
+                                className="Board__update--button">
                                 수정
-                            </Link>
+                            </div>
                             &nbsp;
                             <div
                                 type="submit"

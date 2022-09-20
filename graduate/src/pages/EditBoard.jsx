@@ -43,6 +43,8 @@ const EditBoard = ({ brdKey }) => {
         fetchData();
     }, []);
 
+    console.log(params);
+    
     return (
         <>
             <main>

@@ -7,14 +7,16 @@ import java.text.SimpleDateFormat;
 
 public class TimestampConverter {
 
-    public static Timestamp timestampConverter(String input) {
+    public static Timestamp timestampConverter(Timestamp input) { // String input
         Timestamp timestamp = Timestamp.valueOf("2022-09-20 01:23:45");
 
         // test
 //        System.out.println("input : " + input + ", type : " + input.getClass().getName());
 
         try {
-            Long original = Long.parseLong(input);
+            //Long original = Long.parseLong(input);
+            String str = input.toString().replaceAll("[^0-9]", "");
+            Long original = Long.parseLong(str);
             // test
 //            System.out.println("original : " + original + ", type : " + original.getClass().getName());
             Date date = new Date(original * 1000L);

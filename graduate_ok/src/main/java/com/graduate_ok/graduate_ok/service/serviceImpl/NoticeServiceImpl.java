@@ -48,7 +48,10 @@ public class NoticeServiceImpl implements NoticeService {
 
         // Unix Time -> Timestamp 변환
         for (NoticeDto bd : list) {
-            Timestamp timestamp = TimestampConverter.timestampConverter(bd.getNotiWtTime().toString());
+            // Timestamp
+            Timestamp timestamp = TimestampConverter.timestampConverter(bd.getNotiWtTime());
+            // String
+//            Timestamp timestamp = TimestampConverter.timestampConverter(bd.getNotiWtTime().toString());
             bd.setNotiWtTime(timestamp);
         }
 

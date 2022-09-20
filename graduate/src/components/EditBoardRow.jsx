@@ -10,7 +10,8 @@ const EditBoardRow = ({ EditBoard }) => {
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.put(`http://13.125.25.62:8089/Board/${params}?password=${inputPassword}`, {
+        //http://13.125.25.62:8089/Board/${params}?password=${inputPassword}
+        await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
             brdTitle: title,
             brdWriter: writer,
             brdContent: content,

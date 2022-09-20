@@ -52,14 +52,13 @@ const EditBoardRow = ({ EditBoard }) => {
                         htmlFor="edit"
                         className="Board__writecontainer--head"
                     >
-                        {' '}
-                        [ 정보 공유 게시판 ]{' '}
+                        
+                        [ 정보 공유 게시판 ]
                     </label>
 
                     <div className="Board__writecontainer--info">
-                        제목{' '}
+                        제목
                         <div className="Board__writecontainer--detail">
-                            {''}
                             <input
                                 type="text"
                                 onChange={onChangeTitle}
@@ -73,9 +72,8 @@ const EditBoardRow = ({ EditBoard }) => {
                             ></input>
                         </div>
                         <br />
-                        작성자{' '}
+                        작성자
                         <div className="Board__writecontainer--detail">
-                            {' '}
                             <input
                                 type="text"
                                 onChange={onChangeWriter}
@@ -90,7 +88,6 @@ const EditBoardRow = ({ EditBoard }) => {
                         <br /> Password (수정/삭제시 비밀번호가
                                     필요합니다.)
                                     <div className="Board__writecontainer--detail">
-                                        {' '}
                                         <input
                                             type="password"
                                             onChange={onChangePassword}
@@ -102,7 +99,7 @@ const EditBoardRow = ({ EditBoard }) => {
                                         ></input>
                                     </div>
                         <br />
-                        내용{' '}
+                        내용
                         <div className="Board__writecontainer--detail">
                             <textarea
                                 placeholder="내용을 입력하세요."

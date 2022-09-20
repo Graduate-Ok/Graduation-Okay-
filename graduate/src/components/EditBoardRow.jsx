@@ -9,27 +9,27 @@ import useInput from '../hooks/useInput';
 
 const EditBoardRow = ({ EditBoard }) => {
     const navigate = useNavigate();
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await axios.post('http://13.125.25.62:8089/Board/PostBoard', {
-            brdTitle: title,
-            brdWriter: writer,
-            brdContent: content,
-            brdPassword: password,
-        });
-        navigate('/Board');
-    };
-
     // const handleSubmit = async (e) => {
     //     e.preventDefault();
-    //     await axios.put('http://13.125.25.62:8089/Board/PostBoard', {
+    //     await axios.post('http://13.125.25.62:8089/Board/PostBoard', {
     //         brdTitle: title,
     //         brdWriter: writer,
     //         brdContent: content,
     //         brdPassword: password,
     //     });
-    //     // navigate('/Board');
+    //     navigate('/Board');
     // };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await axios.put('http://13.125.25.62:8089/Board/PostBoard', {
+            brdTitle: title,
+            brdWriter: writer,
+            brdContent: content,
+            brdPassword: password,
+        });
+        // navigate('/Board');
+    };
 
 
     const [title, onChangeTitle] = useInput('');

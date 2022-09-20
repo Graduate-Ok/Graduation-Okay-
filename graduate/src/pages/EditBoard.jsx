@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useInput from '../hooks/useInput';
-
+import EditBoardRow from '../components/EditBoardRow';
 /**
  *
  * @description 글 수정 페이지 컴포넌트

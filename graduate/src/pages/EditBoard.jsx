@@ -17,7 +17,7 @@ const EditBoard = ({ brdKey }) => {
      */
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('http://13.125.25.62:8089/Board/PostBoard', {
+        await axios.post('http://localhost:8089/Board/PostBoard', {
             brdTitle: title,
             brdWriter: writer,
             brdContent: content,
@@ -25,8 +25,6 @@ const EditBoard = ({ brdKey }) => {
         });
         navigate('/Board');
     };
-
-
 
     const [title, onChangeTitle] = useInput('');
     const [writer, onChangeWriter] = useInput('');
@@ -38,7 +36,7 @@ const EditBoard = ({ brdKey }) => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `http://13.125.25.62:8089/Board/${params}`,
+                `http://localhost:8089/Board/${params}`,
             );
             setInputData(response.data);
         };
@@ -64,7 +62,6 @@ const EditBoard = ({ brdKey }) => {
                                 />
                             );
                         })}
-
 
                         {/* <form
                             name="writing"

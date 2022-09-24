@@ -21,7 +21,7 @@ const Notice = () => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `http://13.125.25.62:8089/Notice/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
+                `http://localhost:8089/Notice/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
             );
             setInputData(response.data.noticeDtoList);
         };
@@ -38,13 +38,11 @@ const Notice = () => {
         const search = document.forms['searchBar']['srchKeyword'].value;
         if (search === '') {
             alert('검색어를 입력해주세요!');
-            const response = await axios.get(
-                `http://13.125.25.62:8089/Notice/`,
-            );
+            const response = await axios.get(`http://localhost:8089/Notice/`);
             setInputData(response.data.noticeDtoList);
         } else {
             const response = await axios.get(
-                `http://13.125.25.62:8089/Notice/?srchType=${select}&srchKeyword=${search}`,
+                `http://localhost:8089/Notice/?srchType=${select}&srchKeyword=${search}`,
             );
             setInputData(response.data.noticeDtoList);
         }
@@ -56,7 +54,7 @@ const Notice = () => {
      */
     const handleClickTab = async (param) => {
         const response = await axios.get(
-            `http://13.125.25.62:8089/Notice/?notiCategory=${param}`,
+            `http://localhost:8089/Notice/?notiCategory=${param}`,
         );
         setInputData(response.data.noticeDtoList);
     };
@@ -68,9 +66,7 @@ const Notice = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(
-                `http://13.125.25.62:8089/Notice/`,
-            );
+            const response = await axios.get(`http://localhost:8089/Notice/`);
             setSearchHelper(response.data.searchHelper);
         };
         fetchData();
@@ -79,7 +75,7 @@ const Notice = () => {
     const handleNextBtn = async (e) => {
         e.preventDefault();
         const response = await axios.get(
-            `http://13.125.25.62:8089/Notice/?page=${searchHelper.nextBlock}`,
+            `http://localhost:8089/Notice/?page=${searchHelper.nextBlock}`,
         );
         setSearchHelper(response.data.searchHelper);
         setInputData(response.data.noticeDtoList);
@@ -87,14 +83,14 @@ const Notice = () => {
     const handlePrevBtn = async (e) => {
         e.preventDefault();
         const response = await axios.get(
-            `http://13.125.25.62:8089/Notice/?page=${searchHelper.prevBlock}`,
+            `http://localhost:8089/Notice/?page=${searchHelper.prevBlock}`,
         );
         setSearchHelper(response.data.searchHelper);
         setInputData(response.data.noticeDtoList);
     };
     const handlePageClick = async (i) => {
         const response = await axios.get(
-            `http://13.125.25.62:8089/Notice/?page=${i}`,
+            `http://localhost:8089/Notice/?page=${i}`,
         );
         setInputData(response.data.noticeDtoList);
     };

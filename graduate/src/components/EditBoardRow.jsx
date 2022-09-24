@@ -6,12 +6,11 @@ import axios from 'axios';
 import useInput from '../hooks/useInput';
 
 const EditBoardRow = ({ EditBoard }) => {
-    
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         //http://13.125.25.62:8089/Board/${params}?password=${inputPassword}
-        await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
+        await axios.put(`http://localhost:8089/Board/${params}`, {
             brdTitle: title,
             brdWriter: writer,
             brdContent: content,
@@ -19,9 +18,6 @@ const EditBoardRow = ({ EditBoard }) => {
         });
         navigate('/Board');
     };
-
-    
-
 
     const [title, onChangeTitle] = useInput('');
     const [writer, onChangeWriter] = useInput('');
@@ -33,13 +29,12 @@ const EditBoardRow = ({ EditBoard }) => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `http://13.125.25.62:8089/Board/${params}`,
+                `http://localhost:8089/Board/${params}`,
             );
             setInputData(response.data);
         };
         fetchData();
     }, []);
-
 
     return (
         <div>
@@ -53,7 +48,6 @@ const EditBoardRow = ({ EditBoard }) => {
                         htmlFor="edit"
                         className="Board__writecontainer--head"
                     >
-                        
                         [ 정보 공유 게시판 ]
                     </label>
 
@@ -86,19 +80,18 @@ const EditBoardRow = ({ EditBoard }) => {
                                 required
                             ></input>
                         </div>
-                        <br /> Password (수정/삭제시 비밀번호가
-                                    필요합니다.)
-                                    <div className="Board__writecontainer--detail">
-                                        <input
-                                            type="password"
-                                            onChange={onChangePassword}
-                                            placeholder="비밀번호를 입력하세요."
-                                            name="brdPassword"
-                                            id="brdPassword"
-                                            className="Board__writecontainer--password"
-                                            required
-                                        ></input>
-                                    </div>
+                        <br /> Password (수정/삭제시 비밀번호가 필요합니다.)
+                        <div className="Board__writecontainer--detail">
+                            <input
+                                type="password"
+                                onChange={onChangePassword}
+                                placeholder="비밀번호를 입력하세요."
+                                name="brdPassword"
+                                id="brdPassword"
+                                className="Board__writecontainer--password"
+                                required
+                            ></input>
+                        </div>
                         <br />
                         내용
                         <div className="Board__writecontainer--detail">
@@ -109,13 +102,14 @@ const EditBoardRow = ({ EditBoard }) => {
                                 id="brdContent"
                                 className="Board__writecontainer--content"
                                 required
-                            >{EditBoard.brdContent}</textarea>
+                            >
+                                {EditBoard.brdContent}
+                            </textarea>
                         </div>
                     </div>
                 </div>
 
                 <div className="Board__footer">
-
                     <button
                         onClick={handleSubmit}
                         type="submit"
@@ -126,21 +120,18 @@ const EditBoardRow = ({ EditBoard }) => {
                         수정하기
                     </button>
 
-                    
                     <div
-                        onClick={() => navigate(`http://13.125.25.62:8089/Board`)}
+                        onClick={() =>
+                            navigate(`http://localhost:8089:8089/Board`)
+                        }
                         className="Board__footer--button"
                     >
                         돌아가기
-                    </div> 
-                   
-
+                    </div>
                 </div>
             </form>
         </div>
-    )
-
-
-}
+    );
+};
 
 export default EditBoardRow;

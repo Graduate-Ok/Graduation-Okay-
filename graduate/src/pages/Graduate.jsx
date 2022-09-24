@@ -28,7 +28,7 @@ const Graduate = () => {
         const getFile = document.getElementById('file');
         fd.append('file', getFile.files[0]);
         axios
-            .post('http://13.125.25.62:8089/Graduate', fd, {
+            .post('http://localhost:8089/Graduate', fd, {
                 headers: {
                     'Content-Type': `multipart/form-data`,
                 },
@@ -66,7 +66,8 @@ const Graduate = () => {
                         당신은 졸업이 가능한가요 ?
                     </div>
                     <div className="section__text">
-                        교양과목 정보 외의 인적사항 및 학점은 따로 저장하지 않습니다!
+                        교양과목 정보 외의 인적사항 및 학점은 따로 저장하지
+                        않습니다!
                     </div>
                     <form method="post" action="/Graduate">
                         <div className="section__button">

@@ -2,6 +2,7 @@ import '../css/Graduate.css';
 import '../css/ContentsPage.css';
 import axios from 'axios';
 import { useState } from 'react';
+import Spinner from '../components/Spinner';
 
 /**
  *
@@ -17,12 +18,16 @@ const Graduate = () => {
     const [totalCredit, setTotalCredit] = useState(0);
     const [graduateok, setGraduateok] = useState('🤔졸업 되려나..🤔');
     const [color, setColor] = useState({ color: 'black' });
+    const[loading, setLoading] = useState(false);
 
+    
     /**
      *
      * @description 파일 버튼 클릭
      */
     const handleChangeFile = (event) => {
+        
+        setLoading(true);
         setFile(event.target.files);
         const fd = new FormData();
         const getFile = document.getElementById('file');
@@ -32,7 +37,9 @@ const Graduate = () => {
                 headers: {
                     'Content-Type': `multipart/form-data`,
                 },
-            })
+            }
+            
+            )
             .then((response) => {
                 setMileage(response.data.mileage);
                 setkyCredit(response.data.kyCredit);
@@ -43,14 +50,18 @@ const Graduate = () => {
 
                 if (response.data.result === -1) {
                     alert('파일을 읽을 수 없습니다. 다시 확인해주세요');
+                    setLoading(false);
                     setColor({ color: 'red' });
                     setGraduateok('파일을 다시 확인해주세요');
+                    setLoading(false);
                 } else if (response.data.result === 1) {
                     setColor({ color: 'blue' });
                     setGraduateok('😆졸업 가능!😆');
+                    setLoading(false);
                 } else if (response.data.result === 0) {
                     setColor({ color: 'red' });
                     setGraduateok('😵‍💫졸업 불가능!😵‍💫');
+                    setLoading(false);
                 }
             })
             .catch((error) => {
@@ -103,6 +114,7 @@ const Graduate = () => {
                         👉Save
                         <br />
                     </div>
+                    {loading ? <Spinner/> :
                     <div className="Graduate__check">
                         <div className="Graduate" style={color}>
                             <br /> {graduateok} <br />
@@ -142,8 +154,8 @@ const Graduate = () => {
                                 </tr>
                             </table>
                         </div>
-                        <div className="Graduate_lack">{failure}</div>
-                    </div>
+                        <div className="Graduate_lack">{failure}</div> 
+                    </div> }
                 </section>
             </main>
         </>

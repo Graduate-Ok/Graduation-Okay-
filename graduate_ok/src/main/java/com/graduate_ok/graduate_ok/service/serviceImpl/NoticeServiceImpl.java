@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -34,23 +35,23 @@ public class NoticeServiceImpl implements NoticeService {
         List<NoticeDto> list = noticeMapper.selectNoticeList(searchHelper);
 
         // 타임스탬프 시간 변경 (9시간 추가) // 로컬에서 돌릴 때 해당
-//        for (NoticeDto nd : list) {
-//            Timestamp original = nd.getNotiWtTime();
-//            Calendar cal = Calendar.getInstance();
-//            cal.setTimeInMillis(original.getTime());
-//            cal.add(Calendar.HOUR, 9);
-//            Timestamp change = new Timestamp(cal.getTime().getTime());
-//            nd.setNotiWtTime(change);
-//        }
+        for (NoticeDto nd : list) {
+            Timestamp original = nd.getNotiWtTime();
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(original.getTime());
+            cal.add(Calendar.HOUR, 9);
+            Timestamp change = new Timestamp(cal.getTime().getTime());
+            nd.setNotiWtTime(change);
+        }
 
         // Unix Time -> Timestamp 변환
-        for (NoticeDto bd : list) {
-            // Timestamp
-            Timestamp timestamp = TimestampConverter.timestampConverter(bd.getNotiWtTime());
-            // String
-//            Timestamp timestamp = TimestampConverter.timestampConverter(bd.getNotiWtTime().toString());
-            bd.setNotiWtTime(timestamp);
-        }
+//        for (NoticeDto bd : list) {
+//            // Timestamp
+//            Timestamp timestamp = TimestampConverter.timestampConverter(bd.getNotiWtTime());
+//            // String
+////            Timestamp timestamp = TimestampConverter.timestampConverter(bd.getNotiWtTime().toString());
+//            bd.setNotiWtTime(timestamp);
+//        }
 
         noticeListDto.setNoticeDtoList(list);
         noticeListDto.setSearchHelper(searchHelper);

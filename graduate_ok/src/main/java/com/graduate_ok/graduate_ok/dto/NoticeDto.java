@@ -14,5 +14,5 @@ public class NoticeDto {
     private String notiCategory;
     private String notiTitle;
     private String notiContent;
-    private Timestamp notiWtTime;
+    private String notiWtTime;
 }

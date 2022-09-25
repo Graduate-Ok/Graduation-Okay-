@@ -34,14 +34,14 @@ public class BoardServiceImpl implements BoardService {
         List<BoardDto> list = boardMapper.selectBoardList(searchHelper);
 
         // 타임스탬프 시간 변경 (9시간 추가) // 로컬에서 돌릴 때 해당
-        for (BoardDto bd : list) {
-            Timestamp original = bd.getBrdWtTime();
-            Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(original.getTime());
-            cal.add(Calendar.HOUR, 9);
-            Timestamp change = new Timestamp(cal.getTime().getTime());
-            bd.setBrdWtTime(change);
-        }
+//        for (BoardDto bd : list) {
+//            Timestamp original = bd.getBrdWtTime();
+//            Calendar cal = Calendar.getInstance();
+//            cal.setTimeInMillis(original.getTime());
+//            cal.add(Calendar.HOUR, 9);
+//            Timestamp change = new Timestamp(cal.getTime().getTime());
+//            bd.setBrdWtTime(change);
+//        }
 
         // Unix Time -> Timestamp 변환 (500 error)
 //        for (BoardDto bd : list) {

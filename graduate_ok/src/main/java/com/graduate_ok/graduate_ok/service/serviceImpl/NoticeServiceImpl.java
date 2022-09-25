@@ -44,13 +44,13 @@ public class NoticeServiceImpl implements NoticeService {
 //        }
 
         // Unix Time -> Timestamp 변환
-        for (NoticeDto bd : list) {
-            // Timestamp
-            Timestamp timestamp = TimestampConverter.timestampConverter(bd.getNotiWtTime());
-            // String
-//            Timestamp timestamp = TimestampConverter.timestampConverter(bd.getNotiWtTime().toString());
-            bd.setNotiWtTime(timestamp);
-        }
+//        for (NoticeDto bd : list) {
+//            // Timestamp
+//            Timestamp timestamp = TimestampConverter.timestampConverter(bd.getNotiWtTime());
+//            // String
+////            Timestamp timestamp = TimestampConverter.timestampConverter(bd.getNotiWtTime().toString());
+//            bd.setNotiWtTime(timestamp);
+//        }
 
         noticeListDto.setNoticeDtoList(list);
         noticeListDto.setSearchHelper(searchHelper);

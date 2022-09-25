@@ -59,12 +59,14 @@
             brd_writer,
             brd_password,
             brd_title,
-            brd_content
+            brd_content,
+            brd_wt_time
         ) VALUES (
             #{brdWriter},
             #{brdPassword},
             #{brdTitle},
-            #{brdContent}
+            #{brdContent},
+            CURRENT_TIMESTAMP()
         )
     </insert>
 

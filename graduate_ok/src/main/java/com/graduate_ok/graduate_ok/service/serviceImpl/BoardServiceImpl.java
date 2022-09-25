@@ -6,9 +6,6 @@ import com.graduate_ok.graduate_ok.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -32,27 +29,6 @@ public class BoardServiceImpl implements BoardService {
         searchHelper = new SearchHelper(totalCount, page, srchType, srchKeyword);
 
         List<BoardDto> list = boardMapper.selectBoardList(searchHelper);
-
-        // 타임스탬프 시간 변경 (9시간 추가) // 로컬에서 돌릴 때 해당
-        for (BoardDto bd : list) {
-            Timestamp original = bd.getBrdWtTime();
-            Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(original.getTime());
-            cal.add(Calendar.HOUR, 9);
-            Timestamp change = new Timestamp(cal.getTime().getTime());
-            bd.setBrdWtTime(change);
-        }
-
-        // Unix Time -> Timestamp 변환 (500 error)
-//        for (BoardDto bd : list) {
-//            Long original = Long.parseLong(bd.getBrdWtTime().toString());
-//            Date date = new Date(original*1000);
-//            Timestamp changed = new Timestamp(date.getTime());
-//            Calendar cal = Calendar.getInstance();
-//            cal.setTimeInMillis(changed.getTime());
-//            cal.add(Calendar.HOUR, 9);
-//            bd.setBrdWtTime(new Timestamp(cal.getTime().getTime()));
-//        }
 
         boardListDto.setBoardDtoList(list);
         boardListDto.setSearchHelper(searchHelper);

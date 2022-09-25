@@ -1,11 +1,9 @@
 package com.graduate_ok.graduate_ok.pdfCheck;
 
-import com.graduate_ok.graduate_ok.dto.TimestampConverter;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.File;
-import java.sql.Timestamp;
 import java.util.*;
 
 public class PdfCheck {

@@ -30,19 +30,19 @@ public class DBConnection {
     public static List<String> getRequiredMajor(int stdId, String major) {
         String sql = "SELECT mrq_name FROM major_required_course r, major m"
                 + " WHERE r.major_code = m.major_code"
-                + " and r.mrq_std_id = " + stdId + " and m.major_name = '" + major + "';";
+                + " and r.mrq_std_id = " + stdId + " and m.major_name LIKE '" + major + "%';";
         return getListDataFromTable(sql);
     }
 
     // 해당 학과 졸업학점 (from 학과 테이블)
     public static int getGraduateCredit(String major) {
-        String sql = "SELECT graduate_credit FROM major WHERE major_name = '" + major + "';";
+        String sql = "SELECT graduate_credit FROM major WHERE major_name LIKE '" + major + "%';";
         return getIntDataFromTable(sql, "graduate_credit");
     }
 
     // 해당 학과 전공 최소이수학점 (from 학과 테이블)
     public static int getMajorMinCredit(String major) {
-        String sql = "SELECT major_min_credit FROM major WHERE major_name = '" + major + "';";
+        String sql = "SELECT major_min_credit FROM major WHERE major_name LIKE '" + major + "%';";
         return getIntDataFromTable(sql, "major_min_credit");
     }
 

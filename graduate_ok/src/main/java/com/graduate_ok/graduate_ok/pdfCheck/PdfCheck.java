@@ -38,7 +38,7 @@ public class PdfCheck {
      */
 
     public static void main(String[] args) throws Exception {
-        HashMap<String, Object> a = execute("C:\\Users\\수빈\\Desktop\\백업\\um72_0272003_r01.pdf");
+        HashMap<String, Object> a = execute("각자 PDF 파일 경로");
 
         // test 교양 카운트 초기화
         //DBConnection.settingKyCount0();
@@ -320,9 +320,10 @@ public class PdfCheck {
         StringBuffer failure = new StringBuffer();
 
         // 해당 학과 졸업학점 가져오기
-        int graduateCredit = DBConnection.getGraduateCredit(studentMajor);
+//        int graduateCredit = DBConnection.getGraduateCredit(studentMajor.substring(0,3));
+        int graduateCredit = 130; // 모든 학과 졸업학점 130
         // 해당 학과 전공최소학점 가져오기
-        int majorMinCredit = DBConnection.getMajorMinCredit(studentMajor);
+        int majorMinCredit = DBConnection.getMajorMinCredit(studentMajor.substring(0,3));
 
         // (총 취득학점 - 초과한 교양 학점)
         if (studentId <= 2016) {
@@ -365,7 +366,7 @@ public class PdfCheck {
         StringBuffer failure = new StringBuffer();
 
         // 해당 학과에서 전공필수 과목 가져오기
-        List<String> requiredMajors = DBConnection.getRequiredMajor(studentId, studentMajor);
+        List<String> requiredMajors = DBConnection.getRequiredMajor(studentId, studentMajor.substring(0,3));
 
         // 들어야 할 전필과 학생이 들은 전필 비교
         Collection<String> std = requiredMajor;

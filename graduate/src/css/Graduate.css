@@ -139,3 +139,8 @@
     text-align: center;
     margin-bottom: 5vh;
 }
+
+.text-color {
+    color: #b2bec3;
+    font-size: small;
+}

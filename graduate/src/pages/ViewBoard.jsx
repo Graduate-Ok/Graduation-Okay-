@@ -1,4 +1,3 @@
-
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useEffect, useState } from 'react';
@@ -46,15 +45,15 @@ function ViewBoard() {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        const inputPassword = prompt(
-            '작성 시 사용했던 비밀번호를 입력해주세요',
-        );
-        if (window.confirm('수정하시겠습니까?')) {
+
+        if (
+            window.confirm(
+                `비밀번호가 일치해야 수정됩니다.
+수정하시겠습니까?`,
+            )
+        ) {
             const response = await axios.get(
-                `http://localhost:8089/Board/checkPw/${params}?password=${inputPassword}`,
-                {
-                    brdPassword: inputPassword,
-                },
+                `http://localhost:8089/Board/checkPw/${params}`,
             );
             // alert(response.data);
             // console.log(response.data);

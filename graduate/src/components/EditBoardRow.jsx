@@ -1,13 +1,11 @@
-
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useInput from '../hooks/useInput';
 
 const EditBoardRow = ({ EditBoard }) => {
-    
     const navigate = useNavigate();
 
     const [title, onChangeTitle] = useInput('');
@@ -27,16 +25,93 @@ const EditBoardRow = ({ EditBoard }) => {
         fetchData();
     }, []);
 
+    console.log(params);
+    console.log(EditBoard);
+    /**
+     * @description submit 이벤트
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
-        //http://13.125.25.62:8089/Board/${params}?password=${inputPassword}
-        await axios.put(`http://localhost:8089/Board/${params}`, {
-            brdTitle: title,
-            brdWriter: writer,
-            brdContent: content,
-            brdPassword: password,
-        });
-        navigate('/Board');
+
+        if (password === '') {
+            alert('비밀번호를 입력해주세요');
+        }
+        if (password !== '') {
+            if (title === '' && writer === '' && content === '') {
+                await axios.put(`http://localhost:8089/Board/${params}`, {
+                    brdKey: params,
+                    brdTitle: EditBoard.brdTitle,
+                    brdWriter: EditBoard.brdWriter,
+                    brdContent: EditBoard.brdContent,
+                    brdPassword: password,
+                });
+                navigate('/Board');
+            } else if (title === '' && writer === '') {
+                await axios.put(`http://localhost:8089/Board/${params}`, {
+                    brdKey: params,
+                    brdTitle: EditBoard.brdTitle,
+                    brdWriter: EditBoard.brdWriter,
+                    brdContent: content,
+                    brdPassword: password,
+                });
+                navigate('/Board');
+            } else if (content === '' && writer === '') {
+                await axios.put(`http://localhost:8089/Board/${params}`, {
+                    brdKey: params,
+                    brdTitle: title,
+                    brdWriter: EditBoard.brdWriter,
+                    brdContent: EditBoard.brdContent,
+                    brdPassword: password,
+                });
+                navigate('/Board');
+            } else if (content === '' && title === '') {
+                await axios.put(`http://localhost:8089/Board/${params}`, {
+                    brdKey: params,
+                    brdTitle: EditBoard.brdTitle,
+                    brdWriter: writer,
+                    brdContent: EditBoard.brdContent,
+                    brdPassword: password,
+                });
+                navigate('/Board');
+            } else if (content === '') {
+                await axios.put(`http://localhost:8089/Board/${params}`, {
+                    brdKey: params,
+                    brdTitle: title,
+                    brdWriter: writer,
+                    brdContent: EditBoard.brdContent,
+                    brdPassword: password,
+                });
+                navigate('/Board');
+            } else if (title === '') {
+                await axios.put(`http://localhost:8089/Board/${params}`, {
+                    brdKey: params,
+                    brdTitle: EditBoard.brdTitle,
+                    brdWriter: writer,
+                    brdContent: content,
+                    brdPassword: password,
+                });
+                navigate('/Board');
+            } else if (writer === '') {
+                await axios.put(`http://localhost:8089/Board/${params}`, {
+                    brdKey: params,
+                    brdTitle: title,
+                    brdWriter: EditBoard.brdWriter,
+                    brdContent: content,
+                    brdPassword: password,
+                });
+                navigate('/Board');
+            } else {
+                await axios.put(`http://localhost:8089/Board/${params}`, {
+                    brdKey: params,
+                    brdTitle: title,
+                    brdWriter: writer,
+                    brdContent: content,
+                    brdPassword: password,
+                });
+                navigate('/Board');
+            }
+        }
+        return;
     };
 
     return (
@@ -51,53 +126,48 @@ const EditBoardRow = ({ EditBoard }) => {
                         htmlFor="edit"
                         className="Board__writecontainer--head"
                     >
-                        
                         [ 정보 공유 게시판 ]
                     </label>
 
                     <div className="Board__writecontainer--info">
                         제목
                         <div className="Board__writecontainer--detail">
-                            <input
+                            <textarea
                                 type="text"
                                 onChange={onChangeTitle}
-                                placeholder="제목을 입력하세요."
-                                value={EditBoard.brdTitle}
+                                placeholder={EditBoard.brdTitle}
                                 name="brdTitle"
                                 id="brdTitle"
                                 className="Board__writecontainer--title"
                                 autoFocus
-                                required
-                            ></input>
+                            ></textarea>
                         </div>
                         <br />
                         작성자
                         <div className="Board__writecontainer--detail">
-                            <input
+                            <textarea
                                 type="text"
                                 onChange={onChangeWriter}
                                 placeholder="작성자의 이름을 입력하세요."
-                                value={EditBoard.brdWriter}
                                 name="brdWriter"
                                 id="brdWriter"
                                 className="Board__writecontainer--writer"
+                            >
+                                {EditBoard.brdWriter}
+                            </textarea>
+                        </div>
+                        <br /> Password (수정/삭제시 비밀번호가 필요합니다.)
+                        <div className="Board__writecontainer--detail">
+                            <input
+                                type="password"
+                                onChange={onChangePassword}
+                                placeholder="비밀번호를 입력하세요."
+                                name="brdPassword"
+                                id="brdPassword"
+                                className="Board__writecontainer--password"
                                 required
                             ></input>
                         </div>
-                        <br /> Password (수정/삭제시 비밀번호가
-                                    필요합니다.)
-                                    <div className="Board__writecontainer--detail">
-                                        <input
-                                            type="password"
-                                            onChange={onChangePassword}
-                                            placeholder="비밀번호를 입력하세요."
-                                            value={EditBoard.brdPassword}
-                                            name="brdPassword"
-                                            id="brdPassword"
-                                            className="Board__writecontainer--password"
-                                            required
-                                        ></input>
-                                    </div>
                         <br />
                         내용
                         <div className="Board__writecontainer--detail">
@@ -107,15 +177,15 @@ const EditBoardRow = ({ EditBoard }) => {
                                 name="brdContent"
                                 id="brdContent"
                                 className="Board__writecontainer--content"
-                                required
-                            >{EditBoard.brdContent}</textarea>
+                            >
+                                {EditBoard.brdContent}
+                            </textarea>
                         </div>
                     </div>
                 </div>
 
                 <div className="Board__footer">
-
-                    <button
+                    <div
                         onClick={handleSubmit}
                         type="submit"
                         id="submit"
@@ -123,23 +193,18 @@ const EditBoardRow = ({ EditBoard }) => {
                         className="Board__footer--button"
                     >
                         수정하기
-                    </button>
+                    </div>
 
-                    
                     <div
-                        onClick={() => navigate(`http://localhost:8089/Board`)}
+                        onClick={() => navigate(`../Board`)}
                         className="Board__footer--button"
                     >
                         돌아가기
-                    </div> 
-                   
-
+                    </div>
                 </div>
             </form>
         </div>
-    )
-
-
-}
+    );
+};
 
 export default EditBoardRow;

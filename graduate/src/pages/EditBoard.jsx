@@ -11,9 +11,15 @@ import EditBoardRow from '../components/EditBoardRow';
 const EditBoard = ({ brdKey }) => {
     const navigate = useNavigate();
 
+    const [title, onChangeTitle] = useInput('');
+    const [writer, onChangeWriter] = useInput('');
+    const [password, onChangePassword] = useInput('');
+    const [content, onChangeContent] = useInput('');
+    const [inputData, setInputData] = useState([]);
+
     /**
      *
-     * @description 클릭이벤트 시 직전페이지로 돌아가기
+     * @description 클릭이벤트 시 글 수정
      */
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,13 +32,8 @@ const EditBoard = ({ brdKey }) => {
         navigate('/Board');
     };
 
-    const [title, onChangeTitle] = useInput('');
-    const [writer, onChangeWriter] = useInput('');
-    const [password, onChangePassword] = useInput('');
-    const [content, onChangeContent] = useInput('');
-    const [inputData, setInputData] = useState([]);
-
     let params = useParams().brdKey;
+    let key = useParams().brdKey;
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
@@ -42,8 +43,6 @@ const EditBoard = ({ brdKey }) => {
         };
         fetchData();
     }, []);
-
-    console.log(params);
 
     return (
         <>
@@ -55,12 +54,7 @@ const EditBoard = ({ brdKey }) => {
                         </div>
 
                         {inputData.map((inputData) => {
-                            return (
-                                <EditBoardRow
-                                    EditBoard={inputData}
-                                    key={inputData.brdKey}
-                                />
-                            );
+                            return <EditBoardRow EditBoard={inputData} />;
                         })}
 
                         {/* <form

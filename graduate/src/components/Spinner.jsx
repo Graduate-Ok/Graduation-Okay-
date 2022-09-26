@@ -1,26 +1,15 @@
 import React from "react";
-import FadeLoader from "react-spinners/FadeLoader";
+import {Background, LoadingText} from './Styles';
+import Spinnerimg from './spinnerimg.gif';
+
+// 스피너 : https://anerim.tistory.com/221
 
 function Spinner() {
   return (
-    <div class="contentWrap">
-      <div
-        style={{
-          position: "fixed",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <FadeLoader
-          color="#C63DEE"
-          height={15}
-          width={5}
-          radius={2}
-          margin={2}
-        />
-      </div>
-    </div>
+    <Background>
+      <LoadingText>잠시만 기다려 주세요.</LoadingText>
+      <img src={Spinnerimg} alt="로딩중" width="5%" />
+    </Background>
   );
 }
 

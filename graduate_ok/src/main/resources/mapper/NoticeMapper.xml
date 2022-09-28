@@ -43,6 +43,7 @@
                 AND noti_content LIKE CONCAT('%', #{srchKeyword}, '%')
             </if>
         </where>
+        ORDER BY noti_wt_time desc
         LIMIT #{startIndex}, #{pageSize}
     </select>
 

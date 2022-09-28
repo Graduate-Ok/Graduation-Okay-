@@ -5,7 +5,6 @@ import axios from 'axios';
 import ViewBoardRow from '../components/ViewBoardRow';
 
 /**
- *
  * @description ViewBoard 컴포넌트 페이지
  */
 function ViewBoard() {
@@ -45,18 +44,13 @@ function ViewBoard() {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        const inputPassword = prompt(
-            '작성 시 사용했던 비밀번호를 입력해주세요',
-        );
-        if (window.confirm('수정하시겠습니까?')) {
-            const response = await axios.put(
+        if (
+            window.confirm(`비밀번호가 일치해야 수정됩니다.
+수정하시겠습니까?`)
+        ) {
+            const response = await axios.get(
                 `http://13.125.25.62:8089/Board/${params}`,
-                {
-                    brdPassword: inputPassword,
-                },
             );
-            alert(response.data);
-            console.log(response.data);
             navigate(`../Board/EditBoard/${params}`);
         } else {
             alert('수정이 취소되었습니다');
@@ -84,7 +78,6 @@ function ViewBoard() {
                             );
                         })}
                         <div className="Board__footer">
-                            {/* 수정 부분으로 넘어가도록 */}
                             <div
                                 onClick={handleUpdate}
                                 className="Board__update--button"

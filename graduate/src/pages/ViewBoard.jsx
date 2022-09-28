@@ -5,7 +5,6 @@ import axios from 'axios';
 import ViewBoardRow from '../components/ViewBoardRow';
 
 /**
- *
  * @description ViewBoard 컴포넌트 페이지
  */
 function ViewBoard() {
@@ -52,11 +51,7 @@ function ViewBoard() {
 수정하시겠습니까?`,
             )
         ) {
-            const response = await axios.get(
-                `http://localhost:8089/Board/checkPw/${params}`,
-            );
-            // alert(response.data);
-            // console.log(response.data);
+            await axios.get(`http://localhost:8089/Board/checkPw/${params}`);
             navigate(`../Board/EditBoard/${params}`);
         } else {
             alert('수정이 취소되었습니다');
@@ -84,7 +79,6 @@ function ViewBoard() {
                             );
                         })}
                         <div className="Board__footer">
-                            {/* 수정 부분으로 넘어가도록 */}
                             <div
                                 onClick={handleUpdate}
                                 className="Board__update--button"

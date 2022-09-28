@@ -25,8 +25,6 @@ const EditBoardRow = ({ EditBoard }) => {
         fetchData();
     }, []);
 
-    console.log(params);
-    console.log(EditBoard);
     /**
      * @description submit 이벤트
      */
@@ -45,6 +43,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: EditBoard.brdContent,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (title === '' && writer === '') {
                 await axios.put(`http://localhost:8089/Board/${params}`, {
@@ -54,6 +53,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: content,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (content === '' && writer === '') {
                 await axios.put(`http://localhost:8089/Board/${params}`, {
@@ -63,6 +63,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: EditBoard.brdContent,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (content === '' && title === '') {
                 await axios.put(`http://localhost:8089/Board/${params}`, {
@@ -72,6 +73,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: EditBoard.brdContent,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (content === '') {
                 await axios.put(`http://localhost:8089/Board/${params}`, {
@@ -81,6 +83,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: EditBoard.brdContent,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (title === '') {
                 await axios.put(`http://localhost:8089/Board/${params}`, {
@@ -90,6 +93,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: content,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (writer === '') {
                 await axios.put(`http://localhost:8089/Board/${params}`, {
@@ -99,6 +103,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: content,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else {
                 await axios.put(`http://localhost:8089/Board/${params}`, {
@@ -108,6 +113,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: content,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             }
         }

@@ -17,7 +17,7 @@ const EditBoardRow = ({ EditBoard }) => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `htthttp://13.125.25.62:8089/Board/${params}`,
+                `htthttp://13.125.25.62:8089/Board/EditBoard/${params}`,
             );
             setInputData(response.data);
         };
@@ -42,6 +42,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: EditBoard.brdContent,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (title === '' && writer === '') {
                 await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
@@ -51,6 +52,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: content,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (content === '' && writer === '') {
                 await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
@@ -60,6 +62,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: EditBoard.brdContent,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (content === '' && title === '') {
                 await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
@@ -69,6 +72,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: EditBoard.brdContent,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (content === '') {
                 await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
@@ -78,6 +82,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: EditBoard.brdContent,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (title === '') {
                 await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
@@ -87,6 +92,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: content,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (writer === '') {
                 await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
@@ -96,6 +102,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: content,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else {
                 await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
@@ -105,6 +112,7 @@ const EditBoardRow = ({ EditBoard }) => {
                     brdContent: content,
                     brdPassword: password,
                 });
+                alert('수정완료 되었습니다.');
                 navigate('/Board');
             }
         }

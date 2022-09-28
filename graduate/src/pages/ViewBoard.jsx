@@ -48,9 +48,7 @@ function ViewBoard() {
             window.confirm(`비밀번호가 일치해야 수정됩니다.
 수정하시겠습니까?`)
         ) {
-            const response = await axios.get(
-                `http://13.125.25.62:8089/Board/${params}`,
-            );
+            await axios.get(`http://13.125.25.62:8089/Board/checkPw/${params}`);
             navigate(`../Board/EditBoard/${params}`);
         } else {
             alert('수정이 취소되었습니다');

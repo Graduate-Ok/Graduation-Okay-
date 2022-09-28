@@ -1,17 +1,14 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import useInput from '../hooks/useInput';
 import EditBoardRow from '../components/EditBoardRow';
 
 /**
  *
  * @description 글 수정 페이지 컴포넌트
  */
-const EditBoard = ({ brdKey }) => {
-    const navigate = useNavigate();
-
+const EditBoard = () => {
     const [inputData, setInputData] = useState([]);
 
     let params = useParams().brdKey;
@@ -25,8 +22,6 @@ const EditBoard = ({ brdKey }) => {
         fetchData();
     }, []);
 
-    console.log(params);
-
     return (
         <>
             <main>
@@ -37,12 +32,7 @@ const EditBoard = ({ brdKey }) => {
                         </div>
 
                         {inputData.map((inputData) => {
-                            return (
-                                <EditBoardRow
-                                    EditBoard={inputData}
-                                    key={inputData.brdKey}
-                                />
-                            );
+                            return <EditBoardRow EditBoard={inputData} />;
                         })}
                     </div>
                 </div>

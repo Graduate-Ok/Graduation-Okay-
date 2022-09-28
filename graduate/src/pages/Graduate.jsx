@@ -18,15 +18,13 @@ const Graduate = () => {
     const [totalCredit, setTotalCredit] = useState(0);
     const [graduateok, setGraduateok] = useState('🤔졸업 되려나..🤔');
     const [color, setColor] = useState({ color: 'black' });
-    const[loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-    
     /**
      *
      * @description 파일 버튼 클릭
      */
     const handleChangeFile = (event) => {
-        
         setLoading(true);
         setFile(event.target.files);
         const fd = new FormData();
@@ -37,9 +35,7 @@ const Graduate = () => {
                 headers: {
                     'Content-Type': `multipart/form-data`,
                 },
-            }
-            
-            )
+            })
             .then((response) => {
                 setMileage(response.data.mileage);
                 setkyCredit(response.data.kyCredit);
@@ -76,10 +72,7 @@ const Graduate = () => {
                     <div className="section__text">
                         당신은 졸업이 가능한가요 ?
                     </div>
-                    <div className="section__text">
-                        교양과목 정보 외의 인적사항 및 학점은 따로 저장하지
-                        않습니다!
-                    </div>
+
                     <form method="post" action="/Graduate">
                         <div className="section__button">
                             <label className="upload__button" for="file">
@@ -114,48 +107,59 @@ const Graduate = () => {
                         👉Save
                         <br />
                     </div>
-                    {loading ? <Spinner/> :
-                    <div className="Graduate__check">
-                        <div className="Graduate" style={color}>
-                            <br /> {graduateok} <br />
-                            <br />
+                    <div className="section__text text-color">
+                        교양과목 정보 외의 인적사항 및 학점은 따로 저장하지
+                        않습니다!
+                    </div>
+                    {loading ? (
+                        <Spinner />
+                    ) : (
+                        <div className="Graduate__check">
+                            <div className="Graduate" style={color}>
+                                <br /> {graduateok} <br />
+                                <br />
+                            </div>
+                            <div>
+                                <table className="OkTable">
+                                    <tr className="Ok__menu">
+                                        <th className="Lack__Graduate__Credit">
+                                            이수 학점
+                                        </th>
+                                        <th className="Lack__MajorCredit">
+                                            전공 학점
+                                        </th>
+                                        <th className="Lack__KyCredit">
+                                            교양 학점
+                                        </th>
+                                        <th className="Lack__NonSub">
+                                            비교과 이수 학기
+                                        </th>
+                                        <th className="Lack__mileage">
+                                            마일리지
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td className="Lack__Graduate__Credit">
+                                            {totalCredit}
+                                        </td>
+                                        <td className="Lack__MajorCredit">
+                                            {majorCredit}
+                                        </td>
+                                        <td className="Lack__KyCredit">
+                                            {kyCredit}
+                                        </td>
+                                        <td className="Lack__NonSub">
+                                            {nonSubject}
+                                        </td>
+                                        <td className="Lack__mileage">
+                                            {mileage}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div className="Graduate_lack">{failure}</div>
                         </div>
-                        <div>
-                            <table className="OkTable">
-                                <tr className="Ok__menu">
-                                    <th className="Lack__Graduate__Credit">
-                                        이수 학점
-                                    </th>
-                                    <th className="Lack__MajorCredit">
-                                        전공 학점
-                                    </th>
-                                    <th className="Lack__KyCredit">
-                                        교양 학점
-                                    </th>
-                                    <th className="Lack__NonSub">
-                                        비교과 이수 학기
-                                    </th>
-                                    <th className="Lack__mileage">마일리지</th>
-                                </tr>
-                                <tr>
-                                    <td className="Lack__Graduate__Credit">
-                                        {totalCredit}
-                                    </td>
-                                    <td className="Lack__MajorCredit">
-                                        {majorCredit}
-                                    </td>
-                                    <td className="Lack__KyCredit">
-                                        {kyCredit}
-                                    </td>
-                                    <td className="Lack__NonSub">
-                                        {nonSubject}
-                                    </td>
-                                    <td className="Lack__mileage">{mileage}</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div className="Graduate_lack">{failure}</div> 
-                    </div> }
+                    )}
                 </section>
             </main>
         </>

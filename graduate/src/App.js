@@ -28,7 +28,11 @@ const App = () => {
                 <Route path="KyRecommend" exact element={<KyRecommend />} />
                 <Route path="Board" exact element={<Board />} />
                 <Route path="Board/PostBoard" exact element={<PostBoard />} />
-                <Route path="Board/EditBoard/:brdKey" exact element={<EditBoard />} />
+                <Route
+                    path="Board/EditBoard/:brdKey"
+                    exact
+                    element={<EditBoard />}
+                />
                 <Route path="Board/:brdKey" exact element={<ViewBoard />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>

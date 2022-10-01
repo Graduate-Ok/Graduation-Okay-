@@ -4,7 +4,6 @@ import '../css/Nav.css';
 import '../css/ContentsPage.css';
 
 /**
- *
  * @description nav 컴포넌트
  */
 function Nav() {

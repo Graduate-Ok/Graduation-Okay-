@@ -3,9 +3,9 @@ import '../css/ContentsPage.css';
 import axios from 'axios';
 import { useState } from 'react';
 import Spinner from '../components/Spinner';
+import { API_URL, PORT_NUMBER } from '../utils/constant';
 
 /**
- *
  * @description Graduate 페이지 컴포넌트
  */
 const Graduate = () => {
@@ -21,7 +21,6 @@ const Graduate = () => {
     const [loading, setLoading] = useState(false);
 
     /**
-     *
      * @description 파일 버튼 클릭
      */
     const handleChangeFile = (event) => {
@@ -31,7 +30,7 @@ const Graduate = () => {
         const getFile = document.getElementById('file');
         fd.append('file', getFile.files[0]);
         axios
-            .post('http://13.125.25.62:8089/Graduate', fd, {
+            .post(`${API_URL}${PORT_NUMBER}/Graduate`, fd, {
                 headers: {
                     'Content-Type': `multipart/form-data`,
                 },

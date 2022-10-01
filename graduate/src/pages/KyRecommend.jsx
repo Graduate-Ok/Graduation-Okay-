@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import KyRecommendRow from '../components/KyRecommendRow';
 import KyRecommendRow2 from '../components/KyRecommendRow2';
+import { API_URL, PORT_NUMBER } from '../utils/constant';
 
 // 교양과목을 추천해주는 페이지
 function KyRecommend() {
@@ -11,11 +12,8 @@ function KyRecommend() {
 
     useEffect(() => {
         const fetchData = async () => {
-            // const response = await axios.get(
-            //     'http://localhost:8089/KyRecommend/',
-            // );
             const response = await axios.get(
-                'http://13.125.25.62:8089/KyRecommend/',
+                `${API_URL}${PORT_NUMBER}/KyRecommend/`,
             );
             setInputData(response.data);
         };
@@ -27,17 +25,19 @@ function KyRecommend() {
             <main>
                 <div className="main">
                     {/* <div className="title">✨인기 교양 추천✨</div> */}
-                    <div className="title">( 교양 과목 찾기 : ctrl+f + 과목명 )</div><br /><br />
-
-
-                    <div className='starOrder'>
-                        <button id='btnStarOrder'> ⭐에브리타임 별점순⭐</button>
+                    <div className="title">
+                        ( 교양 과목 찾기 : ctrl+f + 과목명 )
+                    </div>
+                    <br />
+                    <br />
+                    <div className="starOrder">
+                        <button id="btnStarOrder">
+                            {' '}
+                            ⭐에브리타임 별점순⭐
+                        </button>
                         <KyRecommendRow2></KyRecommendRow2>
                     </div>
-
-
-                    <button id='btnNumOrder' > ☝수강 횟수 순✌</button> <br />
-
+                    <button id="btnNumOrder"> ☝수강 횟수 순✌</button> <br />
                     <div className="KyTableWrapper">
                         <table className="KyTable">
                             <tr className="menu">
@@ -63,14 +63,14 @@ function KyRecommend() {
                             {inputData.map((e) => {
                                 return <KyRecommendRow KyRecommend={e} />;
                             })}
-                            <br /><br />
+                            <br />
+                            <br />
                         </table>
-
                     </div>
                 </div>
-
-                <br /><br /> <br /><br />
-
+                <br />
+                <br /> <br />
+                <br />
             </main>
         </>
     );

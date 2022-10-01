@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ViewBoardRow from '../components/ViewBoardRow';
+import { API_URL, PORT_NUMBER } from '../utils/constant';
 
 /**
  * @description ViewBoard 컴포넌트 페이지
@@ -15,7 +16,7 @@ function ViewBoard() {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `http://13.125.25.62:8089/Board/${params}`,
+                `${API_URL}${PORT_NUMBER}/Board/${params}`,
             );
             setInputData(response.data);
         };
@@ -29,7 +30,7 @@ function ViewBoard() {
         );
         if (window.confirm('정말 삭제하시겠습니까?')) {
             const response = await axios.delete(
-                `http://13.125.25.62:8089/Board/${params}?password=${inputPassword}`,
+                `${API_URL}${PORT_NUMBER}/Board/${params}?password=${inputPassword}`,
                 {
                     brdPassword: inputPassword,
                 },
@@ -48,7 +49,7 @@ function ViewBoard() {
             window.confirm(`비밀번호가 일치해야 수정됩니다.
 수정하시겠습니까?`)
         ) {
-            await axios.get(`http://13.125.25.62:8089/Board/checkPw/${params}`);
+            await axios.get(`${API_URL}${PORT_NUMBER}/Board/checkPw/${params}`);
             navigate(`../Board/EditBoard/${params}`);
         } else {
             alert('수정이 취소되었습니다');

@@ -1,7 +1,6 @@
 import react from 'react';
 
 /**
- *
  * @description 404페이지 컴포넌트
  */
 const NotFound = () => {

@@ -1,7 +1,6 @@
 import React from 'react';
 
 /**
- *
  * @description Notice 글 목록 컴포넌트
  */
 const NoticeRow = ({ Notice }) => {

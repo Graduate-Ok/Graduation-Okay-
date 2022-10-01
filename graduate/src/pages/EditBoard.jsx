@@ -3,19 +3,19 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import EditBoardRow from '../components/EditBoardRow';
+import { API_URL, PORT_NUMBER } from '../utils/constant';
 
 /**
- *
  * @description 글 수정 페이지 컴포넌트
  */
 const EditBoard = () => {
     const [inputData, setInputData] = useState([]);
-
     let params = useParams().brdKey;
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `http://13.125.25.62:8089/Board/${params}`,
+                `${API_URL}${PORT_NUMBER}/Board/${params}`,
             );
             setInputData(response.data);
         };

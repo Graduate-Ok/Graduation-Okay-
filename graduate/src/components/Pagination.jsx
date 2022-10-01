@@ -2,7 +2,6 @@ import react from 'react';
 import '../css/Board.css';
 
 /**
- *
  * @description 페이지네이션 컴포넌트
  */
 

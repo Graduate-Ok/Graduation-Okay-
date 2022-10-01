@@ -1,7 +1,6 @@
 import React from 'react';
 
 /**
- *
  * @description 교양 추천 행 컴포넌트
  */
 const KyRecommendRow = ({ KyRecommend }) => {

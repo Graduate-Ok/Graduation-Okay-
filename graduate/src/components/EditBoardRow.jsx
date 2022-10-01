@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useInput from '../hooks/useInput';
+import { API_URL, PORT_NUMBER } from '../utils/constant';
 
 const EditBoardRow = ({ EditBoard }) => {
     const [title, onChangeTitle] = useInput('');
@@ -17,7 +18,7 @@ const EditBoardRow = ({ EditBoard }) => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `htthttp://13.125.25.62:8089/Board/EditBoard/${params}`,
+                `${API_URL}${PORT_NUMBER}/Board/EditBoard/${params}`,
             );
             setInputData(response.data);
         };
@@ -35,7 +36,7 @@ const EditBoardRow = ({ EditBoard }) => {
         }
         if (password !== '') {
             if (title === '' && writer === '' && content === '') {
-                await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
+                await axios.put(`${API_URL}${PORT_NUMBER}/Board/${params}`, {
                     brdKey: params,
                     brdTitle: EditBoard.brdTitle,
                     brdWriter: EditBoard.brdWriter,
@@ -45,7 +46,7 @@ const EditBoardRow = ({ EditBoard }) => {
                 alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (title === '' && writer === '') {
-                await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
+                await axios.put(`${API_URL}${PORT_NUMBER}/Board/${params}`, {
                     brdKey: params,
                     brdTitle: EditBoard.brdTitle,
                     brdWriter: EditBoard.brdWriter,
@@ -55,7 +56,7 @@ const EditBoardRow = ({ EditBoard }) => {
                 alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (content === '' && writer === '') {
-                await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
+                await axios.put(`${API_URL}${PORT_NUMBER}/Board/${params}`, {
                     brdKey: params,
                     brdTitle: title,
                     brdWriter: EditBoard.brdWriter,
@@ -65,7 +66,7 @@ const EditBoardRow = ({ EditBoard }) => {
                 alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (content === '' && title === '') {
-                await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
+                await axios.put(`${API_URL}${PORT_NUMBER}/Board/${params}`, {
                     brdKey: params,
                     brdTitle: EditBoard.brdTitle,
                     brdWriter: writer,
@@ -75,7 +76,7 @@ const EditBoardRow = ({ EditBoard }) => {
                 alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (content === '') {
-                await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
+                await axios.put(`${API_URL}${PORT_NUMBER}/Board/${params}`, {
                     brdKey: params,
                     brdTitle: title,
                     brdWriter: writer,
@@ -85,7 +86,7 @@ const EditBoardRow = ({ EditBoard }) => {
                 alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (title === '') {
-                await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
+                await axios.put(`${API_URL}${PORT_NUMBER}/Board/${params}`, {
                     brdKey: params,
                     brdTitle: EditBoard.brdTitle,
                     brdWriter: writer,
@@ -95,7 +96,7 @@ const EditBoardRow = ({ EditBoard }) => {
                 alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (writer === '') {
-                await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
+                await axios.put(`${API_URL}${PORT_NUMBER}/Board/${params}`, {
                     brdKey: params,
                     brdTitle: title,
                     brdWriter: EditBoard.brdWriter,
@@ -105,7 +106,7 @@ const EditBoardRow = ({ EditBoard }) => {
                 alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else {
-                await axios.put(`http://13.125.25.62:8089/Board/${params}`, {
+                await axios.put(`${API_URL}${PORT_NUMBER}/Board/${params}`, {
                     brdKey: params,
                     brdTitle: title,
                     brdWriter: writer,

@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../css/Board.css';
 import BoardRow from '../components/BoardRow';
 import Pagination from '../components/Pagination';
-
+import { PORT_NUMBER, API_URL } from '../utils/constant';
 /**
  *
  * @description Board 페이지 컴포넌트
@@ -18,11 +18,8 @@ const Board = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            // const response = await axios.get(
-            //     `http://localhost:8089/Board/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
-            // );
             const response = await axios.get(
-                `http://13.125.25.62:8089/Board/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
+                `${API_URL}${PORT_NUMBER}/Board/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
             );
             setInputData(response.data.boardDtoList);
         };
@@ -37,9 +34,7 @@ const Board = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            // const response = await axios.get(`http://localhost:8089/Board/`);
-            const response = await axios.get(`http://13.125.25.62:8089/Board/`);
-
+            const response = await axios.get(`${API_URL}${PORT_NUMBER}/Board/`);
             setSearchHelper(response.data.searchHelper);
         };
         fetchData();
@@ -48,31 +43,22 @@ const Board = () => {
     const handleNextBtn = async (e) => {
         e.preventDefault();
         const response = await axios.get(
-            `http://13.125.25.62:8089/Board/?page=${searchHelper.nextBlock}`,
+            `${API_URL}${PORT_NUMBER}/Board/?page=${searchHelper.nextBlock}`,
         );
-        // const response = await axios.get(
-        //     `http://localhost:8089/Board/?page=${searchHelper.nextBlock}`,
-        // );
         setSearchHelper(response.data.searchHelper);
         setInputData(response.data.boardDtoList);
     };
     const handlePrevBtn = async (e) => {
         e.preventDefault();
-        // const response = await axios.get(
-        //     `http://localhost:8089/Board/?page=${searchHelper.prevBlock}`,
-        // );
         const response = await axios.get(
-            `http://13.125.25.62:8089/Board/?page=${searchHelper.prevBlock}`,
+            `${API_URL}${PORT_NUMBER}/Board/?page=${searchHelper.prevBlock}`,
         );
         setSearchHelper(response.data.searchHelper);
         setInputData(response.data.boardDtoList);
     };
     const handlePageClick = async (i) => {
-        // const response = await axios.get(
-        //     `http://localhost:8089/Board/?page=${i}`,
-        // );
         const response = await axios.get(
-            `http://13.125.25.62:8089/Board/?page=${i}`,
+            `${API_URL}${PORT_NUMBER}/Board/?page=${i}`,
         );
         setInputData(response.data.boardDtoList);
     };
@@ -87,17 +73,12 @@ const Board = () => {
         const search = document.forms['searchBar']['srchKeyword'].value;
         if (search === '') {
             alert('검색어를 입력해주세요!');
-            const response = await axios.get(`http://13.125.25.62:8089/Board/`);
-            // const response = await axios.get(`http://localhost:8089/Board/`);
-
+            const response = await axios.get(`${API_URL}${PORT_NUMBER}/Board/`);
             setInputData(response.data.boardDtoList);
         } else {
             const response = await axios.get(
-                `http://13.125.25.62:8089/Board/?srchType=${select}&srchKeyword=${search}`,
+                `${API_URL}${PORT_NUMBER}/Board/?srchType=${select}&srchKeyword=${search}`,
             );
-            // const response = await axios.get(
-            //     `http://localhost:8089/Board/?srchType=${select}&srchKeyword=${search}`,
-            // );
             setInputData(response.data.boardDtoList);
         }
     };

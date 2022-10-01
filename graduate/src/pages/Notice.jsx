@@ -5,9 +5,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import NoticeRow from '../components/NoticeRow';
 import Pagination from '../components/Pagination';
+import { API_URL, PORT_NUMBER } from '../utils/constant';
 
 /**
- *
  * @description notice 페이지 컴포넌트
  */
 const Notice = () => {
@@ -21,7 +21,7 @@ const Notice = () => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `http://13.125.25.62:8089/Notice/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
+                `${API_URL}${PORT_NUMBER}/Notice/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
             );
             setInputData(response.data.noticeDtoList);
         };
@@ -29,7 +29,6 @@ const Notice = () => {
     }, []);
 
     /**
-     *
      * @description 검색 쿼리 기능
      */
     const handleSubmit = async (e) => {
@@ -39,24 +38,23 @@ const Notice = () => {
         if (search === '') {
             alert('검색어를 입력해주세요!');
             const response = await axios.get(
-                `http://13.125.25.62:8089/Notice/`,
+                `${API_URL}${PORT_NUMBER}/Notice/`,
             );
             setInputData(response.data.noticeDtoList);
         } else {
             const response = await axios.get(
-                `http://13.125.25.62:8089/Notice/?srchType=${select}&srchKeyword=${search}`,
+                `${API_URL}${PORT_NUMBER}/Notice/?srchType=${select}&srchKeyword=${search}`,
             );
             setInputData(response.data.noticeDtoList);
         }
     };
 
     /**
-     *
      * @description notice 탭
      */
     const handleClickTab = async (param) => {
         const response = await axios.get(
-            `http://13.125.25.62:8089/Notice/?notiCategory=${param}`,
+            `${API_URL}${PORT_NUMBER}/Notice/?notiCategory=${param}`,
         );
         setInputData(response.data.noticeDtoList);
     };
@@ -69,7 +67,7 @@ const Notice = () => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `http://13.125.25.62:8089/Notice/`,
+                `${API_URL}${PORT_NUMBER}/Notice/`,
             );
             setSearchHelper(response.data.searchHelper);
         };
@@ -79,7 +77,7 @@ const Notice = () => {
     const handleNextBtn = async (e) => {
         e.preventDefault();
         const response = await axios.get(
-            `http://13.125.25.62:8089/Notice/?page=${searchHelper.nextBlock}`,
+            `${API_URL}${PORT_NUMBER}/Notice/?page=${searchHelper.nextBlock}`,
         );
         setSearchHelper(response.data.searchHelper);
         setInputData(response.data.noticeDtoList);
@@ -87,14 +85,14 @@ const Notice = () => {
     const handlePrevBtn = async (e) => {
         e.preventDefault();
         const response = await axios.get(
-            `http://13.125.25.62:8089/Notice/?page=${searchHelper.prevBlock}`,
+            `${API_URL}${PORT_NUMBER}/Notice/?page=${searchHelper.prevBlock}`,
         );
         setSearchHelper(response.data.searchHelper);
         setInputData(response.data.noticeDtoList);
     };
     const handlePageClick = async (i) => {
         const response = await axios.get(
-            `http://13.125.25.62:8089/Notice/?page=${i}`,
+            `${API_URL}${PORT_NUMBER}/Notice/?page=${i}`,
         );
         setInputData(response.data.noticeDtoList);
     };

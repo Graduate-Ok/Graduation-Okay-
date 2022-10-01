@@ -1,7 +1,6 @@
 import '../css/Header.css';
 
 /**
- *
  * @description Header 컴포넌트
  */
 function Header() {

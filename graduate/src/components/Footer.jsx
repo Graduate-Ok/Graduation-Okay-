@@ -1,7 +1,6 @@
 import '../css/Footer.css';
 
 /**
- *
  * @description Footer 컴포넌트 페이지
  */
 function Footer() {

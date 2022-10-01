@@ -2,16 +2,15 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
 import useInput from '../hooks/useInput';
+import { API_URL, PORT_NUMBER } from '../utils/constant';
 
 /**
- *
  * @description PostBoard 컴포넌트 페이지
  */
 const PostBoard = () => {
     const navigate = useNavigate();
 
     /**
-     *
      * @description 버튼 클릭 시 직전 페이지로 돌아가는 기능
      */
     const handleSubmit = async (e) => {
@@ -29,7 +28,7 @@ const PostBoard = () => {
             alert('비어있는 항목이 있습니다. 입력 후 다시 등록해주세요');
             return false;
         }
-        await axios.post('http://13.125.25.62:8089/Board/PostBoard', {
+        await axios.post(`${API_URL}${PORT_NUMBER}/Board/PostBoard`, {
             brdTitle: title,
             brdWriter: writer,
             brdContent: content,

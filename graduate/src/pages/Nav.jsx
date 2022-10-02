@@ -23,6 +23,9 @@ function Nav() {
                 <Link to="Board" className="navbar__nav">
                     정보공유게시판
                 </Link>
+                <Link to="Feedback" className="navbar__nav">
+                    피드백하기
+                </Link>
             </nav>
         </>
     );

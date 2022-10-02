@@ -1,5 +1,8 @@
 # <img width = "100%" src = "https://user-images.githubusercontent.com/75983289/164976416-004d3626-3a5c-4eb5-95d6-e94d1833a392.png"/>
-한신대학교 재학생 누구나 본인의 졸업요건을 조회할 수 있는 웹사이트
+한신대학교 재학생 누구나 본인의 졸업요건을 조회할 수 있는 웹사이트 
+| [홈페이지 바로가기](http://www.hs-graduate-ok.com/) | [노션 바로가기](https://cyclic-pleasure-1d8.notion.site/cfc00b3dc86c48ffb1f7b8daa0fb2cc4?v=37062694a379480c8984998f79448e3c) |
+|:---:|:---:|
+
 ## TEAM MEMBER 👨‍👨‍👧‍👧
 | 팀원 | 역할 | Github | 
 |:---:|:---:|:---:| 
@@ -7,6 +10,7 @@
 | 박수빈 | Back-end | https://github.com/psb0320 |
 | 김지윤 | Front-end | https://github.com/JiYoon0712 |
 | 김민석 | Back-end | https://github.com/alstjr |
+
 ## 프로젝트 개요 👀
 #### 프로젝트 선정 이유
 1. 기존 한신대학교 졸업사정 셀프 테스트는 졸업 예정자인 학우들만 결과를 확인할 수 있음
@@ -63,3 +67,37 @@
 
 ## E-R 다이어그램📄
 <img width = "100%" src = "https://user-images.githubusercontent.com/75983289/169945900-ab58d635-c4ec-48ff-8333-eaa132225d11.png"/>
+
+## Dependencies🖥️
+ 
+```js
+// Front-end 
+"@testing-library/jest-dom": "^5.16.2",
+"@testing-library/react": "^12.1.4",
+"@testing-library/user-event": "^13.5.0",
+"axios": "^0.26.1",
+"http-proxy-middleware": "^2.0.6",
+"react": "^17.0.2",
+"react-dom": "^17.0.2",
+"react-router-dom": "^6.3.0",
+"react-scripts": "5.0.0",
+"styled-components": "^5.3.5",
+"styled-reset": "^4.3.4",
+"web-vitals": "^2.1.4"
+        
+// Back-end
+implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+implementation 'org.springframework.boot:spring-boot-starter-mustache'
+implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+implementation 'org.springframework.boot:spring-boot-starter-web'
+implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+compileOnly 'org.projectlombok:lombok'
+developmentOnly 'org.springframework.boot:spring-boot-devtools'
+runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+annotationProcessor 'org.projectlombok:lombok'
+testImplementation 'org.springframework.boot:spring-boot-starter-test'
+implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.9'
+implementation 'io.springfox:springfox-boot-starter:3.0.0' // swagger (api 명세서)
+implementation 'org.apache.tika:tika-core:2.4.0' // 파일 확장자 검사 (MIME-Type 검사)
+implementation 'org.apache.tika:tika-parsers:2.4.0' // 파일 확장자 검사 (MIME-Type 검사)
+```

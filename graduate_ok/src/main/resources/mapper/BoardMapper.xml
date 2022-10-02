@@ -36,7 +36,7 @@
                 AND brd_writer LIKE CONCAT('%', #{srchKeyword}, '%')
             </if>
         </where>
-        ORDER BY brd_wt_time desc
+        ORDER BY brd_key desc
         LIMIT #{startIndex}, #{pageSize}
     </select>
 

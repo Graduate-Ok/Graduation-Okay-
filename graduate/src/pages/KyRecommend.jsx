@@ -33,7 +33,7 @@ function KyRecommend() {
                     <br />
                     <br />
                     <div className="starOrder">
-                        <button id="btnStarOrder">⭐에브리타임 별점순⭐</button>
+                        <button id="btnStarOrder" onClick={() => window.open('https://everytime.kr/lecture', '_blank')}>⭐에브리타임 별점순⭐</button>
                         <KyRecommendRow2></KyRecommendRow2>
                     </div>
                     <button id="btnNumOrder"> ☝수강 횟수 순✌</button> <br />

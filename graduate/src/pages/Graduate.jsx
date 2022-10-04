@@ -156,7 +156,7 @@ const Graduate = () => {
                                     </tr>
                                 </table>
                             </div>
-                            <div className="Graduate_lack" style="white-space: pre-wrap;">{failure}</div>
+                            <div className="Graduate_lack">{failure}</div>
                         </div>
                     )}
                 </section>

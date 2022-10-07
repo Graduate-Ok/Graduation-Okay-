@@ -110,6 +110,15 @@ const Notice = () => {
                         {/*TAB*/}
                         <div class="tab">
                             <ul class="tabnav">
+                            <li>
+                                    <div
+                                        onClick={() => {
+                                            handleClickTab();
+                                        }}
+                                    >
+                                        전체
+                                    </div>
+                                </li>
                                 <li>
                                     <div
                                         onClick={() => {

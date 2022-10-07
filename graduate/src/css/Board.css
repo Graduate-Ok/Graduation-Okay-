@@ -269,12 +269,12 @@
 }
 
 /*내용*/
-.BRD_content {
-    width: 100%;
+.BRD_content { 
     font-size: 17px;
     justify-content: center;
     border: solid 2px #e5e7eb;
     background-color: #f2f2f2;
     align-items: center;
     height: 500px;
+    line-height: 1.5;
 }

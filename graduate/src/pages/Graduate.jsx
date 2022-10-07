@@ -5,7 +5,6 @@ import { useState } from 'react';
 import Spinner from '../components/Spinner';
 
 /**
- *
  * @description Graduate 페이지 컴포넌트
  */
 const Graduate = () => {
@@ -21,7 +20,6 @@ const Graduate = () => {
     const [loading, setLoading] = useState(false);
 
     /**
-     *
      * @description 파일 버튼 클릭
      */
     const handleChangeFile = (event) => {
@@ -102,7 +100,7 @@ const Graduate = () => {
                         <br />
                         👉성적
                         <br />
-                        👉학업성적확인서
+                        👉학업성적확인서(16학번 이후)
                         <br />
                         👉Save
                         <br />

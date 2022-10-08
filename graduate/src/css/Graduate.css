@@ -75,8 +75,23 @@
     border-radius: 10px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    text-align: center;
 }
 
+.pdf__position--text {
+    display: flex;
+    width: 100%;
+    margin-bottom: 7px;
+}
+.pdf__position--text ~ a:hover {
+    color: #ffb02e;
+}
+.text-header {
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
 /* '결과조회' 영역 */
 .GraduateOk__footer {
     margin-bottom: 80px;

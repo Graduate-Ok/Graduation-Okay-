@@ -31,10 +31,10 @@ const EditBoardRow = ({ EditBoard }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (password === '') {
-            alert('비밀번호를 입력해주세요.');
+        if (password !== inputData.brdPassword) {
+            alert('비밀번호가 틀립니다. 다시 입력해주세요');
         }
-        if (password !== '') {
+        if (password === inputData.brdPassword) {
             if (title === '' && writer === '' && content === '') {
                 await axios.put(`${API_URL}${PORT_NUMBER}/Board/${params}`, {
                     brdKey: params,

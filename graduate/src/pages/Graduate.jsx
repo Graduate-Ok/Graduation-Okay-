@@ -109,21 +109,6 @@ const Graduate = () => {
                             👉학업성적확인서(16학번 이후)
                         </div>
                         <div className="pdf__position--text">👉Save</div>
-
-                        {/* ❓ 학업성적확인서 PDF ❓ <br />
-                        <br />
-                        👉한신대학교 종합정보시스템
-                        <br />
-                        👉인트라넷
-                        <br />
-                        👉학부생서비스
-                        <br />
-                        👉성적
-                        <br />
-                        👉학업성적확인서(16학번 이후)
-                        <br />
-                        👉Save
-                        <br /> */}
                     </div>
                     <div className="section__text text-color">
                         교양과목 정보 외의 인적사항 및 학점은 따로 저장하지

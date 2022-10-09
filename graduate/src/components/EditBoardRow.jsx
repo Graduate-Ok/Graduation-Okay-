@@ -31,18 +31,23 @@ const EditBoardRow = ({ EditBoard }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (password === '') {
-            alert('비밀번호를 입력해주세요');
+        if (password !== inputData.brdPassword) {
+            alert('비밀번호가 틀립니다. 다시 입력해주세요');
         }
-        if (password !== '') {
+        if (password === inputData.brdPassword) {
             if (title === '' && writer === '' && content === '') {
-                await axios.put(`http://localhost:8089/Board/${params}`, {
-                    brdKey: params,
-                    brdTitle: EditBoard.brdTitle,
-                    brdWriter: EditBoard.brdWriter,
-                    brdContent: EditBoard.brdContent,
-                    brdPassword: password,
-                });
+                const response = await axios.put(
+                    `http://localhost:8089/Board/${params}`,
+                    {
+                        brdKey: params,
+                        brdTitle: EditBoard.brdTitle,
+                        brdWriter: EditBoard.brdWriter,
+                        brdContent: EditBoard.brdContent,
+                        brdPassword: password,
+                    },
+                );
+                console.log(response);
+                console.log(response.data);
                 alert('수정완료 되었습니다.');
                 navigate('/Board');
             } else if (title === '' && writer === '') {

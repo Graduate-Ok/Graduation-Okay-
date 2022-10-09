@@ -275,6 +275,11 @@
     border: solid 2px #e5e7eb;
     background-color: #f2f2f2;
     align-items: center;
+    overflow-y: auto;
+    padding:1em;
+    line-height: 1.3;
+}
+
+.BRD_content--detail{
     height: 500px;
-    line-height: 1.5;
 }

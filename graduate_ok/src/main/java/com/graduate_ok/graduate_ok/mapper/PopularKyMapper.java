@@ -7,6 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface PopularKyMapper {
+    // 인기교양 조회
     List<KyListDto> selectKyList();
 
 }

@@ -62,7 +62,7 @@ public class BoardRestController {
         int result = DBConnection.checkPassword(key, password);
 
         if (result == 1) {
-            return "/EditBoard/" + key;
+            return "/edit/" + key;
         } else if (result == 0) {
             return "비밀번호가 일치하지 않습니다.";
         } else if (result == -1) {
@@ -74,7 +74,7 @@ public class BoardRestController {
     /**
      * 게시글 수정 정보 넘기기
      */
-    @GetMapping("/EditBoard/{key}")
+    @GetMapping("/edit/{key}")
     @ApiOperation(value = "수정 게시글 전달 API")
     public BoardUpdateDto editBoard(@PathVariable("key") Integer key) {
         return boardService.selectEditBoardByKey(key);
@@ -86,7 +86,7 @@ public class BoardRestController {
     @PutMapping("/{key}")
     @ApiOperation(value = "게시글 수정 API")
     public void updateBoard(@PathVariable("key") Integer key,
-                              @RequestBody BoardUpdateDto boardUpdateDto) {
+                            @RequestBody BoardUpdateDto boardUpdateDto) {
         boardUpdateDto.setBrdKey(key);
         boardService.updateBoard(boardUpdateDto);
     }

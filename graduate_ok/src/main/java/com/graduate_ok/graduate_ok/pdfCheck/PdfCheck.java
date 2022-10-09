@@ -27,14 +27,15 @@ public class PdfCheck {
      * ㄴ아노덴 "대학생활길잡이","사회생활길잡이","영어1,2"는 각각 "캠퍼스라이프","인문강단","Speaking English 1,2"로 대체 가능
      *
      * [기타 교양 검사]
-     * ㄴ19학번 교양 인재상별 5학점 이상
+     * ㄴ19학번 교양 인재상별 1과목 이상
      * ㄴ20학번 이후 교양 핵심역량별 1과목 이상
      *
      * [부전공 검사] 부전공 21학점 이상 들었는지 검사
      *
+     * [복수전공 검사] 주전공과 복수전공 각 36학점 이상 들었는지 검사
+     *
      * ! 고려 안 한 대상 !
-     * 1) 복수전공
-     * 2) 편입생
+     * 1) 편입생
      */
 
     public static void main(String[] args) throws Exception {
@@ -96,21 +97,14 @@ public class PdfCheck {
                 studentId = Integer.parseInt(line.substring(4, 8));
             }
 
-            // 학과 추출 (주전공, 부전공)
+            // 학과 추출 (주전공)
             if (line.contains("부전공Ⅰ")) {
-                // 주전공
                 String[] strings = list[i - 1].split(" ");
                 int length = strings[2].length() - 1;
                 studentMajor = strings[2].substring(0, length);
-
-                // 부전공
-//                String[] strings2 = line.split(" ");
-//                if (strings2.length > 1 && !(strings2[1].equals("") || strings2[1].equals(" "))) {
-//                    studentSubMajor = strings2[1];
-//                }
             }
 
-            // 부전공
+            // 학과 추출 (부전공)
             if (line.contains("부전공Ⅱ")){
                 String[] strings = line.split(" ");
                 if (!strings[0].contains("부전공Ⅱ")) {
@@ -136,7 +130,7 @@ public class PdfCheck {
             // 교양, 전공 이수학점 추출
             if (line.contains("교양: ") && line.contains("전공: ")) {
                 kyCredit = Integer.parseInt(line.substring(4, 6).trim());
-                majorCredit = Integer.parseInt(line.substring(11, 13).trim());
+                majorCredit = Integer.parseInt(line.substring(11, 14).trim());
             }
 
             // 부전공 이수학점 추출
@@ -320,10 +314,9 @@ public class PdfCheck {
         StringBuffer failure = new StringBuffer();
 
         // 해당 학과 졸업학점 가져오기
-//        int graduateCredit = DBConnection.getGraduateCredit(studentMajor.substring(0,3));
-        int graduateCredit = 130; // 모든 학과 졸업학점 130
+        int graduateCredit = DBConnection.getGraduateCredit(studentMajor);
         // 해당 학과 전공최소학점 가져오기
-        int majorMinCredit = DBConnection.getMajorMinCredit(studentMajor.substring(0,3));
+        int majorMinCredit = DBConnection.getMajorMinCredit(studentMajor);
 
         // (총 취득학점 - 초과한 교양 학점)
         if (studentId <= 2016) {
@@ -366,7 +359,7 @@ public class PdfCheck {
         StringBuffer failure = new StringBuffer();
 
         // 해당 학과에서 전공필수 과목 가져오기
-        List<String> requiredMajors = DBConnection.getRequiredMajor(studentId, studentMajor.substring(0,3));
+        List<String> requiredMajors = DBConnection.getRequiredMajor(studentId, studentMajor);
 
         // 들어야 할 전필과 학생이 들은 전필 비교
         Collection<String> std = requiredMajor;
@@ -514,9 +507,6 @@ public class PdfCheck {
     private static StringBuffer checkCoreKy(int studentId, List<String> allKy) {
         StringBuffer failure = new StringBuffer();
 
-        /**
-         * 테스트해보고 싶으면 아래 if문 주석 처리하고 돌리기!!!
-         */
         // 2020 미만 학번이면 검사 필요없이 비어 있는 스트링버퍼 return
         if (studentId < 2020) return failure;
 
@@ -550,9 +540,6 @@ public class PdfCheck {
     private static StringBuffer checkTalent(int studentId, List<String> allKy) {
         StringBuffer failure = new StringBuffer();
 
-        /**
-         * 테스트해보고 싶으면 아래 if문 주석 처리하고 돌리기!!!
-         */
         // 2019 학번 아니면 검사 필요없이 비어 있는 스트링버퍼 return
         if (studentId != 2018) return failure;
 
@@ -570,7 +557,7 @@ public class PdfCheck {
             System.out.println("\n===인재상 [" + type + "] 과목===");
 
             for (String str : talents) {
-                    System.out.println(str);
+                System.out.println(str);
             }
             if (talents.size() < 1) {
                 failure.append("교양 인재상 '" + type + "' 미수강\n");
@@ -580,23 +567,6 @@ public class PdfCheck {
 
         return failure;
     }
-
-
-    /**
-     * 교양 카운트 증가
-     */
-    private static StringBuffer updateKyCount(List<String> allKy) {
-        StringBuffer failure = new StringBuffer();
-
-        for (String name : allKy) {
-            if (DBConnection.updateKyCount(name) == 0) {
-                //failure.append("** 교양 [" + name + "] 카운트 실패!\n");
-            }
-        }
-
-        return failure;
-    }
-
 
     /**
      * [부전공 검사]
@@ -638,6 +608,22 @@ public class PdfCheck {
 
         for (String str : requiredDoubleMajors) {
             failure.append("전공필수 '" + str + "' 미수강\n");
+        }
+
+        return failure;
+    }
+
+
+    /**
+     * 교양 카운트 증가
+     */
+    private static StringBuffer updateKyCount(List<String> allKy) {
+        StringBuffer failure = new StringBuffer();
+
+        for (String name : allKy) {
+            if (DBConnection.updateKyCount(name) == 0) {
+                System.out.println("** 교양 [" + name + "] 카운트 실패!\n");
+            }
         }
 
         return failure;

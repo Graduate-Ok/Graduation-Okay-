@@ -143,7 +143,6 @@ public class DBConnection {
         return result;
     }
 
-    // test
     // 교양 카운트 초기화
     public static void settingKyCount0() {
         String sql = "UPDATE ky_course SET ky_count = 0;";

@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.apache.tika.Tika;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,7 +22,7 @@ public class PdfRestController {
 
     @PostMapping("/Graduate")
     @ApiOperation(value = "PDF 관련 로직 API", notes = "관련 PDF 검사 관련 로직")
-    @ApiParam("관련 PDF (중요)")
+    @ApiParam("PDF 관련 (중요)")
     @ApiResponses({
             @ApiResponse(code = 200, message = "ok"),
             @ApiResponse(code = 500, message = "server error"),

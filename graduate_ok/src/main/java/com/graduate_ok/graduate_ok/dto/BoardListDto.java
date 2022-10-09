@@ -9,6 +9,9 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+/**
+ * 정보공유 게시판 목록 DTO
+ */
 public class BoardListDto {
     List<BoardDto> boardDtoList;
     SearchHelper searchHelper;

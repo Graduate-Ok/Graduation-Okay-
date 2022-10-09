@@ -86,7 +86,7 @@ public class BoardRestController {
     @PutMapping("/{key}")
     @ApiOperation(value = "게시글 수정 API")
     public void updateBoard(@PathVariable("key") Integer key,
-                              @RequestBody BoardUpdateDto boardUpdateDto) {
+                            @RequestBody BoardUpdateDto boardUpdateDto) {
         boardUpdateDto.setBrdKey(key);
         boardService.updateBoard(boardUpdateDto);
     }

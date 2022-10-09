@@ -14,6 +14,9 @@ public class PopularKyServiceImpl implements PopularKyService {
 
     private final PopularKyMapper popularKyMapper;
 
+    /**
+     * 인기교양 조회
+     */
     @Override
     public List<KyListDto> selectKyList() {
         return popularKyMapper.selectKyList();

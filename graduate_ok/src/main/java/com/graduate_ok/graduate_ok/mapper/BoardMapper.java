@@ -30,7 +30,4 @@ public interface BoardMapper {
     // 게시글 삭제
     void deleteBoard(BoardDeleteDto boardDeleteDto);
 
-    // 게시글 검색
-    List<BoardListDto> selectBoardByKeyword(String keyword);
-
 }

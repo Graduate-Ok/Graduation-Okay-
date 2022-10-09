@@ -15,6 +15,9 @@ import java.util.List;
 public class NoticeServiceImpl implements NoticeService {
     private final NoticeMapper noticeMapper;
 
+    /**
+     * 게시글 목록 조회
+     */
     @Override
     public NoticeListDto selectNoticeList(String notiCategory, String srchType, String srchKeyword, int page) {
         NoticeListDto noticeListDto = new NoticeListDto();

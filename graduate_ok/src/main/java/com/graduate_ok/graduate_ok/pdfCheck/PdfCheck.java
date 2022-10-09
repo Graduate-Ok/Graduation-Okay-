@@ -27,18 +27,19 @@ public class PdfCheck {
      * ㄴ아노덴 "대학생활길잡이","사회생활길잡이","영어1,2"는 각각 "캠퍼스라이프","인문강단","Speaking English 1,2"로 대체 가능
      *
      * [기타 교양 검사]
-     * ㄴ19학번 교양 인재상별 5학점 이상
+     * ㄴ19학번 교양 인재상별 1과목 이상
      * ㄴ20학번 이후 교양 핵심역량별 1과목 이상
      *
      * [부전공 검사] 부전공 21학점 이상 들었는지 검사
      *
+     * [복수전공 검사] 주전공과 복수전공 각 36학점 이상 들었는지 검사
+     *
      * ! 고려 안 한 대상 !
-     * 1) 복수전공
-     * 2) 편입생
+     * 1) 편입생
      */
 
     public static void main(String[] args) throws Exception {
-        HashMap<String, Object> a = execute("C:\\Users\\수빈\\Desktop\\백업\\um72_0272003_r01.pdf");
+        HashMap<String, Object> a = execute("각자 PDF 파일 경로");
 
         // test 교양 카운트 초기화
         //DBConnection.settingKyCount0();
@@ -96,21 +97,14 @@ public class PdfCheck {
                 studentId = Integer.parseInt(line.substring(4, 8));
             }
 
-            // 학과 추출 (주전공, 부전공)
+            // 학과 추출 (주전공)
             if (line.contains("부전공Ⅰ")) {
-                // 주전공
                 String[] strings = list[i - 1].split(" ");
                 int length = strings[2].length();// - 1;
                 studentMajor = strings[2].substring(0, length);
-
-                // 부전공
-//                String[] strings2 = line.split(" ");
-//                if (strings2.length > 1 && !(strings2[1].equals("") || strings2[1].equals(" "))) {
-//                    studentSubMajor = strings2[1];
-//                }
             }
 
-            // 부전공
+            // 학과 추출 (부전공)
             if (line.contains("부전공Ⅱ")){
                 String[] strings = line.split(" ");
                 if (!strings[0].contains("부전공Ⅱ")) {
@@ -513,9 +507,6 @@ public class PdfCheck {
     private static StringBuffer checkCoreKy(int studentId, List<String> allKy) {
         StringBuffer failure = new StringBuffer();
 
-        /**
-         * 테스트해보고 싶으면 아래 if문 주석 처리하고 돌리기!!!
-         */
         // 2020 미만 학번이면 검사 필요없이 비어 있는 스트링버퍼 return
         if (studentId < 2020) return failure;
 
@@ -549,9 +540,6 @@ public class PdfCheck {
     private static StringBuffer checkTalent(int studentId, List<String> allKy) {
         StringBuffer failure = new StringBuffer();
 
-        /**
-         * 테스트해보고 싶으면 아래 if문 주석 처리하고 돌리기!!!
-         */
         // 2019 학번 아니면 검사 필요없이 비어 있는 스트링버퍼 return
         if (studentId != 2018) return failure;
 
@@ -579,23 +567,6 @@ public class PdfCheck {
 
         return failure;
     }
-
-
-    /**
-     * 교양 카운트 증가
-     */
-    private static StringBuffer updateKyCount(List<String> allKy) {
-        StringBuffer failure = new StringBuffer();
-
-        for (String name : allKy) {
-            if (DBConnection.updateKyCount(name) == 0) {
-                //failure.append("** 교양 [" + name + "] 카운트 실패!\n");
-            }
-        }
-
-        return failure;
-    }
-
 
     /**
      * [부전공 검사]
@@ -637,6 +608,22 @@ public class PdfCheck {
 
         for (String str : requiredDoubleMajors) {
             failure.append("전공필수 '" + str + "' 미수강\n");
+        }
+
+        return failure;
+    }
+
+
+    /**
+     * 교양 카운트 증가
+     */
+    private static StringBuffer updateKyCount(List<String> allKy) {
+        StringBuffer failure = new StringBuffer();
+
+        for (String name : allKy) {
+            if (DBConnection.updateKyCount(name) == 0) {
+                System.out.println("** 교양 [" + name + "] 카운트 실패!\n");
+            }
         }
 
         return failure;

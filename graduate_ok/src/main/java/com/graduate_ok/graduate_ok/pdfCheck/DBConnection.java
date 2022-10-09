@@ -5,11 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBConnection {
-//    private static final String DB_DRIVER_CLASS = "org.mariadb.jdbc.Driver";
-//    private static final String DB_URL = "jdbc:mariadb://localhost:3306/graduate_ok";
-//    private static final String DB_USERNAME = "root";
-//    private static final String DB_PASSWORD = "onlyroot";
-
     private static final String DB_DRIVER_CLASS = "org.mariadb.jdbc.Driver";
     private static final String DB_URL = "jdbc:mariadb://hsgraduateok.caemqdnz46sa.us-west-1.rds.amazonaws.com/hsgraduateok";
     private static final String DB_USERNAME = "hsgraduateok";
@@ -143,7 +138,6 @@ public class DBConnection {
         return result;
     }
 
-    // test
     // 교양 카운트 초기화
     public static void settingKyCount0() {
         String sql = "UPDATE ky_course SET ky_count = 0;";

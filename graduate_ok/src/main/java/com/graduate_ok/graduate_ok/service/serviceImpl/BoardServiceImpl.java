@@ -76,12 +76,4 @@ public class BoardServiceImpl implements BoardService {
     public void deleteBoard(BoardDeleteDto boardDeleteDto) {
         boardMapper.deleteBoard(boardDeleteDto);
     }
-
-    /**
-     * 게시글 검색
-     */
-    @Override
-    public List<BoardListDto> selectBoardByKeyword(String keyword) {
-        return boardMapper.selectBoardByKeyword(keyword);
-    }
 }

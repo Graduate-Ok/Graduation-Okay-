@@ -482,7 +482,7 @@ public class PdfCheck {
         }
 
         // 진로와상담 검사
-        if (counseling < 4) failure.append("교양필수 '진로와상담' " + (4 - countCP) + "회 미수강\n");
+        if (counseling < 4) failure.append("교양필수 '진로와상담' " + (4 - counseling) + "회 미수강\n");
 
         // 비교과 검사
         if (studentId >= 2020) {

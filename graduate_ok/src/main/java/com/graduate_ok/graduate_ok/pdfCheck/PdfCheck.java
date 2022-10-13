@@ -130,7 +130,7 @@ public class PdfCheck {
             // 교양, 전공 이수학점 추출
             if (line.contains("교양: ") && line.contains("전공: ")) {
                 kyCredit = Integer.parseInt(line.substring(4, 6).trim());
-                majorCredit = Integer.parseInt(line.substring(11, 14).trim());
+                majorCredit = Integer.parseInt(line.substring(11, 13).trim());
             }
 
             // 부전공 이수학점 추출
@@ -314,9 +314,9 @@ public class PdfCheck {
         StringBuffer failure = new StringBuffer();
 
         // 해당 학과 졸업학점 가져오기
-        int graduateCredit = DBConnection.getGraduateCredit(studentMajor);
+        int graduateCredit = DBConnection.getGraduateCredit(studentMajor.substring(0, 3));
         // 해당 학과 전공최소학점 가져오기
-        int majorMinCredit = DBConnection.getMajorMinCredit(studentMajor);
+        int majorMinCredit = DBConnection.getMajorMinCredit(studentMajor.substring(0, 3));
 
         // (총 취득학점 - 초과한 교양 학점)
         if (studentId <= 2016) {
@@ -359,7 +359,7 @@ public class PdfCheck {
         StringBuffer failure = new StringBuffer();
 
         // 해당 학과에서 전공필수 과목 가져오기
-        List<String> requiredMajors = DBConnection.getRequiredMajor(studentId, studentMajor);
+        List<String> requiredMajors = DBConnection.getRequiredMajor(studentId, studentMajor.substring(0, 3));
 
         // 들어야 할 전필과 학생이 들은 전필 비교
         Collection<String> std = requiredMajor;
@@ -482,7 +482,7 @@ public class PdfCheck {
         }
 
         // 진로와상담 검사
-        if (counseling < 4) failure.append("교양필수 '진로와상담' " + (4 - countCP) + "회 미수강\n");
+        if (counseling < 4) failure.append("교양필수 '진로와상담' " + (4 - counseling) + "회 미수강\n");
 
         // 비교과 검사
         if (studentId >= 2020) {
@@ -541,7 +541,7 @@ public class PdfCheck {
         StringBuffer failure = new StringBuffer();
 
         // 2019 학번 아니면 검사 필요없이 비어 있는 스트링버퍼 return
-        if (studentId != 2018) return failure;
+        if (studentId != 2019) return failure;
 
         String[] talentType = {"소통하는지성인", "실천하는평화인", "도전하는창의인"};
 
@@ -555,10 +555,10 @@ public class PdfCheck {
 
             // test
             System.out.println("\n===인재상 [" + type + "] 과목===");
-
             for (String str : talents) {
                     System.out.println(str);
             }
+
             if (talents.size() < 1) {
                 failure.append("교양 인재상 '" + type + "' 미수강\n");
             }

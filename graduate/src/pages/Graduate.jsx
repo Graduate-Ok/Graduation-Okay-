@@ -115,6 +115,10 @@ const Graduate = () => {
                         교양과목 정보 외의 인적사항 및 학점은 따로 저장하지
                         않습니다!
                     </div>
+                    <div className="section__text text-color2"> 
+                        현재 학기를 제외한 확실히 수료완료한 학기 기준으로 결과가 출력됩니다.
+                    </div>
+                    
                     {loading ? (
                         <Spinner />
                     ) : (

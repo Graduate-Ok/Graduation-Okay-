@@ -164,7 +164,7 @@ public class PdfCheck {
 
             // 마일리지 추출
             if (line.contains("마일리지")) {
-                int length = line.length();// - 1;
+                int length = line.length(); //- 1;
                 mileage = Integer.parseInt(line.substring(22, length));
             }
 
@@ -409,7 +409,7 @@ public class PdfCheck {
             if (line.equals("독서와토론")) readDebate++;
 
             // 글쓰기의기초 검사 (19학번 이후 소프트웨어교과목으로 대체 가능)
-            if (line.equals("글쓰기의기초") || line.contains("소프트웨어")) writing++;
+            if (line.equals("글쓰기의기초") || line.contains("프로그래밍")) writing++;
 
             // 영어Ⅰ,Ⅱ 검사 (아노덴 'Speaking EnglishⅠ,Ⅱ' 대체 / 19학번 이후 영어인증자 면제)
             if (line.equals("영어Ⅰ") || line.equals("EnglishⅠ") || engCertification) eng1++;
@@ -596,8 +596,8 @@ public class PdfCheck {
         }
 
         // 전공필수 리스트 두개 가져와서 합침
-        List<String> requiredMajor1 = DBConnection.getRequiredMajor(studentId, studentMajor1);
-        List<String> requiredMajor2 = DBConnection.getRequiredMajor(studentId, studentMajor2);
+        List<String> requiredMajor1 = DBConnection.getRequiredMajor(studentId, studentMajor1.substring(0, 3));
+        List<String> requiredMajor2 = DBConnection.getRequiredMajor(studentId, studentMajor2.substring(0, 3));
 
         List<String> requiredDoubleMajors = new ArrayList<>();
         requiredDoubleMajors.addAll(requiredMajor1);

@@ -131,7 +131,7 @@
 
 ## E-R 다이어그램 & 유즈케이스📄
 <img width = "100%" src = "https://user-images.githubusercontent.com/75983289/169945900-ab58d635-c4ec-48ff-8333-eaa132225d11.png"/>
-<img width = "50%"  src = "https://user-images.githubusercontent.com/75983289/193456431-fdb34f71-94fe-4b8a-a566-b1bb2650e785.png"/>
+<img width = "50%"  src = "https://user-images.githubusercontent.com/75983289/199025307-fe5eca66-ce06-4705-9c01-b5d758adb96f.png"/>
 
 ## Dependencies🖥️
  

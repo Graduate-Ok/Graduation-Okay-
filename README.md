@@ -1,5 +1,6 @@
 # <img width = "100%" src = "https://user-images.githubusercontent.com/75983289/164976416-004d3626-3a5c-4eb5-95d6-e94d1833a392.png"/>
 한신대학교 재학생 누구나 본인의 졸업요건을 조회할 수 있는 웹사이트 
+
 | [홈페이지 바로가기](http://www.hs-graduate-ok.com/) | [노션 바로가기](https://cyclic-pleasure-1d8.notion.site/cfc00b3dc86c48ffb1f7b8daa0fb2cc4?v=37062694a379480c8984998f79448e3c) |
 |:---:|:---:|
 
@@ -10,6 +11,9 @@
 | 박수빈 | Back-end | https://github.com/psb0320 |
 | 김지윤 | Front-end | https://github.com/JiYoon0712 |
 | 김민석 | Back-end | https://github.com/alstjr |
+
+## PRIZE 🥇
+[2022년 창의적 종합설계 경진대회 대상](https://www.hs.ac.kr/kor/4953/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGa29yJTJGMjQlMkYxMzczMDglMkZhcnRjbFZpZXcuZG8lM0Y%3D)
 
 ## 프로젝트 개요 👀
 #### 프로젝트 선정 이유

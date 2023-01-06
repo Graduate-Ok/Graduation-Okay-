@@ -8,7 +8,7 @@
 | 팀원 | 역할 | Github | 
 |:---:|:---:|:---:| 
 | 배성규 | Front-end | https://github.com/pangkyu | 
-| 박수빈 | Back-end | https://github.com/clpabin0320 |
+| 박수빈 | Back-end | https://github.com/clapbin0320 |
 | 김지윤 | Front-end | https://github.com/JiYoon0712 |
 | 김민석 | Back-end | https://github.com/alstjr |
 

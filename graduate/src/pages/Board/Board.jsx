@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import '../css/Board.css';
-import BoardRow from '../components/BoardRow';
-import Pagination from '../components/Pagination';
-import { PORT_NUMBER, API_URL } from '../utils/constant';
+import '../../css/Board.css';
+import BoardRow from './BoardRow';
+import Pagination from '../../components/Pagination';
+import { PORT_NUMBER, API_URL } from '../../utils/constant';
 /**
  *
  * @description Board 페이지 컴포넌트

@@ -1,9 +1,9 @@
-import '../css/Graduate.css';
-import '../css/ContentsPage.css';
+import '../../css/Graduate.css';
+import '../../css/ContentsPage.css';
 import axios from 'axios';
 import { useState } from 'react';
-import Spinner from '../components/Spinner';
-import { API_URL, PORT_NUMBER } from '../utils/constant';
+import Spinner from '../../components/spinner/Spinner';
+import { API_URL, PORT_NUMBER } from '../../utils/constant';
 
 /**
  * @description Graduate 페이지 컴포넌트
@@ -115,10 +115,11 @@ const Graduate = () => {
                         교양과목 정보 외의 인적사항 및 학점은 따로 저장하지
                         않습니다!
                     </div>
-                    <div className="section__text text-color2"> 
-                        현재 학기를 제외한 확실히 수료완료한 학기 기준으로 결과가 출력됩니다.
+                    <div className="section__text text-color2">
+                        현재 학기를 제외한 확실히 수료완료한 학기 기준으로
+                        결과가 출력됩니다.
                     </div>
-                    
+
                     {loading ? (
                         <Spinner />
                     ) : (

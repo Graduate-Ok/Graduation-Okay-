@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
-import useInput from '../hooks/useInput';
-import { API_URL, PORT_NUMBER } from '../utils/constant';
+import useInput from '../../../hooks/useInput';
+import { API_URL, PORT_NUMBER } from '../../../utils/constant';
 
 /**
  * @description PostBoard 컴포넌트 페이지

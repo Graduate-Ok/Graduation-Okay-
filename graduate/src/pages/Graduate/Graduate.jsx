@@ -1,5 +1,5 @@
 import '../../css/Graduate.css';
-import '../../css/ContentsPage.css';
+import '../../css/MainPage.css';
 import axios from 'axios';
 import { useState } from 'react';
 import Spinner from '../../components/spinner/Spinner';

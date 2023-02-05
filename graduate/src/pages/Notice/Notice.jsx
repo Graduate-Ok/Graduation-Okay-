@@ -1,4 +1,4 @@
-import '../../css/ContentsPage.css';
+import '../../css/MainPage.css';
 import '../../css/Notice.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';

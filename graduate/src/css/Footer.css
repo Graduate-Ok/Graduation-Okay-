@@ -14,12 +14,6 @@
     font-display: swap;
 }
 
-/* #wrap{
-    height:100px;
-    position: relative;
-    width: 100%;
-} */
-
 .footer {
     font-family: 'JejuGothic';
     display: flex;
@@ -30,13 +24,13 @@
 
 .footer__section {
     display: flex;
-    padding: 20px;
+    padding: 1rem;
     width: 100%;
 }
 
 .section-content {
     display: flex;
-    padding: 10px;
+    padding: 1rem;
     width: 100%;
     justify-content: center;
     flex-direction: column;
@@ -46,4 +40,13 @@
 
 .section-content > a:hover {
     color: #ffb02e;
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 768px) {
+    .section-content {
+        font-size: 0.3rem;
+    }
 }

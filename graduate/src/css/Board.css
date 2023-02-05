@@ -288,6 +288,7 @@
 @media (max-width: 768px) {
     .Board {
         width: 100vw;
+        font-size: 0.4rem;
     }
     .Board__header {
         font-size: small;

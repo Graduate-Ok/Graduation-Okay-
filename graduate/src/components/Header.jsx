@@ -6,12 +6,14 @@ import '../css/Header.css';
 function Header() {
     return (
         <>
-            <header className="Header">
-                <div>
-                    <a href="/">
-                        <img src="imgs/logo.png" alt="headerimg"></img>
-                    </a>
-                </div>
+            <header className="header">
+                <a href="/">
+                    <img
+                        className="header-img"
+                        src="imgs/logo.png"
+                        alt="headerimg"
+                    ></img>
+                </a>
             </header>
         </>
     );

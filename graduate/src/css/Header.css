@@ -1,7 +1,17 @@
-.Header {
+.header {
     display: flex;
     justify-content: center;
     align-content: center;
-    padding: 5px;
-    margin-top: 20px;
+    padding: 0.8rem;
+    margin-top: 1.2rem;
+}
+/* @media (max-width: 1200px) {
+    .contentsPage-img {
+        height: 10rem;
+    }
+} */
+@media (max-width: 768px) {
+    .header-img {
+        width: 12rem;
+    }
 }

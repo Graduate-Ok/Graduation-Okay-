@@ -22,7 +22,7 @@ function Footer() {
                 <div className="section-content">
                     <p>TEAM 졸업가능?</p>
                     <p>🙂 배성규 박수빈 김지윤 김민석 🙂</p>
-                    <p>Github : https://github.com/pangkyu/Graduation-Okay- </p>
+                    <p>https://github.com/Graduate-Ok/Graduation-Okay-</p>
                 </div>
             </div>
         </footer>

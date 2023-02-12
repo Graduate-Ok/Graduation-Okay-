@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import EditBoardRow from '../components/EditBoardRow';
-import { API_URL, PORT_NUMBER } from '../utils/constant';
+import EditBoardRow from './EditBoardRow';
+import { API_URL, PORT_NUMBER } from '../../../utils/constant';
 
 /**
  * @description 글 수정 페이지 컴포넌트

@@ -1,11 +1,11 @@
-import '../css/ContentsPage.css';
-import '../css/Notice.css';
+import '../../css/MainPage.css';
+import '../../css/Notice.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import NoticeRow from '../components/NoticeRow';
-import Pagination from '../components/Pagination';
-import { API_URL, PORT_NUMBER } from '../utils/constant';
+import NoticeRow from './NoticeRow';
+import Pagination from '../../components/Pagination';
+import { API_URL, PORT_NUMBER } from '../../utils/constant';
 
 /**
  * @description notice 페이지 컴포넌트

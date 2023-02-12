@@ -1,4 +1,4 @@
-import '../css/ContentsPage.css';
+import '../css/MainPage.css';
 
 /**
  *
@@ -7,7 +7,7 @@ import '../css/ContentsPage.css';
 function Mainpage() {
     return (
         <>
-            <main>
+            <main className="MainPage--box">
                 <img
                     className="contentsPage-img"
                     src="imgs/background.jpg"

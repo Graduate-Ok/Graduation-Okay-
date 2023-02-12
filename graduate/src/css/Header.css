@@ -1,7 +1,37 @@
-.Header {
+.header {
     display: flex;
-    justify-content: center;
     align-content: center;
-    padding: 5px;
-    margin-top: 20px;
+    padding: 0.8rem;
+    margin-top: 1.2rem;
+    justify-content: center;
+}
+.header__sidebar {
+    display: none;
+}
+.header__sidebar-icon {
+    display: flex;
+}
+
+/* @media (max-width: 1200px) {
+    .contentsPage-img {
+        height: 10rem;
+    }
+} */
+@media (max-width: 768px) {
+    .header {
+        justify-content: space-around;
+    }
+    .header__sidebar {
+        display: flex;
+        align-items: center;
+    }
+    .header-img {
+        width: 12rem;
+    }
+    .header__sidebar-icon {
+        width: 1.8rem;
+    }
+    .header__sidebar-reject {
+        width: 1.5rem;
+    }
 }

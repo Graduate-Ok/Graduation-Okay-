@@ -2,8 +2,8 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ViewBoardRow from '../components/ViewBoardRow';
-import { API_URL, PORT_NUMBER } from '../utils/constant';
+import ViewBoardRow from './ViewBoardRow';
+import { API_URL, PORT_NUMBER } from '../../../utils/constant';
 
 /**
  * @description ViewBoard 컴포넌트 페이지

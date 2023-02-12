@@ -3,17 +3,17 @@ import { Route, Routes } from 'react-router-dom';
 import { Reset } from 'styled-reset';
 import './css/App.css';
 import Header from './components/Header';
-import Nav from './pages/Nav';
+import Nav from './components/Nav';
 import Footer from './components/Footer';
-import PostBoard from './pages/PostBoard';
-import Graduate from './pages/Graduate';
-import Notice from './pages/Notice';
+import PostBoard from './pages/Board/PostBoard/PostBoard';
+import Graduate from './pages/Graduate/Graduate';
+import Notice from './pages/Notice/Notice';
 import Mainpage from './pages/Mainpage';
-import Board from './pages/Board';
-import ViewBoard from './pages/ViewBoard';
-import KyRecommend from './pages/KyRecommend';
+import Board from './pages/Board/Board';
+import ViewBoard from './pages/Board/ViewBoard/ViewBoard';
+import KyRecommend from './pages/KyRecommend/KyRecommend';
 import NotFound from './pages/NotFound';
-import EditBoard from './pages/EditBoard';
+import EditBoard from './pages/Board/EditBoard/EditBoard';
 import Feedback from './pages/Feedback';
 
 const App = () => {

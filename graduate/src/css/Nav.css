@@ -27,23 +27,16 @@
     text-align: center;
     justify-content: center;
     width: 55%;
-    height: 60px;
     margin: auto;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    font-size: 21px;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
 }
-
-/* .navbar > div:hover{
-    border-bottom: 2px solid #000;
-    transition: all 250ms ease-in-out;
-
-} */
 
 .navbar__nav:after {
     display: block;
     content: '';
-    border-bottom: solid 2px #000;
+    border-bottom: solid 0.04rem #000;
     transform: scaleX(0);
     transition: transform 200ms ease-in-out;
 }
@@ -56,4 +49,18 @@
 
 .navbar__nav {
     margin: auto;
+}
+
+@media (max-width: 1200px) {
+    .navbar {
+        font-size: 1rem;
+    }
+    /* .navbar__nav:after{
+    } */
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        display: none;
+    }
 }

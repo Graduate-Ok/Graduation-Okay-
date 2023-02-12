@@ -1,7 +1,7 @@
 import react from 'react';
 import { Link } from 'react-router-dom';
 import '../css/Nav.css';
-import '../css/ContentsPage.css';
+import '../css/MainPage.css';
 
 /**
  * @description nav 컴포넌트

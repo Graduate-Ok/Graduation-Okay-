@@ -1,10 +1,10 @@
 import react from 'react';
-import '../css/KyRecommend.css';
+import '../../css/KyRecommend.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import KyRecommendRow from '../components/KyRecommendRow';
-import KyRecommendRow2 from '../components/KyRecommendRow2';
-import { API_URL, PORT_NUMBER } from '../utils/constant';
+import KyRecommendRow from './KyRecommendRow';
+import KyRecommendRow2 from './KyRecommendRow2';
+import { API_URL, PORT_NUMBER } from '../../utils/constant';
 
 // 교양과목을 추천해주는 페이지
 function KyRecommend() {
@@ -31,7 +31,17 @@ function KyRecommend() {
                     <br />
                     <br />
                     <div className="starOrder">
-                    <button id="btnStarOrder" onClick={() => window.open('https://everytime.kr/lecture', '_blank')}>⭐에브리타임 별점순⭐</button>
+                        <button
+                            id="btnStarOrder"
+                            onClick={() =>
+                                window.open(
+                                    'https://everytime.kr/lecture',
+                                    '_blank',
+                                )
+                            }
+                        >
+                            ⭐에브리타임 별점순⭐
+                        </button>
                         <KyRecommendRow2></KyRecommendRow2>
                     </div>
                     <button id="btnNumOrder"> ☝수강 횟수 순✌</button> <br />

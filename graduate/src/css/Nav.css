@@ -55,12 +55,17 @@
     .navbar {
         font-size: 1rem;
     }
-    /* .navbar__nav:after{
-    } */
 }
 
 @media (max-width: 768px) {
     .navbar {
-        display: none;
+        flex-direction: column;
+    }
+    .navbar__nav {
+        padding: 0.6rem;
+        width: 100%;
+    }
+    .navbar__nav:after {
+        border-bottom: none;
     }
 }

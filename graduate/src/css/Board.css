@@ -19,18 +19,16 @@
 }
 
 .Board {
-    display: flex;
-    align-items: center;
     text-align: center;
     justify-content: center;
-}
-
-.BoardSize {
-    font-family: 'JejuGothic';
+    font-size: 0.8rem;
     display: flex;
-    width: 85%;
+    width: 90vw;
+    height: 100vh;
+    margin: auto;
+    font-family: 'JejuGothic';
     flex-direction: column;
-    height: 700px;
+    align-items: center;
 }
 
 .Board__header,
@@ -48,8 +46,8 @@
 }
 
 .Board__navbar {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     text-align: center;
     align-content: center;
     justify-content: space-between;
@@ -64,8 +62,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70px;
-    height: 28px;
+    width: 4rem;
+    height: 1.7rem;
     border: none;
     background-color: #8f8de7;
     font-family: 'JejuGothic';
@@ -96,8 +94,8 @@
 .Board__content--writer,
 .Board__content--date,
 .Board__content--hits {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 0.9rem;
+    margin-bottom: 0.9rem;
 }
 
 .Board__content--number {
@@ -123,10 +121,10 @@
 
 .Board__footer {
     display: flex;
-    height: 28px;
+    height: 1.7rem;
     justify-content: flex-end;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
     width: 100%;
 }
 .Board__footer--button {
@@ -134,8 +132,8 @@
     background-color: #8f8de7;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
-    width: 80px;
+    border-radius: 0.8rem;
+    width: 5rem;
 }
 
 .Board__page {
@@ -149,8 +147,8 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 35px;
-    height: 30px;
+    width: 2.3rem;
+    height: 2rem;
     font-size: small;
     border-radius: 3px;
     text-decoration-line: none;
@@ -269,17 +267,37 @@
 }
 
 /*내용*/
-.BRD_content { 
+.BRD_content {
     font-size: 17px;
     justify-content: center;
     border: solid 2px #e5e7eb;
     background-color: #f2f2f2;
     align-items: center;
     overflow-y: auto;
-    padding:1em;
+    padding: 1rem;
     line-height: 1.3;
 }
 
-.BRD_content--detail{
+.BRD_content--detail {
     height: 500px;
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 768px) {
+    .Board {
+        width: 100vw;
+        font-size: 0.4rem;
+    }
+    .Board__header {
+        font-size: small;
+    }
+    .Board__page--button {
+        width: 1.2rem;
+        font-size: 0.5rem;
+    }
+    .Board__page {
+        margin-bottom: auto;
+    }
 }

@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import useInput from '../hooks/useInput';
-import { API_URL, PORT_NUMBER } from '../utils/constant';
+import useInput from '../../../hooks/useInput';
+import { API_URL, PORT_NUMBER } from '../../../utils/constant';
 
 const EditBoardRow = ({ EditBoard }) => {
     const [title, onChangeTitle] = useInput('');

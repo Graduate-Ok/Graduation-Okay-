@@ -19,17 +19,16 @@
     width: 90%;
     max-height: 60vh;
     overflow-y: scroll;
-    text-align: center;   
+    text-align: center;
 }
 
 .main {
     display: flex;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     font-family: 'JejuGothic';
     flex-direction: column;
     align-items: center;
-    
 }
 
 .part1 {
@@ -41,7 +40,6 @@
     align-items: center;
 }
 
-
 .title {
     display: flex;
     align-items: center;
@@ -52,43 +50,39 @@
 }
 
 /* 횟수별 에타 별점순 버튼*/
-.Kymenu{
+.Kymenu {
     width: 100%;
     text-align: center;
 }
 
-.starOrder{
+.starOrder {
     /* border-top: 5px dotted rgba(81, 81, 81, 0.836); 
     border-bottom: 5px dotted rgba(81, 81, 81, 0.836);  */
     display: flex;
     width: 100%;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 #btnNumOrder,
-#btnStarOrder{
-        width: 20%;
-        font-size: large;
-        background: #c8c8f8;
-        display: inline-block;
-        margin:1.5ch;
-        border: 0;
-        outline:0;
-        text-align: center;
-        border-radius: 1ch
-
+#btnStarOrder {
+    width: 20%;
+    font-size: large;
+    background: #c8c8f8;
+    display: inline-block;
+    margin: 1.5ch;
+    border: 0;
+    outline: 0;
+    text-align: center;
+    border-radius: 1ch;
 }
 
-#btnStarOrder:hover{
+#btnStarOrder:hover {
     background: #9e9eece3;
     color: white;
     cursor: pointer;
 }
-
-
-
 
 .rightBar {
     display: flex;
@@ -170,4 +164,3 @@
     counter-increment: numbering;
     content: counter(numbering);
 }
-

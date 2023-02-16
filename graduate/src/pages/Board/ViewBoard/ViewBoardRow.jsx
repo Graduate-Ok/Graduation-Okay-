@@ -27,7 +27,12 @@ const ViewBoardRow = ({ ViewBoard }) => {
             </div>
 
             <div className="BRD_title"> {ViewBoard.brdTitle} </div>
-            <div className="BRD_content"> <pre className='BRD_content--detail'>{ViewBoard.brdContent}</pre> </div>
+            <div className="BRD_content">
+                {' '}
+                <pre className="BRD_content--detail">
+                    {ViewBoard.brdContent}
+                </pre>{' '}
+            </div>
         </div>
     );
 };

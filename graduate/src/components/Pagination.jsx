@@ -5,21 +5,14 @@ import '../css/Board.css';
  * @description 페이지네이션 컴포넌트
  */
 
-const Pagination = ({
-    handlePageClick,
-    page,
-    searchHelper,
-    handleNextBtn,
-    handlePrevBtn,
-    pageName,
-}) => {
+const Pagination = ({ searchHelper, pageName, handleButton }) => {
     const paging = () => {
-        let array = [];
+        const array = [];
         for (let i = searchHelper.startPage; i <= searchHelper.endPage; i++) {
             array.push(
                 <div
                     className="Board__page--button"
-                    onClick={(e) => handlePageClick(i, e)}
+                    onClick={(e) => handleButton(e, i)}
                 >
                     {i}
                 </div>,
@@ -32,14 +25,14 @@ const Pagination = ({
         <>
             <div
                 className="Board__page--button"
-                onClick={(e) => handlePrevBtn(e)}
+                onClick={(e) => handleButton(e, searchHelper.prevBlock)}
             >
                 이전
             </div>
             {paging()}
             <div
                 className="Board__page--button"
-                onClick={(e) => handleNextBtn(e)}
+                onClick={(e) => handleButton(e, searchHelper.nextBlock)}
             >
                 다음
             </div>

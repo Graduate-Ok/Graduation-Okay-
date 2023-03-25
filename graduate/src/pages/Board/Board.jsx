@@ -40,26 +40,12 @@ const Board = () => {
         fetchData();
     }, []);
 
-    const handleNextBtn = async (e) => {
+    const handleButton = async (e, param) => {
         e.preventDefault();
         const response = await axios.get(
-            `${API_URL}${PORT_NUMBER}/Board/?page=${searchHelper.nextBlock}`,
+            `${API_URL}${PORT_NUMBER}/Board/?page=${param}`,
         );
         setSearchHelper(response.data.searchHelper);
-        setInputData(response.data.boardDtoList);
-    };
-    const handlePrevBtn = async (e) => {
-        e.preventDefault();
-        const response = await axios.get(
-            `${API_URL}${PORT_NUMBER}/Board/?page=${searchHelper.prevBlock}`,
-        );
-        setSearchHelper(response.data.searchHelper);
-        setInputData(response.data.boardDtoList);
-    };
-    const handlePageClick = async (i) => {
-        const response = await axios.get(
-            `${API_URL}${PORT_NUMBER}/Board/?page=${i}`,
-        );
         setInputData(response.data.boardDtoList);
     };
 
@@ -139,12 +125,9 @@ const Board = () => {
                     </div>
                     <div className="Board__page">
                         <Pagination
-                            handlePageClick={handlePageClick}
-                            page={searchHelper.page}
                             searchHelper={searchHelper}
-                            handleNextBtn={handleNextBtn}
-                            handlePrevBtn={handlePrevBtn}
                             pageName={pageName}
+                            handleButton={handleButton}
                         />
                     </div>
                 </div>

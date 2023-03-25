@@ -27,7 +27,7 @@
     max-width: 1700px;
     margin: auto;
     height: 45rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 }
 
 /* @media (max-width: 1200px) {
@@ -37,6 +37,6 @@
 } */
 @media (max-width: 768px) {
     .contentsPage-img {
-        height: 30rem;
+        height: 40rem;
     }
 }

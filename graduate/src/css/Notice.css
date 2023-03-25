@@ -34,7 +34,6 @@
 }
 
 .Notice__header,
-.Notice__navbar,
 .Notice__content--title,
 .Notice__content--content,
 .Notice__footer,
@@ -46,15 +45,7 @@
 /*공지사항*/
 .Notice__header {
     font-size: large;
-}
-
-/*검색 줄*/
-.Notice__navbar {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    text-align: center;
-    align-content: center;
-    justify-content: space-between;
+    margin-bottom: 2rem;
 }
 
 /*검색*/
@@ -268,4 +259,10 @@ li {
     overflow-y: auto;
     margin-top: 50px;
     margin-bottom: 30px;
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 768px) {
 }

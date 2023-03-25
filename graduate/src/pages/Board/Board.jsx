@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../css/Board.css';
 import BoardRow from './BoardRow';
@@ -11,17 +11,16 @@ import { PORT_NUMBER, API_URL } from '../../utils/constant';
  */
 const Board = () => {
     const [inputData, setInputData] = useState([]);
-    const [srchType, setSrchType] = useState('');
-    const [srchKeyword, setSrchKeyword] = useState('');
-    const [page, setPage] = useState(1);
     const pageName = 'Board';
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `${API_URL}${PORT_NUMBER}/Board/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
+                `${API_URL}${PORT_NUMBER}/Board/?srchType=&srchKeyword=&page=1`,
             );
             setInputData(response.data.boardDtoList);
+            setSearchHelper(response.data.searchHelper);
         };
         fetchData();
     }, []);
@@ -31,14 +30,6 @@ const Board = () => {
      *
      */
     const [searchHelper, setSearchHelper] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get(`${API_URL}${PORT_NUMBER}/Board/`);
-            setSearchHelper(response.data.searchHelper);
-        };
-        fetchData();
-    }, []);
 
     const handleButton = async (e, param) => {
         e.preventDefault();
@@ -59,8 +50,7 @@ const Board = () => {
         const search = document.forms['searchBar']['srchKeyword'].value;
         if (search === '') {
             alert('검색어를 입력해주세요!');
-            const response = await axios.get(`${API_URL}${PORT_NUMBER}/Board/`);
-            setInputData(response.data.boardDtoList);
+            navigate(`/Board`);
         } else {
             const response = await axios.get(
                 `${API_URL}${PORT_NUMBER}/Board/?srchType=${select}&srchKeyword=${search}`,

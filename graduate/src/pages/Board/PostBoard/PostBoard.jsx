@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
 import { API_URL, PORT_NUMBER } from '../../../utils/constant';
+import EditorComponent from '../../../components/EditorComponent';
 
 /**
  * @description PostBoard 컴포넌트 페이지
@@ -124,6 +125,7 @@ const PostBoard = () => {
                                 </div>
                             </div>
                         </form>
+                        <EditorComponent />
                     </div>
                 </div>
             </main>

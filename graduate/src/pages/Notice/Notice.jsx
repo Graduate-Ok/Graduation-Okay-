@@ -1,8 +1,8 @@
 import '../../css/MainPage.css';
 import '../../css/Notice.css';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import NoticeRow from './NoticeRow';
 import Pagination from '../../components/Pagination';
 import { API_URL, PORT_NUMBER } from '../../utils/constant';
@@ -12,18 +12,16 @@ import { API_URL, PORT_NUMBER } from '../../utils/constant';
  */
 const Notice = () => {
     const [inputData, setInputData] = useState([]);
-    const [srchType, setSrchType] = useState('');
-    const [srchKeyword, setSrchKeyword] = useState('');
-    const [page, setPage] = useState(1);
     const pageName = 'Notice';
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
-                `${API_URL}${PORT_NUMBER}/Notice/?srchType=${srchType}&srchKeyword=${srchKeyword}&page=${page}`,
+                `${API_URL}${PORT_NUMBER}/Notice/?srchType=&srchKeyword=&page=1`,
             );
             setInputData(response.data.noticeDtoList);
+            setSearchHelper(response.data.searchHelper);
         };
         fetchData();
     }, []);
@@ -37,10 +35,7 @@ const Notice = () => {
         const search = document.forms['searchBar']['srchKeyword'].value;
         if (search === '') {
             alert('검색어를 입력해주세요!');
-            const response = await axios.get(
-                `${API_URL}${PORT_NUMBER}/Notice/`,
-            );
-            setInputData(response.data.noticeDtoList);
+            navigate(`/Notice`);
         } else {
             const response = await axios.get(
                 `${API_URL}${PORT_NUMBER}/Notice/?srchType=${select}&srchKeyword=${search}`,
@@ -64,36 +59,12 @@ const Notice = () => {
      */
     const [searchHelper, setSearchHelper] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get(
-                `${API_URL}${PORT_NUMBER}/Notice/`,
-            );
-            setSearchHelper(response.data.searchHelper);
-        };
-        fetchData();
-    }, []);
-
-    const handleNextBtn = async (e) => {
+    const handleButton = async (e, param) => {
         e.preventDefault();
         const response = await axios.get(
-            `${API_URL}${PORT_NUMBER}/Notice/?page=${searchHelper.nextBlock}`,
+            `${API_URL}${PORT_NUMBER}/Notice/?page=${param}`,
         );
         setSearchHelper(response.data.searchHelper);
-        setInputData(response.data.noticeDtoList);
-    };
-    const handlePrevBtn = async (e) => {
-        e.preventDefault();
-        const response = await axios.get(
-            `${API_URL}${PORT_NUMBER}/Notice/?page=${searchHelper.prevBlock}`,
-        );
-        setSearchHelper(response.data.searchHelper);
-        setInputData(response.data.noticeDtoList);
-    };
-    const handlePageClick = async (i) => {
-        const response = await axios.get(
-            `${API_URL}${PORT_NUMBER}/Notice/?page=${i}`,
-        );
         setInputData(response.data.noticeDtoList);
     };
 
@@ -105,11 +76,6 @@ const Notice = () => {
                         <div className="Notice__header">
                             <p className="minititle">공지사항</p>
                         </div>
-
-                        <div className="Notice__navbar">
-                            <div></div>
-                        </div>
-                        {/*TAB*/}
                         <div class="tab">
                             <ul class="tabnav">
                                 <li>
@@ -185,12 +151,9 @@ const Notice = () => {
                             </div>
                             <div className="Board__page">
                                 <Pagination
-                                    handlePageClick={handlePageClick}
-                                    page={searchHelper.page}
                                     searchHelper={searchHelper}
-                                    handleNextBtn={handleNextBtn}
-                                    handlePrevBtn={handlePrevBtn}
                                     pageName={pageName}
+                                    handleButton={handleButton}
                                 />
                             </div>
                         </div>

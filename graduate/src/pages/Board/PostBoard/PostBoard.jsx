@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
-import useInput from '../../../hooks/useInput';
 import { API_URL, PORT_NUMBER } from '../../../utils/constant';
+import EditorComponent from '../../../components/EditorComponent';
 
 /**
  * @description PostBoard 컴포넌트 페이지
@@ -37,11 +37,6 @@ const PostBoard = () => {
         navigate('/Board');
     };
 
-    const [title, onChangeTitle] = useInput('');
-    const [writer, onChangeWriter] = useInput('');
-    const [password, onChangePassword] = useInput('');
-    const [content, onChangeContent] = useInput('');
-
     return (
         <>
             <main>
@@ -67,7 +62,6 @@ const PostBoard = () => {
                                     <div className="Board__writecontainer--detail">
                                         <input
                                             type="text"
-                                            onChange={onChangeTitle}
                                             placeholder="제목을 입력하세요."
                                             name="brdTitle"
                                             id="brdTitle"
@@ -81,7 +75,6 @@ const PostBoard = () => {
                                     <div className="Board__writecontainer--detail">
                                         <input
                                             type="text"
-                                            onChange={onChangeWriter}
                                             placeholder="작성자의 이름을 입력하세요."
                                             name="brdWriter"
                                             id="brdWriter"
@@ -94,7 +87,6 @@ const PostBoard = () => {
                                     <div className="Board__writecontainer--detail">
                                         <input
                                             type="password"
-                                            onChange={onChangePassword}
                                             placeholder="비밀번호를 입력하세요."
                                             name="brdPassword"
                                             id="brdPassword"
@@ -107,7 +99,6 @@ const PostBoard = () => {
                                     <div className="Board__writecontainer--detail">
                                         <textarea
                                             placeholder="내용을 입력하세요."
-                                            onChange={onChangeContent}
                                             name="brdContent"
                                             id="brdContent"
                                             className="Board__writecontainer--content"
@@ -134,6 +125,7 @@ const PostBoard = () => {
                                 </div>
                             </div>
                         </form>
+                        <EditorComponent />
                     </div>
                 </div>
             </main>

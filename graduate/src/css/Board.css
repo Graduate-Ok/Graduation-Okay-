@@ -211,7 +211,6 @@
     max-height: 200px;
 }
 
-/*이 부분은 오빠가 만들어놓은거*/
 .Board__writecontainer--title,
 .Board__writecontainer--writer,
 .Board__writecontainer--password {
@@ -286,18 +285,4 @@
 }
 
 @media (max-width: 768px) {
-    .Board {
-        width: 100vw;
-        font-size: 0.4rem;
-    }
-    .Board__header {
-        font-size: small;
-    }
-    .Board__page--button {
-        width: 1.2rem;
-        font-size: 0.5rem;
-    }
-    .Board__page {
-        margin-bottom: auto;
-    }
 }

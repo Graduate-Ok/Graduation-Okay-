@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import { API_URL, PORT_NUMBER } from '../../../utils/constant';
 import EditorComponent from '../../../components/EditorComponent';
+// import EditorWithUseQuill from '../../../components/EditorWithUseQuill';
 
 /**
  * @description PostBoard 컴포넌트 페이지
@@ -126,6 +127,7 @@ const PostBoard = () => {
                             </div>
                         </form>
                         <EditorComponent />
+                        {/* <EditorWithUseQuill /> */}
                     </div>
                 </div>
             </main>

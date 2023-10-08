@@ -5,8 +5,8 @@ import '../../css/Board.css';
 import BoardRow from './BoardRow';
 import Pagination from '../../components/Pagination';
 import { PORT_NUMBER, API_URL } from '../../utils/constant';
+
 /**
- *
  * @description Board 페이지 컴포넌트
  */
 const Board = () => {
@@ -27,7 +27,6 @@ const Board = () => {
 
     /**
      * @description 페이지네이션 기능
-     *
      */
     const [searchHelper, setSearchHelper] = useState([]);
 
@@ -41,7 +40,6 @@ const Board = () => {
     };
 
     /**
-     *
      * @description 검색 쿼리 기능
      */
     const handleSubmit = async (e) => {

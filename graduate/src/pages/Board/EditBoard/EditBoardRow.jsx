@@ -15,6 +15,7 @@ const EditBoardRow = ({ EditBoard }) => {
     const navigate = useNavigate();
 
     let params = useParams().brdKey;
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(
@@ -148,7 +149,6 @@ const EditBoardRow = ({ EditBoard }) => {
                                 autoFocus
                             ></textarea>
                         </div>
-                        <br />
                         작성자
                         <div className="Board__writecontainer--detail">
                             <textarea
@@ -162,7 +162,7 @@ const EditBoardRow = ({ EditBoard }) => {
                                 {EditBoard.brdWriter}
                             </textarea>
                         </div>
-                        <br /> Password (수정/삭제시 비밀번호가 필요합니다.)
+                        Password (수정/삭제시 비밀번호가 필요합니다.)
                         <div className="Board__writecontainer--detail">
                             <input
                                 type="password"
@@ -174,7 +174,6 @@ const EditBoardRow = ({ EditBoard }) => {
                                 required
                             ></input>
                         </div>
-                        <br />
                         내용
                         <div className="Board__writecontainer--detail">
                             <textarea
